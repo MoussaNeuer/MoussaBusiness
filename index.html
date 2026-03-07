@@ -1450,7 +1450,163 @@ body{
     animation:none !important;
   }
 }
+
+/* ================================================================
+   [NOUVEAU] STYLES AJOUTÉS — Stock, Wave, CVG, TikTok, Checkout
+   ================================================================ */
+
+/* ── Badge stock faible (≤ 3 unités) — carte catalogue ── */
+.lowstock-badge{
+  position:absolute;top:0;left:0;right:0;
+  background:rgba(245,158,11,.85);
+  color:#fff;font-size:.78rem;font-weight:700;
+  display:flex;align-items:center;justify-content:center;gap:.4rem;
+  padding:.45rem .5rem;
+  letter-spacing:.3px;
+  pointer-events:none;
+}
+
+/* ===== SOLD OUT — Badge rupture de stock ===== */
+.soldout-badge{
+  position:absolute;top:0;left:0;right:0;
+  background:rgba(0,0,0,.72);
+  color:#fff;font-size:.78rem;font-weight:700;
+  display:flex;align-items:center;justify-content:center;gap:.4rem;
+  padding:.55rem .5rem;
+  letter-spacing:.5px;
+  pointer-events:none;
+}
+.soldout-card{
+  opacity:.6;
+}
+.soldout-btn{
+  background:var(--border) !important;
+  color:var(--t3) !important;
+  cursor:not-allowed !important;
+  box-shadow:none !important;
+}
+
+/* ===== STOCK BADGE — page détail ===== */
+.stock-badge{
+  display:flex;align-items:center;gap:.5rem;
+  font-size:.85rem;font-weight:600;
+  padding:.55rem .9rem;border-radius:1rem;
+  margin-bottom:.75rem;
+}
+.stock-badge.ok{background:rgba(34,197,94,.12);color:#16a34a}
+.stock-badge.low{background:rgba(245,158,11,.12);color:#d97706}
+.stock-badge.soldout{background:rgba(239,68,68,.12);color:#dc2626}
+
+/* ===== CHECKOUT OPTIONS — Wave + WhatsApp ===== */
+.checkout-options{
+  display:flex;flex-direction:column;gap:.7rem;
+  margin-top:.5rem;
+}
+.checkout-label{
+  font-size:.85rem;color:var(--t2);
+  display:flex;align-items:center;gap:.4rem;
+  margin-bottom:.2rem;
+}
+/* Badge sécurité paiement */
+.secure-badge{
+  display:flex;align-items:center;justify-content:center;gap:.4rem;
+  font-size:.8rem;font-weight:600;color:#16a34a;
+  background:rgba(34,197,94,.1);
+  border-radius:1rem;padding:.45rem .8rem;
+  margin-bottom:.6rem;
+}
+/* Bouton Wave */
+.wave-btn{
+  width:100%;
+  padding:1rem;
+  background:#1A8CF9;color:#fff;
+  border:none;border-radius:2rem;
+  font-family:'Outfit',sans-serif;
+  font-size:1rem;font-weight:800;
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:.6rem;
+  transition:var(--tr);
+  box-shadow:0 8px 20px rgba(26,140,249,.3);
+}
+.wave-btn:active{transform:scale(.97);background:#1478d4}
+.wave-logo{
+  width:1.6rem;height:1.6rem;
+  background:#fff;color:#1A8CF9;
+  border-radius:50%;
+  font-weight:900;font-size:1rem;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+
+/* ===== TikTok .cic ===== */
+.cic.tt{background:linear-gradient(135deg,#010101,#69C9D0)}
+
+/* ===== PAGE CVG ===== */
+.cvg-section{
+  padding:1.2rem 1rem .5rem;
+}
+.cvg-section h3{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.3rem;letter-spacing:1px;
+  color:var(--text);margin-bottom:.5rem;
+  display:flex;align-items:center;gap:.5rem;
+}
+.cvg-section p{font-size:.93rem;color:var(--t2);line-height:1.6}
+.cvg-icon-wrap{
+  width:2.8rem;height:2.8rem;
+  background:var(--rl);color:var(--red);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;margin-bottom:.6rem;
+}
+.cvg-card{
+  margin:0 1rem .9rem;
+  border-radius:1rem;
+  border:1.5px solid var(--border);
+  overflow:hidden;
+  background:var(--card);
+  box-shadow:0 2px 10px var(--shd);
+}
+.cvg-card-header{
+  display:flex;align-items:center;gap:.5rem;
+  padding:.75rem 1rem;
+  font-weight:700;font-size:.92rem;
+}
+.cvg-card-header.ok{background:rgba(34,197,94,.12);color:#16a34a}
+.cvg-card-header.bad{background:rgba(239,68,68,.12);color:#dc2626}
+.cvg-card-header.mid{background:rgba(245,158,11,.12);color:#d97706}
+.cvg-card-body{padding:.85rem 1rem;font-size:.9rem;color:var(--t2);line-height:1.6}
+.cvg-cond{
+  display:flex;align-items:flex-start;gap:.5rem;
+  background:var(--bg);
+  border-left:3px solid var(--red);
+  border-radius:0 .5rem .5rem 0;
+  padding:.65rem .8rem;margin-top:.7rem;
+  font-size:.85rem;color:var(--t2);
+}
+.cvg-cond.warn{border-left-color:#d97706}
+.cvg-cond i{margin-top:.15rem;flex-shrink:0;color:var(--red)}
+.cvg-cond.warn i{color:#d97706}
+.cvg-footer-note{
+  margin:1rem;
+  padding:.8rem 1rem;
+  background:var(--surf);
+  border-radius:1rem;
+  font-size:.82rem;color:var(--t3);
+  display:flex;gap:.5rem;align-items:flex-start;
+  line-height:1.5;
+}
+
+/* ===== FIX MOBILE — bouton ATC non masqué par bottom nav ===== */
+/* Le .det-con a maintenant un padding-bottom suffisant pour ne pas
+   être caché derrière la bottom navigation bar sur mobile. */
+#det .det-con{
+  padding-bottom:calc(var(--bottom-nav-height) + 1.5rem);
+}
+
 </style>
+<!-- [NOUVEAU] Données produits & gestion de stock — chargé en premier -->
+<script src="products.js"></script>
 </head>
 <body>
 
@@ -1596,16 +1752,18 @@ body{
       <a class="flk" onclick="navigate('contact')"><i class="fa-solid fa-envelope"></i> Contact</a>
       <a class="flk" onclick="setFil('slim',document.querySelectorAll('.fb')[1]);navigate('home')"><i class="fa-solid fa-shirt"></i> Slim Fit</a>
       <a class="flk" onclick="setFil('compression',document.querySelectorAll('.fb')[2]);navigate('home')"><i class="fa-solid fa-dumbbell"></i> Compression</a>
+      <!-- [NOUVEAU] Lien vers la page CVG -->
+      <a class="flk" onclick="navigate('cvg')" style="color:var(--red);"><i class="fa-solid fa-scale-balanced"></i> CVG</a>
     </div>
     <div class="ft-nl">
       <h3><i class="fa-solid fa-paper-plane"></i> Newsletter</h3>
       <p>Offres exclusives en avant-première</p>
       <div class="nl-f">
-        <input class="nl-in" type="email" id="nle" placeholder="votre@email.com">
+        <input class="nl-in" type="email" id="nle" placeholder="votre@gmail.com">
         <button class="nl-btn" onclick="subNL()">OK</button>
       </div>
     </div>
-    <div class="ft-copy">© 2025 Moussa Business · Développé par Moussa LO</div>
+    <div class="ft-copy">© 2026 Moussa Business · Développé par Moussa LO</div>
   </footer>
 </div>
 
@@ -1632,11 +1790,11 @@ body{
   <div class="ab-av">ML</div>
   <div class="ab-sec">
     <h2>QUI SUIS-JE ?</h2>
-    <p>Je suis <strong>Moussa LO</strong>, basé à Dakar, passionné par le <strong>développement web</strong> et la <strong>musculation</strong>. J'ai créé Moussa Business pour allier ces deux passions — une boutique mobile moderne proposant des vêtements de sport premium.</p>
+    <p>Je suis <strong>Moussa LO</strong>, habitant à Dakar, passionné par le <strong>développement web, mobile</strong> et la <strong>musculation</strong>. J'ai créé Moussa Business pour allier ces deux passions — une boutique mobile moderne proposant des vêtements de sport premium.</p>
     <p style="margin-top:0.5rem">Je crois que chaque projet mérite une interface fluide, rapide et mémorable. C'est ce que j'apporte à chaque site.</p>
     <div class="ab-tags">
       <span class="atag"><i class="fa-solid fa-code"></i> Dev Web</span>
-      <span class="atag"><i class="fa-solid fa-dumbbell"></i> Musculation</span>
+      <span class="atag"><i class="fa-solid fa-dumbbell"></i> Musculation - Gym</span>
       <span class="atag"><i class="fa-solid fa-paintbrush"></i> UI/UX</span>
       <span class="atag"><i class="fa-solid fa-mobile-screen"></i> Mobile-First</span>
       <span class="atag"><i class="fa-solid fa-cart-shopping"></i> E-commerce</span>
@@ -1646,8 +1804,9 @@ body{
     <h2>MES SERVICES</h2>
     <div class="ab-svs">
       <div class="asv"><div class="asv-ic"><i class="fa-solid fa-display"></i></div><div><h3>Site Vitrine</h3><p>Présentation professionnelle de votre activité</p></div></div>
-      <div class="asv"><div class="asv-ic"><i class="fa-solid fa-bag-shopping"></i></div><div><h3>Mini App E-commerce</h3><p>Boutique mobile avec commande WhatsApp</p></div></div>
+      <div class="asv"><div class="asv-ic"><i class="fa-solid fa-bag-shopping"></i></div><div><h3>Application E-commerce</h3><p>Boutique mobile avec paiement intégré ou commande WhatsApp</p></div></div>
       <div class="asv"><div class="asv-ic"><i class="fa-solid fa-rocket"></i></div><div><h3>Landing Page</h3><p>Page de conversion optimisée</p></div></div>
+      <div class="asv"><div class="asv-ic"><i class="fa-solid fa-file-contract"></i></div><div><h3>Conditions de Vente Générales</h3><p>Consultez nos conditions d'utilisation</p></div></div>
     </div>
   </div>
   <!-- [MODIF] Section Historique des commandes supprimée (données privées) -->
@@ -1658,9 +1817,10 @@ body{
     <i class="fa-brands fa-whatsapp"></i> Discutons de votre projet
   </a>
   <div style="display:flex;justify-content:center;gap:1rem;padding:1rem">
-    <a class="fsi" href="https://wa.me/221777101383" target="_blank"><i class="fa-brands fa-whatsapp" style="color:#25D366"></i></a>
-    <a class="fsi" href="https://instagram.com/ws_moussa" target="_blank"><i class="fa-brands fa-instagram" style="color:#E8391A"></i></a>
-    <a class="fsi" href="https://snapchat.com/add/moussaneuer01" target="_blank"><i class="fa-brands fa-snapchat" style="color:#e0d800"></i></a>
+    <a class="fsi" href="https://wa.me/221777101383" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp" style="color:#25D366"></i></a>
+    <a class="fsi" href="https://instagram.com/ws_moussa" target="_blank" rel="noopener"><i class="fa-brands fa-instagram" style="color:#E8391A"></i></a>
+    <a class="fsi" href="https://snapchat.com/add/moussaneuer01" target="_blank" rel="noopener"><i class="fa-brands fa-snapchat" style="color:#e0d800"></i></a>
+    <a class="fsi" href="https://tiktok.com/@ws_moussa" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok" style="color:#000"></i></a>
   </div>
 </div>
 
@@ -1677,16 +1837,95 @@ body{
         <div class="ci"><h3>WhatsApp</h3><p>+221 77 710 13 83 · Réponse rapide</p></div>
         <i class="fa-solid fa-chevron-right cchev"></i>
       </a>
-      <a class="cla" href="https://instagram.com/ws_moussa" target="_blank">
+      <a class="cla" href="https://instagram.com/ws_moussa" target="_blank" rel="noopener">
         <div class="cic ig"><i class="fa-brands fa-instagram"></i></div>
-        <div class="ci"><h3>Instagram</h3><p>@ws_moussa · Nos dernières collections</p></div>
+        <div class="ci"><h3>Instagram</h3><p>@ws_moussa · Nos entrainements avec les slim fits</p></div>
         <i class="fa-solid fa-chevron-right cchev"></i>
       </a>
-      <a class="cla" href="https://snapchat.com/add/moussaneuer01" target="_blank">
+      <a class="cla" href="https://snapchat.com/add/moussaneuer01" target="_blank" rel="noopener">
         <div class="cic sn"><i class="fa-brands fa-snapchat"></i></div>
         <div class="ci"><h3>Snapchat</h3><p>moussaneuer01 · Stories exclusives</p></div>
         <i class="fa-solid fa-chevron-right cchev"></i>
       </a>
+      <!-- [NOUVEAU] TikTok -->
+      <a class="cla" href="https://tiktok.com/@ws_moussa" target="_blank" rel="noopener">
+        <div class="cic tt"><i class="fa-brands fa-tiktok"></i></div>
+        <div class="ci"><h3>TikTok</h3><p>@ws_moussa · Vidéos & tendances</p></div>
+        <i class="fa-solid fa-chevron-right cchev"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- [NOUVEAU] PAGE CVG — Conditions de Vente Générales -->
+<div id="cvg-pg" class="pg">
+  <div class="ct-inner">
+    <div class="ct-hero" style="background:linear-gradient(135deg,#111 60%,var(--red));">
+      <h2><i class="fa-solid fa-scale-balanced"></i> CVG</h2>
+      <p>Conditions de Vente Générales — Moussa Business</p>
+    </div>
+
+    <div class="cvg-section">
+      <div class="cvg-icon-wrap"><i class="fa-solid fa-rotate-left"></i></div>
+      <h3>Politique de remboursement &amp; échange</h3>
+      <p>Chez Moussa Business, nous voulons que vous soyez entièrement satisfait de votre achat. Voici les conditions qui encadrent les retours et remboursements.</p>
+    </div>
+
+    <div class="cvg-card">
+      <div class="cvg-card-header ok">
+        <i class="fa-solid fa-circle-check"></i> Échange de taille accepté
+      </div>
+      <div class="cvg-card-body">
+        <p>Si la taille commandée ne vous convient pas (trop grande ou trop petite), vous pouvez demander un <strong>échange ou un remboursement</strong>, sous une condition impérative :</p>
+        <div class="cvg-cond">
+          <i class="fa-solid fa-tag"></i>
+          Le produit doit être <strong>retourné dans son sachet d'origine</strong>, non ouvert ou refermé proprement, sans aucune trace d'utilisation.
+        </div>
+      </div>
+    </div>
+
+    <div class="cvg-card">
+      <div class="cvg-card-header bad">
+        <i class="fa-solid fa-ban"></i> Produit porté = pas de remboursement
+      </div>
+      <div class="cvg-card-body">
+        <p>Si le produit a été <strong>porté, lavé ou utilisé</strong>, aucun remboursement ni échange ne sera possible, quelle que soit la raison invoquée.</p>
+        <div class="cvg-cond warn">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          Essayez le vêtement sans le porter à l'extérieur pour vérifier la taille avant tout usage.
+        </div>
+      </div>
+    </div>
+
+    <div class="cvg-card">
+      <div class="cvg-card-header mid">
+        <i class="fa-solid fa-star-half-stroke"></i> Contestation de qualité
+      </div>
+      <div class="cvg-card-body">
+        <p>Si vous estimez que la qualité du produit ne correspond pas à ce qui est annoncé, mais que le produit <strong>n'a pas été porté ni utilisé</strong>, un remboursement peut être envisagé après examen.</p>
+        <div class="cvg-cond">
+          <i class="fa-solid fa-circle-info"></i>
+          Contactez-nous via WhatsApp avec des photos du produit dans son état d'origine pour ouvrir une réclamation.
+        </div>
+      </div>
+    </div>
+
+    <div class="cvg-section" style="margin-top:1rem;">
+      <h3><i class="fa-solid fa-clock"></i> Délai de réclamation</h3>
+      <p>Toute réclamation doit être faite dans les <strong>48h</strong> suivant la réception du produit. Passé ce délai, aucun retour ne pourra être accepté.</p>
+    </div>
+
+    <div class="cvg-section">
+      <h3><i class="fa-solid fa-headset"></i> Comment nous contacter ?</h3>
+      <p>Pour toute demande de retour ou remboursement, contactez-nous directement via WhatsApp en précisant votre nom, le produit concerné et le motif de votre demande.</p>
+      <a class="cme" href="https://wa.me/221777101383?text=Bonjour%20Moussa%20Business%2C%20je%20souhaite%20faire%20une%20demande%20de%20remboursement." target="_blank" style="margin-top:1rem;display:flex;" rel="noopener">
+        <i class="fa-brands fa-whatsapp"></i> Contacter le SAV
+      </a>
+    </div>
+
+    <div class="cvg-footer-note">
+      <i class="fa-solid fa-circle-info"></i>
+      Ces conditions s'appliquent uniquement aux achats effectués via Moussa Business. Toute modification sera communiquée via nos réseaux sociaux.
     </div>
   </div>
 </div>
@@ -1726,105 +1965,27 @@ body{
 
 <script>
 // ================================================================
-// MOUSSA BUSINESS — JS v2 (2026)
-// Améliorations : sécurité, animations, UX, confirmation commande
+// MOUSSA BUSINESS — JS v3 (2026)
+// Les données produits sont dans products.js (chargé avant ce script).
+// Ce fichier gère uniquement l'UI, le panier, les pages et les events.
 // ================================================================
 
-// ========== LISTE DES COULEURS SLIM FIT ==========
-const SLIM_COLORS = [
-  { n: 'Blanc', h: '#F5F5F5' },
-  { n: 'Noir', h: '#111111' },
-  { n: 'Bleu Ciel', h: '#87CEEB' },
-  { n: 'Bleu Marine', h: '#1A237E' },
-  { n: 'Bleu Royal', h: '#2962FF' },
-  { n: 'Vert Foncé', h: '#1B5E20' },
-  { n: 'Vert Olive', h: '#556B2F' },
-  { n: 'Vert Fluo', h: '#CCFF00' },
-  { n: 'Vert Menthe', h: '#98FF98' },
-  { n: 'Jaune', h: '#FFD600' },
-  { n: 'Orange', h: '#FFA726' },
-  { n: 'Rouge', h: '#C62828' },
-  { n: 'Bordeaux', h: '#8E2430' },
-  { n: 'Rose Clair', h: '#F8BBD0' },
-  { n: 'Rose Vif', h: '#FF4081' },
-  { n: 'Gris', h: '#9E9E9E' },
-  { n: 'Marron', h: '#8D6E63' },
-  { n: 'Beige', h: '#FFF3E0' },
-  { n: 'Pêche', h: '#FFCCBC' },
-  { n: 'Violet', h: '#7B1FA2' }
-].map(c => ({
-  ...c,
-  sizes: (c.n === 'Blanc' || c.n === 'Noir')
-    ? ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL']
-    : ['S', 'M', 'L', 'XL', 'XXL']
-}));
-
-// ========== COULEURS COMPRESSION ==========
-const COMP_COLORS = [
-  { n: 'Noir',       h: '#111111', sizes: ['XS','S','M','L','XL','XXL','XXXL'] },
-  { n: 'Marine',     h: '#1A237E', sizes: ['S','M','L','XL'] },
-  { n: 'Gris',       h: '#757575', sizes: ['S','M','L','XL'] },
-  { n: 'Rouge',      h: '#E53935', sizes: ['S','M','L','XL'] },
-  { n: 'Bleu Roi',   h: '#1565C0', sizes: ['S','M','L','XL'] },
-  { n: 'Vert Nuit',  h: '#1B5E20', sizes: ['S','M','L','XL'] },
-  { n: 'Bordeaux',   h: '#7B1A1A', sizes: ['S','M','L','XL'] },
-  { n: 'Anthracite', h: '#37474F', sizes: ['S','M','L','XL'] }
-];
-
-// ========== MODÈLES DE BASE ==========
-// CORRECTION : 1 modèle Slim Fit (20 couleurs) + 1 modèle Compression (8 couleurs) = 28 produits
-const baseModels = [
-  {
-    idBase: 1,
-    name: 'T-shirt Slim Fit',
-    cat: 'slim',
-    desc: 'T-shirt Slim Fit en tissu stretch respirant 4 directions. Coupe ajustée qui met en valeur la silhouette. Idéal sport & casual.',
-    basePrice: 3000,
-    promoPrice: 2500,
-    promoQty: 4,
-    colors: SLIM_COLORS
-  },
-  {
-    idBase: 2,
-    name: 'T-shirt Compression',
-    cat: 'compression',
-    desc: 'Compression optimale pour améliorer vos performances. Tissu technique séchage ultra-rapide, maintien musculaire parfait.',
-    basePrice: 4000,
-    promoPrice: null,
-    promoQty: null,
-    colors: COMP_COLORS
-  }
-];
-
-// ========== GÉNÉRATION DES PRODUITS PLATS ==========
-const flatProds = [];
-baseModels.forEach(model => {
-  model.colors.forEach((color, idx) => {
-    flatProds.push({
-      id: `${model.idBase}-${idx}`,
-      baseId: model.idBase,
-      name: `${model.name} - ${color.n}`,
-      cat: model.cat,
-      desc: model.desc,
-      basePrice: model.basePrice,
-      promoPrice: model.promoPrice,
-      promoQty: model.promoQty,
-      color: color,
-      sizes: color.sizes,
-      reviews: []
-    });
-  });
-});
+// ================================================================
+//  ALIAS — on référence PRODUCTS (depuis products.js) sous le nom
+//  flatProds pour garder la compatibilité avec le reste du code.
+// ================================================================
+const flatProds = PRODUCTS; // ← source de vérité : products.js
 
 // ========== CONSTANTES ==========
-const WA = '221777101383';
+const WA      = '221777101383';
 const SLIM_PQ = 4;
 // [SÉCURITÉ] IDs valides calculés une seule fois au démarrage
-const VALID_IDS = new Set(flatProds.map(p => p.id));
+const VALID_IDS   = new Set(flatProds.map(p => p.id));
 // [SÉCURITÉ] Tailles autorisées
 const VALID_SIZES = new Set(['XS','S','M','L','XL','XXL','XXXL']);
 // [SÉCURITÉ] Catégories autorisées
-const VALID_CATS = new Set(['slim','compression']);
+const VALID_CATS  = new Set(['slim','compression']);
+
 
 // ========== ÉTAT ==========
 let cart  = [];
@@ -1957,13 +2118,39 @@ function renderProds(list) {
     const promoHtml = (p.cat === 'slim' && p.promoPrice)
       ? `<span class="pr"><i class="fa-solid fa-tag"></i> ${fp(p.promoPrice)} dès ${p.promoQty}</span>`
       : '';
-    // [MODIF] Bouton remplacé par icône panier FA6
+
+    // [NOUVEAU] Lire le stock depuis StockManager (localStorage)
+    const { qty: stockQty, status: stockStatus } = StockManager.getStatus(p.id);
+
+    // [NOUVEAU] Badge selon le statut du stock
+    let stockBadgeHtml = '';
+    if (stockStatus === 'soldout') {
+      stockBadgeHtml = '<div class="soldout-badge"><i class="fa-solid fa-ban"></i> Rupture de stock</div>';
+    } else if (stockStatus === 'low') {
+      stockBadgeHtml = `<div class="lowstock-badge"><i class="fa-solid fa-triangle-exclamation"></i> Plus que ${stockQty}</div>`;
+    }
+
+    // [NOUVEAU] Bouton panier selon le stock
+    const btnHtml = stockStatus === 'soldout'
+      ? `<button class="abtn cart-icon-btn soldout-btn" disabled aria-label="Rupture de stock">
+           <i class="fa-solid fa-ban"></i>
+         </button>`
+      : `<button class="abtn cart-icon-btn"
+           onclick="event.stopPropagation();flyToCart(this, '${p.id}')"
+           aria-label="Ajouter au panier">
+           <i class="fa-solid fa-cart-plus"></i>
+         </button>`;
+
     return `
-    <div class="pcard" onclick="openDet('${p.id}')">
+    <div class="pcard ${stockStatus === 'soldout' ? 'soldout-card' : ''}"
+         data-pid="${p.id}"
+         onclick="${stockStatus === 'soldout' ? '' : `openDet('${p.id}')`}"
+         style="${stockStatus === 'soldout' ? 'cursor:default;' : ''}">
       <div class="pmed">
         <div class="pph" style="background:${p.color.h}; display:flex; align-items:center; justify-content:center;">
           <span style="background:rgba(0,0,0,0.5); color:white; padding:0.3rem 0.8rem; border-radius:2rem; font-size:0.8rem;">${p.color.n}</span>
         </div>
+        ${stockBadgeHtml}
         <span class="catb">${p.cat === 'slim' ? 'Slim Fit' : 'Compression'}</span>
         <button class="wb ${isW(p.id) ? 'on' : ''}" id="wb-${p.id}" onclick="event.stopPropagation();togW('${p.id}')" aria-label="Ajouter à la wishlist">
           <i class="fa-solid fa-heart"></i>
@@ -1972,12 +2159,7 @@ function renderProds(list) {
       <div class="pinf">
         <div class="pnm">${p.name}</div>
         <div class="ppr">${fp(prix)} <span class="cu">CFA</span>${promoHtml}</div>
-        <!-- [MODIF] Icône panier FA6 — ajoute directement au panier avec animation -->
-        <button class="abtn cart-icon-btn" id="cbtn-${p.id}"
-          onclick="event.stopPropagation();flyToCart(this, '${p.id}')"
-          aria-label="Ajouter au panier">
-          <i class="fa-solid fa-cart-plus"></i>
-        </button>
+        ${btnHtml}
       </div>
     </div>`;
   }).join('');
@@ -2112,9 +2294,25 @@ function openDet(id) {
         </div>
       </div>
 
-      <button class="atcbtn" id="det-atcbtn" onclick="addFDet()">
-        <i class="fa-solid fa-bag-shopping"></i> Ajouter au panier
-      </button>
+      <!-- [NOUVEAU] Indicateur de stock — lu depuis StockManager (localStorage) -->
+      ${(() => {
+        const { qty: sq, status: ss } = StockManager.getStatus(p.id);
+        if (ss === 'soldout') {
+          return `<div class="stock-badge soldout"><i class="fa-solid fa-ban"></i> Rupture de stock — indisponible</div>
+           <button class="atcbtn" id="det-atcbtn" disabled style="opacity:.45;cursor:not-allowed;">
+             <i class="fa-solid fa-ban"></i> Indisponible
+           </button>`;
+        }
+        const badgeClass = ss === 'low' ? 'low' : 'ok';
+        const icon       = ss === 'low' ? 'triangle-exclamation' : 'circle-check';
+        const label      = ss === 'low' ? `Plus que ${sq} en stock !` : `En stock (${sq} disponibles)`;
+        return `<div class="stock-badge ${badgeClass}">
+             <i class="fa-solid fa-${icon}"></i> ${label}
+           </div>
+           <button class="atcbtn" id="det-atcbtn" onclick="addFDet()">
+             <i class="fa-solid fa-bag-shopping"></i> Ajouter au panier
+           </button>`;
+      })()}
     </div>`;
 
   window.scrollTo({ top: 0, behavior: 'instant' });
@@ -2187,7 +2385,22 @@ function addCart(p, size, qty) {
     return;
   }
 
+  // [NOUVEAU] Vérifier le stock disponible avant d'ajouter
+  const currentStock = StockManager.get(trueProd.id);
+  if (currentStock === 0) {
+    toast('⚠️ Produit en rupture de stock');
+    return;
+  }
+
   const safeQty = clampQty(qty);
+
+  // [NOUVEAU] Réduire le stock dans localStorage via StockManager
+  StockManager.decrease(trueProd.id, safeQty);
+
+  // [NOUVEAU] Mettre à jour immédiatement la carte produit dans le catalogue
+  // sans recharger toute la page
+  refreshProductCard(trueProd.id);
+
   const key = `${trueProd.id}-${size}`;
   const existing = cart.find(c => c.key === key);
 
@@ -2211,6 +2424,79 @@ function addCart(p, size, qty) {
   updBdg();
   toast(trueProd.name + ' ajouté ✓');
   saveCart();
+}
+
+/**
+ * [NOUVEAU] refreshProductCard(productId)
+ * Met à jour en temps réel la carte d'un produit dans le catalogue
+ * après une modification de stock, sans rerender toute la grille.
+ *
+ * Actions :
+ *  - Met à jour le badge sold-out / stock faible
+ *  - Active / désactive le bouton "Ajouter au panier"
+ *  - Grise la carte si rupture totale
+ */
+function refreshProductCard(productId) {
+  // Trouver la carte dans le DOM (grille catalogue)
+  const card = document.querySelector(`.pcard[data-pid="${productId}"]`);
+  if (!card) return; // la carte n'est pas visible (filtre actif, autre page…)
+
+  const { qty, status } = StockManager.getStatus(productId);
+
+  // ── Badge sold-out ──
+  let badge = card.querySelector('.soldout-badge');
+  if (status === 'soldout') {
+    if (!badge) {
+      badge = document.createElement('div');
+      badge.className = 'soldout-badge';
+      badge.innerHTML = '<i class="fa-solid fa-ban"></i> Rupture de stock';
+      const pmed = card.querySelector('.pmed');
+      if (pmed) pmed.appendChild(badge);
+    }
+    card.classList.add('soldout-card');
+    card.style.cursor = 'default';
+    card.onclick = null;
+  } else {
+    if (badge) badge.remove();
+    card.classList.remove('soldout-card');
+    card.style.cursor = '';
+    card.onclick = () => openDet(productId);
+  }
+
+  // ── Badge stock faible ──
+  let lowBadge = card.querySelector('.lowstock-badge');
+  if (status === 'low' && qty > 0) {
+    if (!lowBadge) {
+      lowBadge = document.createElement('div');
+      lowBadge.className = 'lowstock-badge';
+      const pmed = card.querySelector('.pmed');
+      if (pmed) pmed.appendChild(lowBadge);
+    }
+    lowBadge.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Plus que ${qty}`;
+  } else {
+    if (lowBadge) lowBadge.remove();
+  }
+
+  // ── Bouton panier ──
+  const btnWrap = card.querySelector('.pinf');
+  if (!btnWrap) return;
+  let btn = btnWrap.querySelector('.cart-icon-btn');
+
+  if (status === 'soldout') {
+    if (btn) {
+      btn.disabled = true;
+      btn.className = 'abtn cart-icon-btn soldout-btn';
+      btn.innerHTML = '<i class="fa-solid fa-ban"></i>';
+      btn.onclick = null;
+    }
+  } else {
+    if (btn) {
+      btn.disabled = false;
+      btn.className = 'abtn cart-icon-btn';
+      btn.innerHTML = '<i class="fa-solid fa-cart-plus"></i>';
+      btn.onclick = (e) => { e.stopPropagation(); flyToCart(btn, productId); };
+    }
+  }
 }
 
 function saveCart() {
@@ -2343,9 +2629,20 @@ function renderCart() {
       ${promoMsg}
       <div class="sr tot"><span>Total</span><span>${fp(total)}</span></div>
     </div>
-    <button class="wabtn" onclick="orderWA()">
-      <i class="fa-brands fa-whatsapp"></i> Commander via WhatsApp
-    </button>`;
+    <!-- [NOUVEAU] Sécurité paiement -->
+    <div class="secure-badge">
+      <i class="fa-solid fa-shield-halved"></i> Paiement 100% sécurisé
+    </div>
+    <!-- [NOUVEAU] Deux options de commande -->
+    <div class="checkout-options">
+      <p class="checkout-label"><i class="fa-solid fa-circle-check"></i> Choisissez votre mode de paiement</p>
+      <button class="wave-btn" onclick="orderWave(${total})">
+        <span class="wave-logo">W</span> Payer avec Wave
+      </button>
+      <button class="wabtn" onclick="orderWA()">
+        <i class="fa-brands fa-whatsapp"></i> Commander via WhatsApp
+      </button>
+    </div>`;
 }
 
 function orderWA() {
@@ -2363,7 +2660,7 @@ function orderWA() {
     return `• ${c.name} (${c.color.n}, ${c.size}) x${c.qty} = ${fp(lt)}`;
   }).join('\n');
 
-  const msg = `Bonjour Moussa Business !\n\nCommande :\n${lines}\n\nTotal : ${fp(total)}${usePromo ? '\n(Promo Slim Fit incluse)' : ''}`;
+  const msg = `🛍️ *NOUVELLE COMMANDE — Moussa Business*\n\n📦 *Récapitulatif :*\n${lines}\n\n━━━━━━━━━━━━━━━\n💰 *Total : ${fp(total)}*${usePromo ? '\n🏷️ Promo Slim Fit (dès 4 pcs) appliquée' : ''}\n━━━━━━━━━━━━━━━\n\nBonjour Moussa ! Je souhaite passer cette commande. Merci de me confirmer la disponibilité et le délai de livraison. 🙏`;
 
   // Sauvegarder la commande
   orders.push({
@@ -2386,6 +2683,41 @@ function orderWA() {
 
   // [NOUVEAU] Afficher le modal de confirmation
   showOrderModal();
+}
+
+// ========== [NOUVEAU] PAIEMENT WAVE ==========
+/**
+ * Redirige vers le lien Wave Business pour payer.
+ * Sauvegarde la commande et vide le panier avant de rediriger.
+ */
+function orderWave(total) {
+  if (!cart.length) return;
+
+  // Sauvegarder la commande
+  orders.push({
+    id: Date.now(),
+    date: new Date().toLocaleString('fr-FR'),
+    items: cart.map(c => ({ ...c })),
+    total,
+    method: 'wave'
+  });
+  try { localStorage.setItem('orders', JSON.stringify(orders)); } catch(e) {}
+
+  // Vider le panier
+  cart = [];
+  saveCart();
+  updBdg();
+
+  // Ouvrir le lien Wave Business dans un nouvel onglet
+  window.open('https://pay.wave.com/m/M_sn_1-VIARq2w104/c/sn/', '_blank');
+
+  // Afficher la confirmation avec message spécifique Wave
+  const m = document.getElementById('order-modal');
+  if (m) {
+    document.querySelector('.order-modal-msg').textContent =
+      'Vous allez être redirigé vers Wave pour finaliser votre paiement. Conservez votre reçu Wave comme preuve de paiement.';
+    m.classList.add('on');
+  }
 }
 
 // ========== [NOUVEAU] MODAL CONFIRMATION COMMANDE ==========
@@ -2495,6 +2827,8 @@ function flyToCart(element, productId) {
   if (!isValidId(productId)) return;
   const p = flatProds.find(x => x.id === productId);
   if (!p) return;
+  // [NOUVEAU] Bloquer si rupture de stock (lecture depuis StockManager)
+  if (StockManager.get(p.id) === 0) { toast('Produit en rupture de stock'); return; }
 
   // [NOUVEAU] Animation bounce sur le bouton
   if (!prefersReducedMotion()) {
@@ -2572,8 +2906,8 @@ function toast(msg) {
 }
 
 function navigate(pg) {
-  // [SÉCURITÉ] Valider la page cible
-  const VALID_PAGES = ['home','cart','wishlist','about','contact'];
+  // [SÉCURITÉ] Valider la page cible — [MODIF] ajout de 'cvg'
+  const VALID_PAGES = ['home','cart','wishlist','about','contact','cvg'];
   if (!VALID_PAGES.includes(pg)) return;
   if (curPg === pg && pg !== 'home') return;
 
@@ -2581,7 +2915,9 @@ function navigate(pg) {
   document.querySelectorAll('.ni').forEach(n => n.classList.remove('on'));
   document.getElementById('det').style.display = 'none';
   document.getElementById(pg + '-pg').classList.add('act');
-  document.getElementById('nav-' + pg).classList.add('on');
+  // La bottom nav n'a pas d'item cvg, on évite l'erreur
+  const navEl = document.getElementById('nav-' + pg);
+  if (navEl) navEl.classList.add('on');
   prevPg = curPg;
   curPg  = pg;
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -2698,6 +3034,10 @@ function initAnimations() {
 window.addEventListener('load', () => {
   document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
   document.getElementById('t-icon').className = dark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+
+  // [NOUVEAU] Initialiser le StockManager en PREMIER
+  // Charge les stocks depuis localStorage, ou initialise depuis STOCK_DEFAULTS
+  StockManager.init();
 
   // [SÉCURITÉ] Chargement validé depuis localStorage
   cart   = loadCartSafe();
