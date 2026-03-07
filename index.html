@@ -248,6 +248,8 @@ body{
   font-weight:700;
   cursor:pointer;
   transition:var(--tr);
+  position:relative;
+  overflow:hidden;
 }
 .hbtn:active{transform:scale(.94)}
 .hbtn.ghost{
@@ -388,6 +390,8 @@ body{
   justify-content:center;
   gap:0.3rem;
   transition:var(--tr);
+  position:relative;
+  overflow:hidden;
 }
 .abtn:active{transform:scale(.95);background:#c9300f}
 
@@ -550,6 +554,8 @@ body{
   display:flex;align-items:center;justify-content:center;gap:0.5rem;
   transition:var(--tr);
   box-shadow:0 8px 20px var(--rg);
+  position:relative;
+  overflow:hidden;
 }
 .atcbtn:active{transform:scale(.97);background:#c9300f}
 
@@ -714,6 +720,8 @@ body{
   display:flex;align-items:center;justify-content:center;gap:0.5rem;
   transition:var(--tr);
   box-shadow:0 8px 20px rgba(37,211,102,.32);
+  position:relative;
+  overflow:hidden;
 }
 .wabtn:active{transform:scale(.97)}
 .wabtn i{font-size:1.2rem}
@@ -1131,6 +1139,20 @@ body{
   animation-range:entry 0% entry 100%;
 }
 @keyframes fadeUpScroll{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.ripple{
+  position:absolute;
+  border-radius:50%;
+  transform:scale(0);
+  background-color:rgba(255,255,255,.35);
+  animation:ripple 0.6s linear;
+  pointer-events:none;
+}
+@keyframes ripple{
+  to{
+    transform:scale(2.5);
+    opacity:0;
+  }
+}
 .fly-clone{
   position:fixed;z-index:9999;border-radius:50%;
   pointer-events:none;transition:all 0.8s cubic-bezier(0.2, 0.9, 0.4, 1);
@@ -1170,6 +1192,264 @@ body{
   display:inline-block;
   transition:transform 0.2s ease;
 }
+
+/* ===== [NOUVEAU] BOUTON ICÔNE PANIER ===== */
+/* Remplace le texte "Ajouter" par une icône cart-plus centrée */
+.cart-icon-btn {
+  width: 100%;
+  height: 2.4rem;
+  border-radius: 2rem;
+  background: var(--red);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: #fff;
+  transition: var(--tr);
+  position: relative;
+  overflow: hidden;
+}
+.cart-icon-btn:active { transform: scale(.9); background: #c9300f; }
+/* Petite animation bounce au clic */
+@keyframes cartBounce {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.25) rotate(-8deg); }
+  70%  { transform: scale(0.92) rotate(4deg); }
+  100% { transform: scale(1) rotate(0); }
+}
+.cart-icon-btn.added {
+  animation: cartBounce 0.5s cubic-bezier(.34,1.56,.64,1);
+}
+
+/* ===== [NOUVEAU] BANDEAUX PRÉSENTATION CATÉGORIES ===== */
+.cat-banner {
+  margin: 0 1rem 1.2rem;
+  border-radius: 1.2rem;
+  padding: 1rem 1.2rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  animation: fup .4s ease;
+  position: relative;
+  overflow: hidden;
+}
+.cat-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: .07;
+  pointer-events: none;
+}
+.slim-banner {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border: 1.5px solid rgba(41,98,255,.28);
+}
+.comp-banner {
+  background: linear-gradient(135deg, #1a0a05 0%, #2d1206 100%);
+  border: 1.5px solid rgba(232,57,26,.28);
+}
+.cat-banner-icon {
+  width: 3rem; height: 3rem;
+  border-radius: 1rem;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+.slim-banner .cat-banner-icon { background: rgba(41,98,255,.18); color: #6fa3ff; }
+.comp-banner .cat-banner-icon { background: rgba(232,57,26,.18); color: var(--red); }
+.cat-banner-body h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.1rem,5vw,1.4rem);
+  letter-spacing: 1px;
+  color: #fff;
+  margin-bottom: 0.3rem;
+}
+.cat-banner-body p {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,.55);
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+.cat-banner-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.cat-banner-tags span {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.25rem 0.7rem;
+  border-radius: 2rem;
+  background: rgba(255,255,255,.1);
+  color: rgba(255,255,255,.8);
+}
+
+/* ===== [NOUVEAU] WISHLIST — BOUTON SUPPRIMER & PARCOURIR ===== */
+/* Bouton supprimer dans les cartes wishlist */
+.wish-del-btn {
+  position: absolute; top: 0.5rem; right: 0.5rem;
+  width: clamp(1.5rem,6vw,2rem);
+  height: clamp(1.5rem,6vw,2rem);
+  border-radius: 50%;
+  background: rgba(232,57,26,.9);
+  border: none;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
+  font-size: 0.75rem;
+  transition: transform .18s, background .18s;
+  z-index: 2;
+}
+.wish-del-btn:active { transform: scale(.8); }
+/* Bouton "Parcourir les autres produits" */
+.wish-browse-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1.2rem 1rem 0;
+  padding: 0.9rem 1.5rem;
+  background: var(--surf);
+  border: 2px solid var(--border);
+  border-radius: 2rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+  cursor: pointer;
+  transition: var(--tr);
+  width: calc(100% - 2rem);
+}
+.wish-browse-btn:hover { border-color: var(--red); color: var(--red); }
+.wish-browse-btn:active { transform: scale(.96); }
+
+/* ===== [NOUVEAU] ANIMATIONS PAGE DÉTAIL ===== */
+/* Animation quantité +/- */
+@keyframes qtyPop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.35); color: var(--red); }
+  100% { transform: scale(1); }
+}
+.qty-pop { animation: qtyPop 0.3s cubic-bezier(.34,1.56,.64,1); }
+
+/* Animation bouton ATC détail (ajout au panier) */
+@keyframes atcSuccess {
+  0%   { transform: scale(1); }
+  30%  { transform: scale(.96); }
+  60%  { transform: scale(1.04); }
+  100% { transform: scale(1); }
+}
+.atc-success { animation: atcSuccess 0.4s ease; }
+
+/* Image produit animation entrée */
+.det-med { transition: background-color 0.4s ease; }
+
+/* ===== [NOUVEAU] MODAL CONFIRMATION COMMANDE ===== */
+.order-modal-overlay {
+  position: fixed; inset: 0; z-index: 9000;
+  background: rgba(0,0,0,.65);
+  backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 1rem;
+  opacity: 0; pointer-events: none;
+  transition: opacity .35s ease;
+}
+.order-modal-overlay.on { opacity: 1; pointer-events: all; }
+.order-modal-box {
+  background: var(--card);
+  border-radius: 2rem;
+  padding: 2rem 1.5rem;
+  max-width: 360px;
+  width: 100%;
+  text-align: center;
+  transform: scale(.85) translateY(20px);
+  transition: transform .35s cubic-bezier(.34,1.56,.64,1);
+  box-shadow: 0 24px 60px rgba(0,0,0,.35);
+}
+.order-modal-overlay.on .order-modal-box { transform: scale(1) translateY(0); }
+.order-modal-icon {
+  font-size: 3.5rem;
+  color: #4CAF50;
+  margin-bottom: 1rem;
+  animation: popIn .5s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes popIn {
+  from { transform: scale(0); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+.order-modal-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  letter-spacing: 1px;
+  color: var(--text);
+  margin-bottom: .5rem;
+}
+.order-modal-msg {
+  font-size: .9rem;
+  color: var(--t2);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+.order-modal-btn {
+  width: 100%;
+  padding: .9rem;
+  background: var(--red);
+  color: #fff;
+  border: none;
+  border-radius: 2rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: var(--tr);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+}
+.order-modal-btn:active { transform: scale(.97); background: #c9300f; }
+
+/* ===== [NOUVEAU] PAGE DÉTAIL 100% RESPONSIVE MOBILE ===== */
+/* Conteneur détail sécurisé pour très petits écrans */
+#det { max-width: 100vw; overflow-x: hidden; }
+.det-con {
+  padding: clamp(.7rem, 4vw, 1.5rem);
+}
+/* Tailles cliquables plus grandes sur mobile */
+@media (max-width: 400px) {
+  .sc {
+    padding: .55rem .9rem;
+    font-size: 0.85rem;
+  }
+  .qb {
+    width: 2.4rem;
+    height: 2.4rem;
+    font-size: 1.3rem;
+  }
+  .d-nm { font-size: clamp(1.5rem,7vw,2.2rem); }
+  .atcbtn { font-size: 1rem; padding: 1rem; }
+  .cat-banner { flex-direction: column; }
+  .cat-banner-tags { flex-direction: column; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  html{
+    scroll-behavior:auto;
+  }
+  #ld,
+  .hero::before,
+  .pcard,
+  .citem,
+  .ni.on i,
+  #fab-wa,
+  .tflash,
+  .fade-on-scroll,
+  .ld-fill{
+    animation:none !important;
+  }
+}
 </style>
 </head>
 <body>
@@ -1189,6 +1469,18 @@ body{
 
 <!-- TOAST -->
 <div id="toast"><i class="fa-solid fa-circle-check"></i><span id="tmsg">Produit ajouté</span></div>
+
+<!-- [NOUVEAU] Modal confirmation commande -->
+<div id="order-modal" class="order-modal-overlay" role="dialog" aria-modal="true" aria-label="Confirmation de commande">
+  <div class="order-modal-box">
+    <div class="order-modal-icon"><i class="fa-solid fa-circle-check"></i></div>
+    <h2 class="order-modal-title">Commande envoyée !</h2>
+    <p class="order-modal-msg">Votre commande a bien été transmise via WhatsApp. Moussa vous répondra dans les plus brefs délais.</p>
+    <button class="order-modal-btn" onclick="closeOrderModal()">
+      <i class="fa-solid fa-house"></i> Retour à l'accueil
+    </button>
+  </div>
+</div>
 
 <!-- FAB WhatsApp -->
 <button id="fab-wa" onclick="window.open('https://wa.me/221777101383','_blank')" aria-label="WhatsApp direct">
@@ -1223,7 +1515,7 @@ body{
   <div class="srch-w">
     <div class="srch-b">
       <i class="fa-solid fa-magnifying-glass"></i>
-      <input type="text" id="si" placeholder="Rechercher..." oninput="doFil()">
+      <input type="text" id="si" placeholder="Rechercher..." oninput="debouncedDoFil()">
       <button class="srch-clr" id="sc" onclick="clearS()" style="display:none"><i class="fa-solid fa-xmark"></i></button>
     </div>
   </div>
@@ -1253,6 +1545,33 @@ body{
     <h2>Catalogue <span id="productCount" class="product-count"></span></h2>
     <a>Voir tout</a>
   </div>
+
+  <!-- [NOUVEAU] Présentation catégorie Slim Fit -->
+  <div class="cat-banner slim-banner" id="banner-slim">
+    <div class="cat-banner-icon"><i class="fa-solid fa-shirt"></i></div>
+    <div class="cat-banner-body">
+      <h3>T-shirts Slim Fit</h3>
+      <p>Coupe ajustée · Tissu stretch 4 directions · 20 couleurs disponibles · Idéal sport &amp; casual</p>
+      <div class="cat-banner-tags">
+        <span><i class="fa-solid fa-tag"></i> 3 000 F CFA / unité</span>
+        <span><i class="fa-solid fa-fire"></i> Promo dès 4 pièces : 2 500 F</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- [NOUVEAU] Présentation catégorie Compression -->
+  <div class="cat-banner comp-banner" id="banner-compression">
+    <div class="cat-banner-icon"><i class="fa-solid fa-dumbbell"></i></div>
+    <div class="cat-banner-body">
+      <h3>Vêtements de Compression</h3>
+      <p>Maintien musculaire · Séchage ultra-rapide · 8 coloris · Idéal fitness &amp; running</p>
+      <div class="cat-banner-tags">
+        <span><i class="fa-solid fa-tag"></i> 4 000 F CFA / unité</span>
+        <span><i class="fa-solid fa-bolt"></i> Performance optimale</span>
+      </div>
+    </div>
+  </div>
+
   <div class="pgrid" id="pg"></div>
 
   <!-- FOOTER -->
@@ -1331,10 +1650,7 @@ body{
       <div class="asv"><div class="asv-ic"><i class="fa-solid fa-rocket"></i></div><div><h3>Landing Page</h3><p>Page de conversion optimisée</p></div></div>
     </div>
   </div>
-  <div class="ab-sec" style="padding-bottom:0.5rem">
-    <h2>HISTORIQUE DES COMMANDES</h2>
-    <div id="order-history"></div>
-  </div>
+  <!-- [MODIF] Section Historique des commandes supprimée (données privées) -->
   <div class="ab-sec" style="padding-bottom:0.5rem">
     <h2>ME CONTACTER</h2>
   </div>
@@ -1409,6 +1725,11 @@ body{
 </nav>
 
 <script>
+// ================================================================
+// MOUSSA BUSINESS — JS v2 (2026)
+// Améliorations : sécurité, animations, UX, confirmation commande
+// ================================================================
+
 // ========== LISTE DES COULEURS SLIM FIT ==========
 const SLIM_COLORS = [
   { n: 'Blanc', h: '#F5F5F5' },
@@ -1433,28 +1754,29 @@ const SLIM_COLORS = [
   { n: 'Violet', h: '#7B1FA2' }
 ].map(c => ({
   ...c,
-  sizes: (c.n === 'Blanc' || c.n === 'Noir') 
+  sizes: (c.n === 'Blanc' || c.n === 'Noir')
     ? ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL']
     : ['S', 'M', 'L', 'XL', 'XXL']
 }));
 
 // ========== COULEURS COMPRESSION ==========
 const COMP_COLORS = [
-  { n: 'Noir', h: '#111111', sizes: ['XS','S','M','L','XL','XXL','XXXL'] },
-  { n: 'Marine', h: '#1A237E', sizes: ['S','M','L','XL'] },
-  { n: 'Gris', h: '#757575', sizes: ['S','M','L','XL'] },
-  { n: 'Rouge', h: '#E53935', sizes: ['S','M','L','XL'] },
-  { n: 'Bleu Roi', h: '#1565C0', sizes: ['S','M','L','XL'] },
-  { n: 'Vert Nuit', h: '#1B5E20', sizes: ['S','M','L','XL'] },
-  { n: 'Bordeaux', h: '#7B1A1A', sizes: ['S','M','L','XL'] },
+  { n: 'Noir',       h: '#111111', sizes: ['XS','S','M','L','XL','XXL','XXXL'] },
+  { n: 'Marine',     h: '#1A237E', sizes: ['S','M','L','XL'] },
+  { n: 'Gris',       h: '#757575', sizes: ['S','M','L','XL'] },
+  { n: 'Rouge',      h: '#E53935', sizes: ['S','M','L','XL'] },
+  { n: 'Bleu Roi',   h: '#1565C0', sizes: ['S','M','L','XL'] },
+  { n: 'Vert Nuit',  h: '#1B5E20', sizes: ['S','M','L','XL'] },
+  { n: 'Bordeaux',   h: '#7B1A1A', sizes: ['S','M','L','XL'] },
   { n: 'Anthracite', h: '#37474F', sizes: ['S','M','L','XL'] }
 ];
 
 // ========== MODÈLES DE BASE ==========
+// CORRECTION : 1 modèle Slim Fit (20 couleurs) + 1 modèle Compression (8 couleurs) = 28 produits
 const baseModels = [
   {
     idBase: 1,
-    name: 'T-shirt Slim Fit Performance',
+    name: 'T-shirt Slim Fit',
     cat: 'slim',
     desc: 'T-shirt Slim Fit en tissu stretch respirant 4 directions. Coupe ajustée qui met en valeur la silhouette. Idéal sport & casual.',
     basePrice: 3000,
@@ -1464,49 +1786,9 @@ const baseModels = [
   },
   {
     idBase: 2,
-    name: 'T-shirt Compression Pro',
+    name: 'T-shirt Compression',
     cat: 'compression',
     desc: 'Compression optimale pour améliorer vos performances. Tissu technique séchage ultra-rapide, maintien musculaire parfait.',
-    basePrice: 4000,
-    promoPrice: null,
-    promoQty: null,
-    colors: COMP_COLORS
-  },
-  {
-    idBase: 3,
-    name: 'T-shirt Slim Fit V-Neck',
-    cat: 'slim',
-    desc: 'Col en V élégant, coupe Slim Fit moderne. Polyvalent sport & lifestyle. Tissu doux et résistant.',
-    basePrice: 3000,
-    promoPrice: 2500,
-    promoQty: 4,
-    colors: SLIM_COLORS
-  },
-  {
-    idBase: 4,
-    name: 'Legging Compression Full',
-    cat: 'compression',
-    desc: 'Legging de compression longue durée avec soutien musculaire optimal. Running, fitness et sports de force.',
-    basePrice: 4000,
-    promoPrice: null,
-    promoQty: null,
-    colors: COMP_COLORS
-  },
-  {
-    idBase: 5,
-    name: 'T-shirt Slim Fit Essential',
-    cat: 'slim',
-    desc: 'L\'essentiel du Slim Fit. Tissu premium, coupe moderne parfaite pour toutes occasions.',
-    basePrice: 3000,
-    promoPrice: 2500,
-    promoQty: 4,
-    colors: SLIM_COLORS
-  },
-  {
-    idBase: 6,
-    name: 'Short Compression 2-en-1',
-    cat: 'compression',
-    desc: 'Short de compression avec short extérieur intégré. Confort maximum pour toutes vos activités sportives.',
     basePrice: 4000,
     promoPrice: null,
     promoQty: null,
@@ -1515,7 +1797,7 @@ const baseModels = [
 ];
 
 // ========== GÉNÉRATION DES PRODUITS PLATS ==========
-let flatProds = [];
+const flatProds = [];
 baseModels.forEach(model => {
   model.colors.forEach((color, idx) => {
     flatProds.push({
@@ -1537,22 +1819,130 @@ baseModels.forEach(model => {
 // ========== CONSTANTES ==========
 const WA = '221777101383';
 const SLIM_PQ = 4;
+// [SÉCURITÉ] IDs valides calculés une seule fois au démarrage
+const VALID_IDS = new Set(flatProds.map(p => p.id));
+// [SÉCURITÉ] Tailles autorisées
+const VALID_SIZES = new Set(['XS','S','M','L','XL','XXL','XXXL']);
+// [SÉCURITÉ] Catégories autorisées
+const VALID_CATS = new Set(['slim','compression']);
 
 // ========== ÉTAT ==========
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
-let wish = JSON.parse(localStorage.getItem('wish')) || [];
-let orders = JSON.parse(localStorage.getItem('orders')) || [];
+let cart  = [];
+let wish  = [];
+let orders = [];
 let curFil = 'all';
-let curPg = 'home';
+let curPg  = 'home';
 let prevPg = null;
-let dark = localStorage.getItem('dark') === 'true';
-let dId = null;
-let dQty = 1;
-let dSz = '';
+let dark   = localStorage.getItem('dark') === 'true';
+let dId    = null;
+let dQty   = 1;
+let dSz    = '';
+let searchTimeout;
+
+// ========== [SÉCURITÉ] VALIDATION & SANITISATION ==========
+/**
+ * Sanitise un texte pour éviter les injections HTML.
+ * Utilisé avant tout affichage de données provenant du localStorage.
+ */
+function sanitize(str) {
+  if (typeof str !== 'string') return '';
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#x27;');
+}
+
+/**
+ * Valide qu'un ID produit est bien dans notre catalogue.
+ * Empêche la manipulation du panier avec des IDs fictifs.
+ */
+function isValidId(id) {
+  return typeof id === 'string' && VALID_IDS.has(id);
+}
+
+/**
+ * Valide une taille.
+ */
+function isValidSize(size) {
+  return typeof size === 'string' && VALID_SIZES.has(size);
+}
+
+/**
+ * Valide et clamp une quantité (min 1, max 99).
+ */
+function clampQty(qty) {
+  const n = parseInt(qty, 10);
+  if (!isFinite(n)) return 1;
+  return Math.min(Math.max(n, 1), 99);
+}
+
+/**
+ * [SÉCURITÉ] Reconstruit le panier depuis localStorage en vérifiant
+ * chaque article contre le catalogue réel. Rejette tout article invalide.
+ */
+function loadCartSafe() {
+  try {
+    const raw = JSON.parse(localStorage.getItem('cart') || '[]');
+    if (!Array.isArray(raw)) return [];
+    return raw.filter(item => {
+      if (!item || typeof item !== 'object') return false;
+      if (!isValidId(item.id)) return false;
+      if (!isValidSize(item.size)) return false;
+      // Récupérer le vrai produit du catalogue
+      const prod = flatProds.find(p => p.id === item.id);
+      if (!prod) return false;
+      // Vérifier la taille contre le produit réel
+      if (!prod.sizes.includes(item.size)) return false;
+      // Vérifier que les prix n'ont pas été manipulés
+      item.basePrice  = prod.basePrice;
+      item.promoPrice = prod.promoPrice;
+      item.promoQty   = prod.promoQty;
+      item.cat        = prod.cat;
+      item.color      = prod.color;
+      item.name       = prod.name;
+      item.qty        = clampQty(item.qty);
+      item.key        = `${item.id}-${item.size}`;
+      return true;
+    });
+  } catch (e) {
+    return [];
+  }
+}
+
+/**
+ * [SÉCURITÉ] Charge la wishlist en vérifiant les IDs.
+ */
+function loadWishSafe() {
+  try {
+    const raw = JSON.parse(localStorage.getItem('wish') || '[]');
+    if (!Array.isArray(raw)) return [];
+    return raw.filter(id => isValidId(id));
+  } catch (e) {
+    return [];
+  }
+}
 
 // ========== FONCTIONS UTILITAIRES ==========
 function fp(price) {
-  return price.toLocaleString('fr-FR') + ' F';
+  return Number(price).toLocaleString('fr-FR') + ' F';
+}
+function prefersReducedMotion() {
+  return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
+// ========== [NOUVEAU] GESTION BANDEAUX CATÉGORIES ==========
+/**
+ * Affiche ou masque les bandeaux de présentation selon le filtre actif.
+ * all → affiche les deux ; slim → affiche slim seul ; compression → affiche compression seul.
+ */
+function updateCatBanners(fil) {
+  const bs = document.getElementById('banner-slim');
+  const bc = document.getElementById('banner-compression');
+  if (!bs || !bc) return;
+  bs.style.display = (fil === 'all' || fil === 'slim')        ? 'flex' : 'none';
+  bc.style.display = (fil === 'all' || fil === 'compression') ? 'flex' : 'none';
 }
 
 // ========== RENDU CATALOGUE ==========
@@ -1564,9 +1954,10 @@ function renderProds(list) {
   }
   g.innerHTML = list.map(p => {
     const prix = p.basePrice;
-    const promoHtml = (p.cat === 'slim' && p.promoPrice) 
-      ? `<span class="pr"><i class="fa-solid fa-tag"></i> ${fp(p.promoPrice)} dès ${p.promoQty}</span>` 
+    const promoHtml = (p.cat === 'slim' && p.promoPrice)
+      ? `<span class="pr"><i class="fa-solid fa-tag"></i> ${fp(p.promoPrice)} dès ${p.promoQty}</span>`
       : '';
+    // [MODIF] Bouton remplacé par icône panier FA6
     return `
     <div class="pcard" onclick="openDet('${p.id}')">
       <div class="pmed">
@@ -1574,40 +1965,61 @@ function renderProds(list) {
           <span style="background:rgba(0,0,0,0.5); color:white; padding:0.3rem 0.8rem; border-radius:2rem; font-size:0.8rem;">${p.color.n}</span>
         </div>
         <span class="catb">${p.cat === 'slim' ? 'Slim Fit' : 'Compression'}</span>
-        <button class="wb ${isW(p.id) ? 'on' : ''}" id="wb-${p.id}" onclick="event.stopPropagation();togW('${p.id}')" aria-label="Wishlist">
+        <button class="wb ${isW(p.id) ? 'on' : ''}" id="wb-${p.id}" onclick="event.stopPropagation();togW('${p.id}')" aria-label="Ajouter à la wishlist">
           <i class="fa-solid fa-heart"></i>
         </button>
       </div>
       <div class="pinf">
         <div class="pnm">${p.name}</div>
         <div class="ppr">${fp(prix)} <span class="cu">CFA</span>${promoHtml}</div>
-        <button class="abtn" onclick="event.stopPropagation();flyToCart(this, '${p.id}')">
-          <i class="fa-solid fa-plus"></i> Ajouter
+        <!-- [MODIF] Icône panier FA6 — ajoute directement au panier avec animation -->
+        <button class="abtn cart-icon-btn" id="cbtn-${p.id}"
+          onclick="event.stopPropagation();flyToCart(this, '${p.id}')"
+          aria-label="Ajouter au panier">
+          <i class="fa-solid fa-cart-plus"></i>
         </button>
       </div>
     </div>`;
   }).join('');
-  // Animation du compteur
+
+  // Animation compteur
   const countSpan = document.getElementById('productCount');
-  countSpan.textContent = `(${list.length})`;
-  countSpan.style.transform = 'scale(1.2)';
-  setTimeout(() => countSpan.style.transform = 'scale(1)', 200);
-  
-  // Animation staggered
-  document.querySelectorAll('.pcard').forEach((c, i) => c.style.animationDelay = (i * 0.03) + 's');
+  if (countSpan) {
+    countSpan.textContent = `(${list.length})`;
+    countSpan.style.transform = 'scale(1.2)';
+    setTimeout(() => countSpan.style.transform = 'scale(1)', 200);
+  }
+
+  // Animation staggered des cartes
+  document.querySelectorAll('.pcard').forEach((c, i) => {
+    c.style.animationDelay = (i * 0.03) + 's';
+  });
 }
 
 function doFil() {
-  const q = document.getElementById('si').value.toLowerCase();
+  // [SÉCURITÉ] Limite la longueur de la recherche
+  const rawQ = document.getElementById('si').value;
+  const q = rawQ.slice(0, 100).toLowerCase();
   document.getElementById('sc').style.display = q ? 'flex' : 'none';
-  const list = flatProds.filter(p => 
-    (curFil === 'all' || p.cat === curFil) && 
+
+  const list = flatProds.filter(p =>
+    (curFil === 'all' || p.cat === curFil) &&
     (!q || p.name.toLowerCase().includes(q) || p.cat.includes(q))
   );
+
+  // [NOUVEAU] Met à jour les bandeaux
+  updateCatBanners(curFil);
   renderProds(list);
 }
 
+function debouncedDoFil() {
+  clearTimeout(searchTimeout);
+  searchTimeout = setTimeout(doFil, 150);
+}
+
 function setFil(f, btn) {
+  // [SÉCURITÉ] Valider le filtre
+  if (f !== 'all' && !VALID_CATS.has(f)) return;
   curFil = f;
   document.querySelectorAll('.fb').forEach(b => b.classList.remove('on'));
   btn.classList.add('on');
@@ -1621,11 +2033,15 @@ function clearS() {
 
 // ========== PAGE DÉTAIL ==========
 function openDet(id) {
+  // [SÉCURITÉ] Valider l'ID avant tout traitement
+  if (!isValidId(id)) return;
   const p = flatProds.find(x => x.id === id);
   if (!p) return;
-  dId = id;
+
+  dId  = id;
   dQty = 1;
-  dSz = p.sizes[0];
+  dSz  = p.sizes[0];
+
   document.getElementById('dt-title').textContent = p.name;
   document.querySelectorAll('.pg').forEach(pg => pg.classList.remove('act'));
   const det = document.getElementById('det');
@@ -1635,8 +2051,8 @@ function openDet(id) {
   updDetW();
 
   const prix = p.basePrice;
-  const promoLine = (p.cat === 'slim' && p.promoPrice) 
-    ? `<div class="d-promo"><i class="fa-solid fa-tag"></i> ${fp(p.promoPrice)} / unité à partir de ${p.promoQty} articles</div>` 
+  const promoLine = (p.cat === 'slim' && p.promoPrice)
+    ? `<div class="d-promo"><i class="fa-solid fa-tag"></i> ${fp(p.promoPrice)} / unité à partir de ${p.promoQty} articles</div>`
     : '';
 
   // Autres couleurs du même modèle
@@ -1646,7 +2062,8 @@ function openDet(id) {
       <label class="sec-lb">Autres couleurs :</label>
       <div class="det-color-scroll">
         ${sameModel.map(c => `
-          <div class="color-chip" style="background:${c.color.h};" onclick="openDet('${c.id}')" title="${c.color.n}">
+          <div class="color-chip" style="background:${c.color.h};"
+               onclick="openDet('${c.id}')" title="${c.color.n}">
             <span>${c.color.n}</span>
           </div>
         `).join('')}
@@ -1654,13 +2071,13 @@ function openDet(id) {
     </div>
   ` : '';
 
-  // Avis (simulés)
-  const reviewsHtml = '<p>Aucun avis pour le moment</p>';
-
-  const szHtml = p.sizes.map((s, i) => `<div class="sc ${i === 0 ? 'on' : ''}" onclick="selSz(this,'${s}')">${s}</div>`).join('');
+  const reviewsHtml = '<p style="color:var(--t3);font-size:.85rem;">Aucun avis pour le moment.</p>';
+  const szHtml = p.sizes.map((s, i) =>
+    `<div class="sc ${i === 0 ? 'on' : ''}" onclick="selSz(this,'${s}')">${s}</div>`
+  ).join('');
 
   document.getElementById('det-con').innerHTML = `
-    <div class="det-med" style="background:${p.color.h}; display:flex; align-items:center; justify-content:center;">
+    <div class="det-med" id="det-med-img" style="background:${p.color.h}; display:flex; align-items:center; justify-content:center;">
       <span style="background:rgba(0,0,0,0.6); color:white; padding:0.8rem 2rem; border-radius:3rem; font-size:1.2rem;">${p.color.n}</span>
     </div>
     <div class="det-con">
@@ -1669,50 +2086,82 @@ function openDet(id) {
       <div class="d-pr">${fp(prix)} F CFA</div>
       ${promoLine}
       <div class="d-desc">${p.desc}</div>
-      
+
       ${colorScroll}
-      
+
       <!-- Section avis -->
       <div style="margin:1rem 0">
         <div class="rating-stars">★★★★☆</div>
-        <span>4.5/5 (12 avis)</span>
+        <span style="font-size:.85rem;color:var(--t3);">4.5/5 (12 avis)</span>
         ${reviewsHtml}
-        <button class="abtn" onclick="addReview('${p.id}')">Donner mon avis</button>
+        <button class="abtn" style="margin-top:.5rem" onclick="addReview('${p.id}')">
+          <i class="fa-solid fa-pen"></i> Donner mon avis
+        </button>
       </div>
-      
+
       <label class="sec-lb">Taille — <span id="ssl">${p.sizes[0]}</span></label>
       <div class="szg" id="dszg">${szHtml}</div>
+
+      <!-- [MODIF] Quantité avec animation -->
       <div class="qty-rw">
         <label class="sec-lb" style="margin-bottom:0">Quantité</label>
         <div class="qctl">
-          <button class="qb" onclick="chDQ(-1)">−</button>
+          <button class="qb" onclick="chDQ(-1)" aria-label="Diminuer">−</button>
           <span class="qv" id="dqv">1</span>
-          <button class="qb" onclick="chDQ(1)">+</button>
+          <button class="qb" onclick="chDQ(1)" aria-label="Augmenter">+</button>
         </div>
       </div>
-      <button class="atcbtn" onclick="addFDet()">
+
+      <button class="atcbtn" id="det-atcbtn" onclick="addFDet()">
         <i class="fa-solid fa-bag-shopping"></i> Ajouter au panier
       </button>
     </div>`;
+
   window.scrollTo({ top: 0, behavior: 'instant' });
 }
 
 function selSz(el, s) {
+  // [SÉCURITÉ] Valider la taille
+  if (!isValidSize(s)) return;
   document.querySelectorAll('.sc').forEach(c => c.classList.remove('on'));
   el.classList.add('on');
   dSz = s;
   document.getElementById('ssl').textContent = s;
 }
 
+/**
+ * [MODIF] Changement de quantité avec animation fluide sur le chiffre
+ */
 function chDQ(d) {
-  dQty = Math.max(1, dQty + d);
-  document.getElementById('dqv').textContent = dQty;
+  dQty = Math.max(1, Math.min(dQty + d, 99));
+  const el = document.getElementById('dqv');
+  if (el) {
+    el.textContent = dQty;
+    if (!prefersReducedMotion()) {
+      el.classList.remove('qty-pop');
+      // Force reflow pour relancer l'animation
+      void el.offsetWidth;
+      el.classList.add('qty-pop');
+    }
+  }
 }
 
 function addFDet() {
   const p = flatProds.find(x => x.id === dId);
+  if (!p) return;
+
+  // [NOUVEAU] Animation bouton ATC
+  const btn = document.getElementById('det-atcbtn');
+  if (btn && !prefersReducedMotion()) {
+    btn.classList.remove('atc-success');
+    void btn.offsetWidth;
+    btn.classList.add('atc-success');
+  }
+
   addCart(p, dSz, dQty);
-  closeDet();
+
+  // Petit délai pour laisser l'animation se jouer avant de fermer
+  setTimeout(() => closeDet(), 320);
 }
 
 function closeDet() {
@@ -1721,35 +2170,60 @@ function closeDet() {
 }
 
 // ========== PANIER ==========
+/**
+ * [SÉCURITÉ] addCart vérifie systématiquement que le produit et la taille
+ * sont valides et que les prix viennent du catalogue (non manipulables).
+ */
 function addCart(p, size, qty) {
-  const key = `${p.id}-${size}`;
+  // Validation stricte
+  if (!p || !isValidId(p.id)) return;
+  if (!isValidSize(size)) return;
+
+  // [SÉCURITÉ] Toujours récupérer le produit depuis le catalogue
+  const trueProd = flatProds.find(x => x.id === p.id);
+  if (!trueProd) return;
+  if (!trueProd.sizes.includes(size)) {
+    toast('Taille non disponible pour ce produit');
+    return;
+  }
+
+  const safeQty = clampQty(qty);
+  const key = `${trueProd.id}-${size}`;
   const existing = cart.find(c => c.key === key);
+
   if (existing) {
-    existing.qty += qty;
+    existing.qty = clampQty(existing.qty + safeQty);
   } else {
+    // [SÉCURITÉ] On ne stocke QUE les données du catalogue, jamais celles passées en paramètre
     cart.push({
-      key: key,
-      id: p.id,
-      name: p.name,
-      cat: p.cat,
-      basePrice: p.basePrice,
-      promoPrice: p.promoPrice,
-      promoQty: p.promoQty,
-      color: p.color,
-      size: size,
-      qty: qty
+      key,
+      id:         trueProd.id,
+      name:       trueProd.name,
+      cat:        trueProd.cat,
+      basePrice:  trueProd.basePrice,   // prix du catalogue, non manipulable
+      promoPrice: trueProd.promoPrice,
+      promoQty:   trueProd.promoQty,
+      color:      trueProd.color,
+      size,
+      qty:        safeQty
     });
   }
   updBdg();
-  toast(p.name + ' ajouté ✓');
+  toast(trueProd.name + ' ajouté ✓');
   saveCart();
 }
 
 function saveCart() {
-  localStorage.setItem('cart', JSON.stringify(cart));
+  try {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  } catch(e) {
+    // localStorage plein ou désactivé
+    console.warn('Impossible de sauvegarder le panier:', e);
+  }
 }
 
 function remCart(key) {
+  // [SÉCURITÉ] La clé est construite côté JS, pas besoin de la valider comme ID
   cart = cart.filter(c => c.key !== key);
   updBdg();
   renderCart();
@@ -1759,7 +2233,7 @@ function remCart(key) {
 function chQty(key, delta) {
   const item = cart.find(c => c.key === key);
   if (item) {
-    item.qty = Math.max(1, item.qty + delta);
+    item.qty = clampQty(item.qty + delta);
     renderCart();
     saveCart();
   }
@@ -1767,30 +2241,27 @@ function chQty(key, delta) {
 
 // Modification de la taille dans le panier
 function chCartSz(key, newSz) {
+  // [SÉCURITÉ] Valider la nouvelle taille
+  if (!isValidSize(newSz)) return;
   const item = cart.find(c => c.key === key);
   if (!item) return;
-  // Récupérer le produit plat correspondant pour connaître les tailles disponibles
   const p = flatProds.find(x => x.id === item.id);
   if (!p) return;
-  // Vérifier que la nouvelle taille est disponible pour ce produit
   if (!p.sizes.includes(newSz)) {
     toast('Taille non disponible');
     return;
   }
-  // Nouvelle clé
   const newKey = `${item.id}-${newSz}`;
-  // Si la nouvelle clé existe déjà (même produit, même taille), fusionner
   if (newKey !== key) {
     const existing = cart.find(c => c.key === newKey);
     if (existing) {
-      existing.qty += item.qty;
+      existing.qty = clampQty(existing.qty + item.qty);
       cart = cart.filter(c => c.key !== key);
     } else {
-      item.key = newKey;
+      item.key  = newKey;
       item.size = newSz;
     }
   } else {
-    // même taille, rien à faire
     return;
   }
   updBdg();
@@ -1802,40 +2273,57 @@ function renderCart() {
   const el = document.getElementById('cart-con');
   const tq = cart.reduce((s, c) => s + c.qty, 0);
   document.getElementById('cct').textContent = tq + ' article' + (tq > 1 ? 's' : '');
+
   if (!cart.length) {
-    el.innerHTML = '<div class="empty">Panier vide</div>';
+    el.innerHTML = `
+      <div class="empty">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <h3>Panier vide</h3>
+        <p>Parcourez notre catalogue pour trouver votre article</p>
+        <button class="ebtn" onclick="navigate('home')">
+          <i class="fa-solid fa-arrow-left"></i> Voir le catalogue
+        </button>
+      </div>`;
     return;
   }
+
   const slimItems = cart.filter(c => c.cat === 'slim');
   const totalSlimQty = slimItems.reduce((s, c) => s + c.qty, 0);
   const usePromo = totalSlimQty >= SLIM_PQ;
 
   let total = 0;
   const items = cart.map(c => {
-    const price = (c.cat === 'slim' && usePromo && c.promoPrice) ? c.promoPrice : c.basePrice;
+    // [SÉCURITÉ] Prix toujours vérifiés via le catalogue
+    const trueProd = flatProds.find(x => x.id === c.id);
+    const price = (c.cat === 'slim' && usePromo && trueProd && trueProd.promoPrice)
+      ? trueProd.promoPrice
+      : (trueProd ? trueProd.basePrice : c.basePrice);
     const itemTotal = price * c.qty;
     total += itemTotal;
-    // Récupérer les tailles disponibles pour ce produit
-    const p = flatProds.find(x => x.id === c.id);
+
+    const p = trueProd;
     const availableSizes = p ? p.sizes : [];
-    const sizeBtns = availableSizes.map(s => 
-      `<button class="csz ${s === c.size ? 'on' : ''}" onclick="chCartSz('${c.key}', '${s}')">${s}</button>`
+    const sizeBtns = availableSizes.map(s =>
+      `<button class="csz ${s === c.size ? 'on' : ''}" onclick="chCartSz('${c.key}','${s}')">${s}</button>`
     ).join('');
+
     return `
     <div class="citem">
       <div class="citem-top">
         <div class="cthumb" style="background:${c.color.h};"></div>
         <div class="cdet">
-          <div class="cnm">${c.name}</div>
-          <div class="cmeta">${c.color.n} - ${c.size}</div>
+          <div class="cnm">${sanitize(c.name)}</div>
+          <div class="cmeta">${sanitize(c.color.n)} - ${sanitize(c.size)}</div>
           <div class="cpr">${fp(itemTotal)}</div>
         </div>
         <div class="cright">
-          <button class="rmb" onclick="remCart('${c.key}')"><i class="fa-solid fa-trash"></i></button>
+          <button class="rmb" onclick="remCart('${c.key}')" aria-label="Supprimer">
+            <i class="fa-solid fa-trash"></i>
+          </button>
           <div class="qrow">
-            <button class="sqb" onclick="chQty('${c.key}', -1)">−</button>
+            <button class="sqb" onclick="chQty('${c.key}',-1)" aria-label="Moins">−</button>
             <span class="sqv">${c.qty}</span>
-            <button class="sqb" onclick="chQty('${c.key}', 1)">+</button>
+            <button class="sqb" onclick="chQty('${c.key}',1)" aria-label="Plus">+</button>
           </div>
         </div>
       </div>
@@ -1845,7 +2333,9 @@ function renderCart() {
     </div>`;
   }).join('');
 
-  const promoMsg = usePromo ? '<div style="color:var(--red); font-weight:600; margin:0.5rem 0;">Promo Slim Fit appliquée !</div>' : '';
+  const promoMsg = usePromo
+    ? '<div style="color:var(--red);font-weight:600;margin:0.5rem 0;"><i class="fa-solid fa-tag"></i> Promo Slim Fit appliquée !</div>'
+    : '';
 
   el.innerHTML = `
     <div class="clist">${items}</div>
@@ -1853,8 +2343,9 @@ function renderCart() {
       ${promoMsg}
       <div class="sr tot"><span>Total</span><span>${fp(total)}</span></div>
     </div>
-    <button class="wabtn" onclick="orderWA()">Commander WhatsApp</button>
-  `;
+    <button class="wabtn" onclick="orderWA()">
+      <i class="fa-brands fa-whatsapp"></i> Commander via WhatsApp
+    </button>`;
 }
 
 function orderWA() {
@@ -1863,34 +2354,69 @@ function orderWA() {
   const usePromo = slimItems.reduce((s, c) => s + c.qty, 0) >= SLIM_PQ;
   let total = 0;
   const lines = cart.map(c => {
-    const price = (c.cat === 'slim' && usePromo && c.promoPrice) ? c.promoPrice : c.basePrice;
+    const trueProd = flatProds.find(x => x.id === c.id);
+    const price = (c.cat === 'slim' && usePromo && trueProd && trueProd.promoPrice)
+      ? trueProd.promoPrice
+      : (trueProd ? trueProd.basePrice : c.basePrice);
     const lt = price * c.qty;
     total += lt;
     return `• ${c.name} (${c.color.n}, ${c.size}) x${c.qty} = ${fp(lt)}`;
   }).join('\n');
+
   const msg = `Bonjour Moussa Business !\n\nCommande :\n${lines}\n\nTotal : ${fp(total)}${usePromo ? '\n(Promo Slim Fit incluse)' : ''}`;
-  
+
+  // Sauvegarder la commande
   orders.push({
     id: Date.now(),
-    date: new Date().toLocaleString(),
-    items: cart.map(c => ({...c})),
-    total: total
+    date: new Date().toLocaleString('fr-FR'),
+    items: cart.map(c => ({ ...c })),
+    total
   });
-  localStorage.setItem('orders', JSON.stringify(orders));
-  
+  try {
+    localStorage.setItem('orders', JSON.stringify(orders));
+  } catch(e) {}
+
+  // Vider le panier
   cart = [];
   saveCart();
   updBdg();
+
+  // Ouvrir WhatsApp
   window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`, '_blank');
-  toast('Commande envoyée !');
-  navigate('about');
+
+  // [NOUVEAU] Afficher le modal de confirmation
+  showOrderModal();
 }
+
+// ========== [NOUVEAU] MODAL CONFIRMATION COMMANDE ==========
+function showOrderModal() {
+  const m = document.getElementById('order-modal');
+  if (!m) return;
+  m.classList.add('on');
+}
+function closeOrderModal() {
+  const m = document.getElementById('order-modal');
+  if (m) m.classList.remove('on');
+  navigate('home');
+}
+// Fermer le modal en cliquant sur l'overlay
+document.addEventListener('DOMContentLoaded', () => {
+  const m = document.getElementById('order-modal');
+  if (m) {
+    m.addEventListener('click', e => {
+      if (e.target === m) closeOrderModal();
+    });
+  }
+});
 
 // ========== WISHLIST ==========
 function isW(id) {
   return wish.includes(id);
 }
+
 function togW(id) {
+  // [SÉCURITÉ] Valider l'ID
+  if (!isValidId(id)) return;
   if (isW(id)) {
     wish = wish.filter(x => x !== id);
     toast('Retiré des favoris');
@@ -1898,65 +2424,126 @@ function togW(id) {
     wish.push(id);
     toast('Ajouté à la wishlist ♡');
   }
-  localStorage.setItem('wish', JSON.stringify(wish));
+  try {
+    localStorage.setItem('wish', JSON.stringify(wish));
+  } catch(e) {}
   updBdg();
   refWBtn(id);
 }
+
 function refWBtn(id) {
   const btn = document.getElementById('wb-' + id);
   if (btn) btn.classList.toggle('on', isW(id));
 }
+
+/**
+ * [MODIF] renderWish — ajout bouton supprimer + bouton "Parcourir les produits"
+ */
 function renderWish() {
   const el = document.getElementById('wish-con');
   const wl = flatProds.filter(p => wish.includes(p.id));
   document.getElementById('wct').textContent = wl.length + ' article' + (wl.length > 1 ? 's' : '');
+
   if (!wl.length) {
-    el.innerHTML = '<div class="empty">Wishlist vide</div>';
+    el.innerHTML = `
+      <div class="empty">
+        <i class="fa-solid fa-heart"></i>
+        <h3>Wishlist vide</h3>
+        <p>Sauvegardez vos produits préférés ici</p>
+        <button class="ebtn" onclick="navigate('home')">
+          <i class="fa-solid fa-arrow-left"></i> Explorer le catalogue
+        </button>
+      </div>`;
     return;
   }
-  el.innerHTML = '<div class="wgrid">' + wl.map(p => `
-    <div class="pcard" onclick="openDet('${p.id}')">
-      <div class="pmed">
-        <div class="pph" style="background:${p.color.h}; display:flex; align-items:center; justify-content:center;">
-          <span style="background:rgba(0,0,0,0.5); color:white; padding:0.3rem 0.8rem; border-radius:2rem; font-size:0.8rem;">${p.color.n}</span>
+
+  el.innerHTML = `
+    <!-- [NOUVEAU] Bouton parcourir -->
+    <button class="wish-browse-btn" onclick="navigate('home')">
+      <i class="fa-solid fa-magnifying-glass"></i> Parcourir les autres produits
+    </button>
+    <div class="wgrid" style="margin-top:1rem;">
+      ${wl.map(p => `
+        <div class="pcard" onclick="openDet('${p.id}')">
+          <div class="pmed">
+            <div class="pph" style="background:${p.color.h}; display:flex; align-items:center; justify-content:center;">
+              <span style="background:rgba(0,0,0,0.5); color:white; padding:0.3rem 0.8rem; border-radius:2rem; font-size:0.8rem;">${p.color.n}</span>
+            </div>
+            <span class="catb">${p.cat === 'slim' ? 'Slim Fit' : 'Compression'}</span>
+            <!-- [NOUVEAU] Bouton supprimer de la wishlist (croix rouge) -->
+            <button class="wish-del-btn" onclick="event.stopPropagation();togW('${p.id}');renderWish();"
+                    aria-label="Retirer de la wishlist">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+          <div class="pinf">
+            <div class="pnm">${p.name}</div>
+            <!-- [MODIF] Icône panier dans wishlist aussi -->
+            <button class="abtn cart-icon-btn" onclick="event.stopPropagation();flyToCart(this,'${p.id}')"
+                    aria-label="Ajouter au panier">
+              <i class="fa-solid fa-cart-plus"></i>
+            </button>
+          </div>
         </div>
-        <span class="catb">${p.cat}</span>
-        <button class="wb on" onclick="event.stopPropagation();togW('${p.id}');renderWish()"><i class="fa-solid fa-heart"></i></button>
-      </div>
-      <div class="pinf">
-        <div class="pnm">${p.name}</div>
-        <button class="abtn" onclick="event.stopPropagation();flyToCart(this, '${p.id}')">Ajouter</button>
-      </div>
-    </div>
-  `).join('') + '</div>';
+      `).join('')}
+    </div>`;
 }
 
 // ========== FLY TO CART ==========
 function flyToCart(element, productId) {
+  // [SÉCURITÉ] Valider l'ID
+  if (!isValidId(productId)) return;
+  const p = flatProds.find(x => x.id === productId);
+  if (!p) return;
+
+  // [NOUVEAU] Animation bounce sur le bouton
+  if (!prefersReducedMotion()) {
+    element.classList.remove('added');
+    void element.offsetWidth;
+    element.classList.add('added');
+  }
+
+  if (prefersReducedMotion()) {
+    addCart(p, p.sizes[0], 1);
+    return;
+  }
+
   const clone = element.cloneNode(true);
   const rect = element.getBoundingClientRect();
-  const cartIcon = document.querySelector('.ni[onclick="navigate(\'cart\')"] i').getBoundingClientRect();
-  clone.style.position = 'fixed';
-  clone.style.top = rect.top + 'px';
-  clone.style.left = rect.left + 'px';
-  clone.style.width = rect.width + 'px';
-  clone.style.height = rect.height + 'px';
-  clone.style.opacity = '1';
-  clone.style.zIndex = '9999';
-  clone.style.pointerEvents = 'none';
+  const cartIconEl = document.querySelector('.ni[onclick="navigate(\'cart\')"] i');
+  if (!cartIconEl) {
+    addCart(p, p.sizes[0], 1);
+    return;
+  }
+  const cartIcon = cartIconEl.getBoundingClientRect();
+
+  Object.assign(clone.style, {
+    position:      'fixed',
+    top:           rect.top + 'px',
+    left:          rect.left + 'px',
+    width:         rect.width + 'px',
+    height:        rect.height + 'px',
+    opacity:       '1',
+    zIndex:        '9999',
+    pointerEvents: 'none',
+    borderRadius:  '50%'
+  });
   clone.classList.add('fly-clone');
   document.body.appendChild(clone);
+
   setTimeout(() => {
-    clone.style.top = cartIcon.top + 'px';
-    clone.style.left = cartIcon.left + 'px';
-    clone.style.width = '30px';
-    clone.style.height = '30px';
-    clone.style.opacity = '0';
-    clone.style.transform = 'scale(0.2)';
+    Object.assign(clone.style, {
+      top:       cartIcon.top + 'px',
+      left:      cartIcon.left + 'px',
+      width:     '30px',
+      height:    '30px',
+      opacity:   '0',
+      transform: 'scale(0.2)'
+    });
   }, 50);
+
   setTimeout(() => {
     clone.remove();
-    const p = flatProds.find(x => x.id === productId);
     addCart(p, p.sizes[0], 1);
   }, 800);
 }
@@ -1976,35 +2563,45 @@ function updBdg() {
 }
 
 function toast(msg) {
+  // [SÉCURITÉ] sanitise le message avant affichage
   const t = document.getElementById('toast');
-  document.getElementById('tmsg').textContent = msg;
+  document.getElementById('tmsg').textContent = String(msg).slice(0, 120);
   t.classList.add('on');
   clearTimeout(window.toastTimeout);
-  window.toastTimeout = setTimeout(() => t.classList.remove('on'), 2000);
+  window.toastTimeout = setTimeout(() => t.classList.remove('on'), 2200);
 }
 
 function navigate(pg) {
+  // [SÉCURITÉ] Valider la page cible
+  const VALID_PAGES = ['home','cart','wishlist','about','contact'];
+  if (!VALID_PAGES.includes(pg)) return;
   if (curPg === pg && pg !== 'home') return;
+
   document.querySelectorAll('.pg').forEach(p => p.classList.remove('act'));
   document.querySelectorAll('.ni').forEach(n => n.classList.remove('on'));
   document.getElementById('det').style.display = 'none';
   document.getElementById(pg + '-pg').classList.add('act');
   document.getElementById('nav-' + pg).classList.add('on');
   prevPg = curPg;
-  curPg = pg;
+  curPg  = pg;
   window.scrollTo({ top: 0, behavior: 'smooth' });
-  if (pg === 'cart') renderCart();
+
+  if (pg === 'cart')     renderCart();
   if (pg === 'wishlist') renderWish();
-  if (pg === 'about') renderOrderHistory();
+  // [MODIF] renderOrderHistory supprimé de la page À propos (données privées)
 }
 
 function toggleTheme() {
   dark = !dark;
   document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
   document.getElementById('t-icon').className = dark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
-  localStorage.setItem('dark', dark);
-  const f = document.createElement('div'); f.className = 'tflash';
-  document.body.appendChild(f); setTimeout(() => f.remove(), 420);
+  try { localStorage.setItem('dark', dark); } catch(e) {}
+  if (!prefersReducedMotion()) {
+    const f = document.createElement('div');
+    f.className = 'tflash';
+    document.body.appendChild(f);
+    setTimeout(() => f.remove(), 420);
+  }
 }
 
 // ========== QR SCANNER ==========
@@ -2018,6 +2615,10 @@ function closeQRScanner() {
 }
 let qrStream;
 function startQRScanner() {
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+    toast('Caméra non disponible sur ce navigateur');
+    return;
+  }
   navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
     .then(stream => {
       qrStream = stream;
@@ -2030,7 +2631,7 @@ function startQRScanner() {
         closeQRScanner();
       }, 3000);
     })
-    .catch(() => toast('Erreur caméra'));
+    .catch(() => toast('Erreur caméra — accès refusé'));
 }
 function stopQRScanner() {
   if (qrStream) {
@@ -2041,67 +2642,85 @@ function stopQRScanner() {
 
 // ========== AVIS ==========
 function addReview(productId) {
+  if (!isValidId(productId)) return;
   const comment = prompt('Votre avis :');
-  if (!comment) return;
-  const rating = prompt('Note (1-5) :', '5');
+  if (!comment || !comment.trim()) return;
   toast('Merci pour votre avis !');
 }
 
-// ========== HISTORIQUE COMMANDES ==========
-function renderOrderHistory() {
-  const el = document.getElementById('order-history');
-  if (!orders.length) {
-    el.innerHTML = '<p>Aucune commande</p>';
+// ========== NEWSLETTER ==========
+function subNL() {
+  const el = document.getElementById('nle');
+  const val = el ? el.value.trim() : '';
+  // [SÉCURITÉ] Validation basique email côté client
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  if (!emailRegex.test(val)) {
+    toast('Veuillez entrer un email valide');
     return;
   }
-  el.innerHTML = orders.map(o => `
-    <div class="order-item">
-      <strong>#${o.id.toString().slice(-4)}</strong> - ${o.date}<br>
-      Total: ${fp(o.total)} - ${o.items.length} article(s)
-    </div>
-  `).join('');
+  toast('Inscription confirmée ! ✓');
+  if (el) el.value = '';
 }
 
-// ========== ANIMATIONS ==========
-function initAnimations() {
-  // Parallaxe sur le héros
-  window.addEventListener('scroll', () => {
-    const hero = document.getElementById('hero');
-    if (hero) {
-      const scrollY = window.scrollY;
-      if (scrollY < 300) {
-        hero.style.transform = `translateY(${scrollY * 0.1}px)`;
-      }
+// ========== ANIMATIONS & SCROLL ==========
+let lastScrollY = 0;
+let ticking = false;
+
+function applyScrollEffects() {
+  const scrollY = lastScrollY;
+  const hero = document.getElementById('hero');
+  if (hero) {
+    if (!prefersReducedMotion() && scrollY < 300) {
+      hero.style.transform = `translateY(${scrollY * 0.1}px)`;
+    } else if (prefersReducedMotion()) {
+      hero.style.transform = '';
     }
-  });
+  }
+  const stbtn = document.getElementById('stbtn');
+  if (stbtn) stbtn.classList.toggle('vis', scrollY > 280);
+  ticking = false;
+}
+
+function handleScroll() {
+  lastScrollY = window.scrollY || window.pageYOffset;
+  if (!ticking) {
+    window.requestAnimationFrame(applyScrollEffects);
+    ticking = true;
+  }
+}
+
+function initAnimations() {
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  applyScrollEffects();
 }
 
 // ========== INIT ==========
 window.addEventListener('load', () => {
   document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
   document.getElementById('t-icon').className = dark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
-  
-  cart = JSON.parse(localStorage.getItem('cart')) || [];
-  wish = JSON.parse(localStorage.getItem('wish')) || [];
-  orders = JSON.parse(localStorage.getItem('orders')) || [];
-  
+
+  // [SÉCURITÉ] Chargement validé depuis localStorage
+  cart   = loadCartSafe();
+  wish   = loadWishSafe();
+  try {
+    orders = JSON.parse(localStorage.getItem('orders') || '[]');
+    if (!Array.isArray(orders)) orders = [];
+  } catch(e) { orders = []; }
+
   renderProds(flatProds);
+  updateCatBanners('all'); // [NOUVEAU] Afficher les deux bandeaux au démarrage
   updBdg();
-  
+
   setTimeout(() => document.getElementById('ld').classList.add('out'), 700);
-  
+
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js').catch(console.log);
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
   }
-  
+
   initAnimations();
 });
 
-window.addEventListener('scroll', () => {
-  document.getElementById('stbtn').classList.toggle('vis', window.scrollY > 280);
-});
-
-// Pour la wishlist dans le détail
+// ========== WISHLIST DÉTAIL ==========
 function updDetW() {
   const i = document.getElementById('det-wi');
   if (!i) return;
@@ -2111,235 +2730,30 @@ function togDetW() {
   togW(dId);
   updDetW();
 }
-function addFDet() {
-  const p = flatProds.find(x => x.id === dId);
-  addCart(p, dSz, dQty);
-  closeDet();
-}
 
-function renderOrderHistory() {
-  const el = document.getElementById('order-history');
-  if (!orders.length) {
-    el.innerHTML = '<p>Aucune commande</p>';
-    return;
-  }
-  el.innerHTML = orders.map(o => `
-    <div class="order-item">
-      <strong>#${o.id.toString().slice(-4)}</strong> - ${o.date}<br>
-      Total: ${fp(o.total)} - ${o.items.length} article(s)
-    </div>
-  `).join('');
-}
-
-function addReview(productId) {
-  const comment = prompt('Votre avis :');
-  if (!comment) return;
-  const rating = prompt('Note (1-5) :', '5');
-  toast('Merci pour votre avis !');
- }
-
- function initAnimations() {
-  window.addEventListener('scroll', () => {
-    const hero = document.getElementById('hero');
-    if (hero) {
-      const scrollY = window.scrollY;
-      if (scrollY < 300) {
-        hero.style.transform = `translateY(${scrollY * 0.1}px)`;
-      }
-    }
-  });
-
-  function animateCards() {
-    document.querySelectorAll('.pcard').forEach((card, index) => {
-      card.style.animationDelay = `${index * 0.1}s`;
-      card.classList.add('animate');
-    });
-  }
-  setTimeout(animateCards, 500);
-}
-
-function startQRScanner() {
-  navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
-    .then(stream => {
-      qrStream = stream;
-      const video = document.getElementById('qr-video');
-      video.srcObject = stream;
-      video.play();
-      setTimeout(() => {
-        toast('Produit scanné !');
-        openDet(flatProds[0].id);
-        closeQRScanner();
-      }, 3000);
-    })
-    .catch(() => toast('Erreur caméra'));
-}
-
-function stopQRScanner() {
-  if (qrStream) {
-    qrStream.getTracks().forEach(t => t.stop());
-    qrStream = null;
-  }
-}
-
-function toggleTheme() {
-  dark = !dark;
-  document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
-  document.getElementById('t-icon').className = dark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
-  localStorage.setItem('dark', dark);
-  const f = document.createElement('div'); f.className = 'tflash';
-  document.body.appendChild(f); setTimeout(() => f.remove(), 420);
-}
-
-function navigate(pg) {
-  if (curPg === pg && pg !== 'home') return;
-  document.querySelectorAll('.pg').forEach(p => p.classList.remove('act'));
-  document.querySelectorAll('.ni').forEach(n => n.classList.remove('on'));
-  document.getElementById('det').style.display = 'none';
-  document.getElementById(pg + '-pg').classList.add('act');
-  document.getElementById('nav-' + pg).classList.add('on');
-  prevPg = curPg;
-  curPg = pg;
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-  if (pg === 'cart') renderCart();
-  if (pg === 'wishlist') renderWish();
-  if (pg === 'about') renderOrderHistory();
-}
-
-function toast(msg) {
-  const t = document.getElementById('toast');
-  document.getElementById('tmsg').textContent = msg;
-  t.classList.add('on');
-  clearTimeout(window.toastTimeout);
-  window.toastTimeout = setTimeout(() => t.classList.remove('on'), 2000);
-}
-
-function updBdg() {
-  const cc = cart.reduce((s, c) => s + c.qty, 0);
-  const wc = wish.length;
-  ['cb', 'ncb'].forEach(id => {
-    const e = document.getElementById(id);
-    if (e) { e.textContent = cc; e.classList.toggle('on', cc > 0); }
-  });
-  ['wb', 'nwb'].forEach(id => {
-    const e = document.getElementById(id);
-    if (e) { e.textContent = wc; e.classList.toggle('on', wc > 0); }
-  });
-}
-
-function chCartSz(key, newSz) {
-  const item = cart.find(c => c.key === key);
-  if (!item) return;
-  const p = flatProds.find(x => x.id === item.id);
-  if (!p) return;
-  if (!p.sizes.includes(newSz)) {
-    toast('Taille non disponible');
-    return;
-  }
-  const newKey = `${item.id}-${newSz}`;
-  if (newKey !== key) {
-    const existing = cart.find(c => c.key === newKey);
-    if (existing) {
-      existing.qty += item.qty;
-      cart = cart.filter(c => c.key !== key);
-    } else {
-      item.key = newKey;
-      item.size = newSz;
-    }
-  } else {
-    return;
-  }
-  updBdg();
-  renderCart();
-  saveCart();
-}
-
-function chQty(key, delta) {
-  const item = cart.find(c => c.key === key);
-  if (item) {
-    item.qty = Math.max(1, item.qty + delta);
-    renderCart();
-    saveCart();
-  }
-}
-
-function remCart(key) {
-  cart = cart.filter(c => c.key !== key);
-  updBdg();
-  renderCart();
-  saveCart();
-}
-
-function addCart(p, size, qty) {
-  const key = `${p.id}-${size}`;
-  const existing = cart.find(c => c.key === key);
-  if (existing) {
-    existing.qty += qty;
-  } else {
-    cart.push({
-      key: key,
-      id: p.id,
-      name: p.name,
-      cat: p.cat,
-      basePrice: p.basePrice,
-      promoPrice: p.promoPrice,
-      promoQty: p.promoQty,
-      color: p.color,
-      size: size,
-      qty: qty
-    });
-  }
-  updBdg();
-  toast(p.name + ' ajouté ✓');
-  saveCart();
-}
-
-function addFDet() {
-  const p = flatProds.find(x => x.id === dId);
-  addCart(p, dSz, dQty);
-  closeDet();
-}
-
-function togDetW() {
-  togW(dId);
-  updDetW();
-}
-
-function updDetW() {
-  const i = document.getElementById('det-wi');
-  if (!i) return;
-  i.style.color = isW(dId) ? 'var(--red)' : 'var(--t3)';
-}
-
-// =========================================================
-// MODERNISATION UI/UX 2026 - À AJOUTER À LA FIN DU <script>
-// =========================================================
-
-// 1. Retour Haptique (Vibration sur mobile)
+// ========== HAPTIQUE ==========
 function triggerHaptic(intensity = 'light') {
   if (!navigator.vibrate) return;
   if (intensity === 'light') navigator.vibrate(15);
   if (intensity === 'heavy') navigator.vibrate([20, 30, 20]);
 }
 
-// 2. Interception de vos fonctions pour ajouter l'haptique sans modifier votre logique
-const originalAddCart = addCart;
+// [MODIF] Interception de addCart pour haptique — intégrée directement
+const _origAddCart = addCart;
 addCart = function(p, size, qty) {
-  triggerHaptic('heavy'); // Grosse vibration pour l'ajout au panier
-  originalAddCart(p, size, qty);
+  triggerHaptic('heavy');
+  _origAddCart(p, size, qty);
 };
-
-const originalTogW = togW;
+const _origTogW = togW;
 togW = function(id) {
-  triggerHaptic('light'); // Petite vibration pour la wishlist
-  originalTogW(id);
+  triggerHaptic('light');
+  _origTogW(id);
 };
 
-// 3. Effet "Ripple" (Onde) au clic sur les boutons d'action
+// ========== EFFET RIPPLE ==========
 document.addEventListener('click', function(e) {
-  const targetBtn = e.target.closest('.atcbtn, .abtn, .wabtn, .hbtn');
-  if (targetBtn) {
-    createRipple(e, targetBtn);
-  }
+  const targetBtn = e.target.closest('.atcbtn, .abtn, .wabtn, .hbtn, .cart-icon-btn');
+  if (targetBtn) createRipple(e, targetBtn);
 });
 
 function createRipple(event, button) {
@@ -2347,18 +2761,12 @@ function createRipple(event, button) {
   const diameter = Math.max(button.clientWidth, button.clientHeight);
   const radius = diameter / 2;
   const rect = button.getBoundingClientRect();
-
-  circle.style.width = circle.style.height = `${diameter}px`;
-  circle.style.left = `${event.clientX - rect.left - radius}px`;
-  circle.style.top = `${event.clientY - rect.top - radius}px`;
+  circle.style.width  = circle.style.height = `${diameter}px`;
+  circle.style.left   = `${event.clientX - rect.left - radius}px`;
+  circle.style.top    = `${event.clientY - rect.top - radius}px`;
   circle.classList.add('ripple');
-
-  // Nettoyer les ondes précédentes pour éviter la surcharge
-  const existingRipple = button.querySelector('.ripple');
-  if (existingRipple) {
-    existingRipple.remove();
-  }
-
+  const existing = button.querySelector('.ripple');
+  if (existing) existing.remove();
   button.appendChild(circle);
   setTimeout(() => circle.remove(), 600);
 }
