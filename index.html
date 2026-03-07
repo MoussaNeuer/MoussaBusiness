@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes">
-<title>Moussa Business - Responsive</title>
+<title>Moussa Business - Catalogue couleurs</title>
 <!-- Manifest PWA -->
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#E8391A">
@@ -202,6 +202,7 @@ body{
   padding:clamp(1.5rem,5vw,3rem) clamp(1.2rem,4vw,2.5rem);
   position:relative;
   overflow:hidden;
+  transition:transform 0.3s ease;
 }
 .hero::before{
   content:'';
@@ -319,37 +320,6 @@ body{
   position:absolute;inset:0;
   display:flex;flex-direction:column;
   align-items:center;justify-content:center;gap:0.5rem;
-  background:linear-gradient(145deg,#141414,#222);
-}
-.pplay{
-  width:clamp(2rem,10vw,3rem);
-  height:clamp(2rem,10vw,3rem);
-  background:var(--red);
-  border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  animation:pp 2s ease-in-out infinite;
-}
-@keyframes pp{0%,100%{box-shadow:0 0 0 0 var(--rg)}50%{box-shadow:0 0 0 15px transparent}}
-.pplay i{font-size:clamp(0.8rem,3vw,1rem);color:#fff}
-.pph p{font-size:0.7rem;color:rgba(255,255,255,.4);text-align:center;padding:0 0.5rem}
-.cdots{
-  position:absolute;bottom:0.5rem;left:0.5rem;
-  display:flex;gap:0.2rem;flex-wrap:wrap;max-width:70%
-}
-.cd{
-  width:clamp(0.6rem,2vw,0.8rem);
-  height:clamp(0.6rem,2vw,0.8rem);
-  border-radius:50%;
-  border:1.5px solid rgba(255,255,255,.55);
-  flex-shrink:0;
-}
-.cd.more{
-  background:rgba(0,0,0,.5);
-  border:1.5px solid rgba(255,255,255,.35);
-  font-size:0.5rem;
-  color:#fff;
-  display:flex;align-items:center;justify-content:center;
-  font-weight:700;
 }
 .catb{
   position:absolute;top:0.5rem;left:0.5rem;
@@ -465,106 +435,40 @@ body{
   overflow:hidden;
   background:#111;
   user-select:none;
-  touch-action:pan-y;
   height:clamp(250px,50vh,400px);
-}
-.det-sl{
   display:flex;
-  will-change:transform;
-  transition:transform .38s cubic-bezier(.4,0,.2,1);
-  height:100%;
+  align-items:center;
+  justify-content:center;
 }
-.det-s{
-  flex:0 0 100%;
-  height:100%;
-  display:flex;align-items:center;justify-content:center;
-  background:linear-gradient(145deg,#111,#1c1c1c);
-  position:relative;
+.det-color-scroll{
+  display:flex;
+  gap:0.8rem;
+  overflow-x:auto;
+  padding:1rem;
+  scrollbar-width:none;
+  -webkit-overflow-scrolling:touch;
 }
-.det-s video{
-  width:100%;
-  height:100%;
-  object-fit:cover
-}
-.det-sph{text-align:center}
-.det-sph .bp{
+.det-color-scroll::-webkit-scrollbar{display:none}
+.color-chip{
+  flex:0 0 auto;
   width:clamp(3rem,15vw,4rem);
   height:clamp(3rem,15vw,4rem);
-  background:var(--red);
   border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  margin:0 auto 1rem;
-  animation:pp 2s infinite;
-}
-.det-sph .bp i{font-size:clamp(1rem,4vw,1.4rem);color:#fff}
-.det-sph p{color:rgba(255,255,255,.45);font-size:0.9rem}
-.det-clbl{
-  position:absolute;bottom:1rem;left:50%;transform:translateX(-50%);
-  background:rgba(0,0,0,.68);backdrop-filter:blur(8px);
-  color:#fff;font-size:0.9rem;font-weight:600;
-  padding:0.3rem 1rem;border-radius:2rem;
-  white-space:nowrap;
-}
-.det-cnt{
-  position:absolute;top:0.5rem;right:0.5rem;
-  background:rgba(0,0,0,.6);backdrop-filter:blur(8px);
-  color:#fff;font-size:0.8rem;font-weight:600;
-  padding:0.2rem 0.8rem;border-radius:2rem;
-}
-.swipe-hint{
-  position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
-  color:rgba(255,255,255,.38);font-size:0.8rem;
-  display:flex;align-items:center;gap:0.5rem;
-  animation:hf 3s ease 1.5s forwards;
-}
-@keyframes hf{0%{opacity:1}80%{opacity:1}100%{opacity:0}}
-.det-dots{
-  display:flex;justify-content:center;gap:0.3rem;
-  padding:0.8rem 1rem 0;
-  flex-wrap:wrap
-}
-.det-dot{
-  width:0.8rem;height:0.8rem;
-  border-radius:0.8rem;
-  background:var(--border);
+  border:3px solid transparent;
+  transition:all 0.2s;
   cursor:pointer;
-  transition:all .28s;
-  flex-shrink:0;
 }
-.det-dot.on{
-  background:var(--red);
-  width:2rem;
-}
-.cpick-w{
-  display:flex;gap:0.8rem;
-  padding:0.8rem 1rem;
-  overflow-x:auto;
-  scrollbar-width:none;
-}
-.cpick-w::-webkit-scrollbar{display:none}
-.cp{
-  display:flex;flex-direction:column;align-items:center;gap:0.2rem;
-  cursor:pointer;flex-shrink:0;transition:var(--tr)
-}
-.cp-d{
-  width:clamp(1.8rem,8vw,2.5rem);
-  height:clamp(1.8rem,8vw,2.5rem);
-  border-radius:50%;
-  border:2px solid transparent;
-  transition:var(--tr);
-}
-.cp.on .cp-d{
+.color-chip.active{
   border-color:var(--red);
-  transform:scale(1.14);
-  box-shadow:0 0 0 4px var(--rl);
+  transform:scale(1.1);
+  box-shadow:0 0 0 3px var(--rl);
 }
-.cp span{
-  font-size:0.7rem;
-  color:var(--t3);
-  font-weight:500;
+.color-chip span{
+  display:block;
   text-align:center;
-  max-width:3.5rem;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis
+  font-size:0.7rem;
+  margin-top:0.3rem;
+  color:var(--t3);
 }
 .det-con{padding:1rem}
 .d-cat{
@@ -1256,6 +1160,16 @@ body{
 }
 [data-theme=dark] .tflash{background:#000}
 @keyframes tf{0%{opacity:0}30%{opacity:.14}100%{opacity:0}}
+
+/* ===== COMPTEUR ANIMÉ ===== */
+.product-count{
+  font-size:1.2rem;
+  font-weight:700;
+  color:var(--red);
+  margin-left:0.5rem;
+  display:inline-block;
+  transition:transform 0.2s ease;
+}
 </style>
 </head>
 <body>
@@ -1318,7 +1232,7 @@ body{
     <button class="fb" onclick="setFil('slim',this)"><i class="fa-solid fa-shirt"></i> Slim Fit</button>
     <button class="fb" onclick="setFil('compression',this)"><i class="fa-solid fa-dumbbell"></i> Compression</button>
   </div>
-  <div class="hero">
+  <div class="hero" id="hero">
     <div class="h-tag"><i class="fa-solid fa-star"></i> Nouvelle Collection 2025</div>
     <div class="h-title">PERFORMANCE<br>& STYLE</div>
     <div class="h-sub">T-shirts Slim Fit & vêtements de compression premium</div>
@@ -1335,7 +1249,10 @@ body{
     <i class="fa-solid fa-tags"></i>
     <p><span>Offre Slim Fit :</span> À partir de 4 t-shirts → 2 500 F CFA / unité !</p>
   </div>
-  <div class="stl" id="ca"><h2>Catalogue</h2><a>Voir tout</a></div>
+  <div class="stl" id="ca">
+    <h2>Catalogue <span id="productCount" class="product-count"></span></h2>
+    <a>Voir tout</a>
+  </div>
   <div class="pgrid" id="pg"></div>
 
   <!-- FOOTER -->
@@ -1491,266 +1408,279 @@ body{
   </div>
 </nav>
 
-<!-- Code JavaScript existant -->
 <script>
-// ══════════════════════════════════════════
-// DATA
-// ══════════════════════════════════════════
-// Sizes: Blanc & Noir start from XS; all others from S
-const SIZES_FULL = ['XS','S','M','L','XL','XXL','XXXL'];
-const SIZES_STD  = ['S','M','L','XL','XXL'];
-const SIZES_COMP = ['S','M','L','XL'];
-
+// ========== LISTE DES COULEURS SLIM FIT ==========
 const SLIM_COLORS = [
-  {n:'Blanc', h:'#FFFFFF', b:'#ddd', sizes:SIZES_FULL},
-  {n:'Noir',  h:'#111111',           sizes:SIZES_FULL},
-  {n:'Gris Clair',   h:'#D0D0D0'},
-  {n:'Gris Foncé',   h:'#555555'},
-  {n:'Marine',       h:'#1A237E'},
-  {n:'Bleu Ciel',    h:'#64B5F6'},
-  {n:'Rouge',        h:'#E53935'},
-  {n:'Bordeaux',     h:'#7B1A1A'},
-  {n:'Vert Armée',   h:'#4E5B2F'},
-  {n:'Kaki',         h:'#8D7B5A'},
-  {n:'Orange',       h:'#E65100'},
-  {n:'Jaune',        h:'#F9A825'},
-  {n:'Rose',         h:'#F48FB1'},
-  {n:'Lavande',      h:'#9575CD'},
-  {n:'Menthe',       h:'#80CBC4'},
-  {n:'Saumon',       h:'#FF8A65'},
-  {n:'Caramel',      h:'#B77B4A'},
-  {n:'Beige',        h:'#D7C4A3'},
-  {n:'Taupe',        h:'#7D6B60'},
-  {n:'Anthracite',   h:'#37474F'},
-].map(c => ({...c, sizes: c.sizes || SIZES_STD}));
+  { n: 'Blanc', h: '#F5F5F5' },
+  { n: 'Noir', h: '#111111' },
+  { n: 'Bleu Ciel', h: '#87CEEB' },
+  { n: 'Bleu Marine', h: '#1A237E' },
+  { n: 'Bleu Royal', h: '#2962FF' },
+  { n: 'Vert Foncé', h: '#1B5E20' },
+  { n: 'Vert Olive', h: '#556B2F' },
+  { n: 'Vert Fluo', h: '#CCFF00' },
+  { n: 'Vert Menthe', h: '#98FF98' },
+  { n: 'Jaune', h: '#FFD600' },
+  { n: 'Orange', h: '#FFA726' },
+  { n: 'Rouge', h: '#C62828' },
+  { n: 'Bordeaux', h: '#8E2430' },
+  { n: 'Rose Clair', h: '#F8BBD0' },
+  { n: 'Rose Vif', h: '#FF4081' },
+  { n: 'Gris', h: '#9E9E9E' },
+  { n: 'Marron', h: '#8D6E63' },
+  { n: 'Beige', h: '#FFF3E0' },
+  { n: 'Pêche', h: '#FFCCBC' },
+  { n: 'Violet', h: '#7B1FA2' }
+].map(c => ({
+  ...c,
+  sizes: (c.n === 'Blanc' || c.n === 'Noir') 
+    ? ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL']
+    : ['S', 'M', 'L', 'XL', 'XXL']
+}));
 
+// ========== COULEURS COMPRESSION ==========
 const COMP_COLORS = [
-  {n:'Noir',        h:'#111111', sizes:SIZES_FULL},
-  {n:'Marine',      h:'#1A237E'},
-  {n:'Gris',        h:'#757575'},
-  {n:'Rouge',       h:'#E53935'},
-  {n:'Bleu Roi',    h:'#1565C0'},
-  {n:'Vert Nuit',   h:'#1B5E20'},
-  {n:'Bordeaux',    h:'#7B1A1A'},
-  {n:'Anthracite',  h:'#37474F'},
-].map(c => ({...c, sizes: c.sizes || SIZES_COMP}));
-
-const SLIM_P = 3000, SLIM_PP = 2500, SLIM_PQ = 4, COMP_P = 4000;
-const WA = '221777101383';
-
-const prods = [
-  {id:1,n:'T-shirt Slim Fit Performance',cat:'slim',
-   desc:'T-shirt Slim Fit en tissu stretch respirant 4 directions. Coupe ajustée qui met en valeur la silhouette. Idéal sport & casual.',colors:SLIM_COLORS},
-  {id:2,n:'T-shirt Compression Pro',cat:'compression',
-   desc:'Compression optimale pour améliorer vos performances. Tissu technique séchage ultra-rapide, maintien musculaire parfait.',colors:COMP_COLORS},
-  {id:3,n:'T-shirt Slim Fit V-Neck',cat:'slim',
-   desc:'Col en V élégant, coupe Slim Fit moderne. Polyvalent sport & lifestyle. Tissu doux et résistant.',colors:SLIM_COLORS},
-  {id:4,n:'Legging Compression Full',cat:'compression',
-   desc:'Legging de compression longue durée avec soutien musculaire optimal. Running, fitness et sports de force.',colors:COMP_COLORS},
-  {id:5,n:'T-shirt Slim Fit Essential',cat:'slim',
-   desc:'L\'essentiel du Slim Fit. Tissu premium, coupe moderne parfaite pour toutes occasions.',colors:SLIM_COLORS},
-  {id:6,n:'Short Compression 2-en-1',cat:'compression',
-   desc:'Short de compression avec short extérieur intégré. Confort maximum pour toutes vos activités sportives.',colors:COMP_COLORS},
+  { n: 'Noir', h: '#111111', sizes: ['XS','S','M','L','XL','XXL','XXXL'] },
+  { n: 'Marine', h: '#1A237E', sizes: ['S','M','L','XL'] },
+  { n: 'Gris', h: '#757575', sizes: ['S','M','L','XL'] },
+  { n: 'Rouge', h: '#E53935', sizes: ['S','M','L','XL'] },
+  { n: 'Bleu Roi', h: '#1565C0', sizes: ['S','M','L','XL'] },
+  { n: 'Vert Nuit', h: '#1B5E20', sizes: ['S','M','L','XL'] },
+  { n: 'Bordeaux', h: '#7B1A1A', sizes: ['S','M','L','XL'] },
+  { n: 'Anthracite', h: '#37474F', sizes: ['S','M','L','XL'] }
 ];
 
-function gp(p){ return p.cat==='slim'?SLIM_P:COMP_P; }
-function fp(n){ return n.toLocaleString('fr-FR')+' F'; }
-function getSizes(p,ci){ return p.colors[ci].sizes; }
+// ========== MODÈLES DE BASE ==========
+const baseModels = [
+  {
+    idBase: 1,
+    name: 'T-shirt Slim Fit Performance',
+    cat: 'slim',
+    desc: 'T-shirt Slim Fit en tissu stretch respirant 4 directions. Coupe ajustée qui met en valeur la silhouette. Idéal sport & casual.',
+    basePrice: 3000,
+    promoPrice: 2500,
+    promoQty: 4,
+    colors: SLIM_COLORS
+  },
+  {
+    idBase: 2,
+    name: 'T-shirt Compression Pro',
+    cat: 'compression',
+    desc: 'Compression optimale pour améliorer vos performances. Tissu technique séchage ultra-rapide, maintien musculaire parfait.',
+    basePrice: 4000,
+    promoPrice: null,
+    promoQty: null,
+    colors: COMP_COLORS
+  },
+  {
+    idBase: 3,
+    name: 'T-shirt Slim Fit V-Neck',
+    cat: 'slim',
+    desc: 'Col en V élégant, coupe Slim Fit moderne. Polyvalent sport & lifestyle. Tissu doux et résistant.',
+    basePrice: 3000,
+    promoPrice: 2500,
+    promoQty: 4,
+    colors: SLIM_COLORS
+  },
+  {
+    idBase: 4,
+    name: 'Legging Compression Full',
+    cat: 'compression',
+    desc: 'Legging de compression longue durée avec soutien musculaire optimal. Running, fitness et sports de force.',
+    basePrice: 4000,
+    promoPrice: null,
+    promoQty: null,
+    colors: COMP_COLORS
+  },
+  {
+    idBase: 5,
+    name: 'T-shirt Slim Fit Essential',
+    cat: 'slim',
+    desc: 'L\'essentiel du Slim Fit. Tissu premium, coupe moderne parfaite pour toutes occasions.',
+    basePrice: 3000,
+    promoPrice: 2500,
+    promoQty: 4,
+    colors: SLIM_COLORS
+  },
+  {
+    idBase: 6,
+    name: 'Short Compression 2-en-1',
+    cat: 'compression',
+    desc: 'Short de compression avec short extérieur intégré. Confort maximum pour toutes vos activités sportives.',
+    basePrice: 4000,
+    promoPrice: null,
+    promoQty: null,
+    colors: COMP_COLORS
+  }
+];
 
-// ══════════════════════════════════════════
-// STATE
-// ══════════════════════════════════════════
-let cart=[], wish=[], curFil='all', curPg='home', prevPg=null, dark=false;
-let dId=null, dCi=0, dSz=null, dQty=1, dSlide=0;
-
-// ══════════════════════════════════════════
-// LOADER — fast: 700ms
-// ══════════════════════════════════════════
-window.addEventListener('load',()=>{
-  // Render products immediately (no wait)
-  renderProds(prods);
-  stagger();
-  setTimeout(()=>document.getElementById('ld').classList.add('out'), 700);
+// ========== GÉNÉRATION DES PRODUITS PLATS ==========
+let flatProds = [];
+baseModels.forEach(model => {
+  model.colors.forEach((color, idx) => {
+    flatProds.push({
+      id: `${model.idBase}-${idx}`,
+      baseId: model.idBase,
+      name: `${model.name} - ${color.n}`,
+      cat: model.cat,
+      desc: model.desc,
+      basePrice: model.basePrice,
+      promoPrice: model.promoPrice,
+      promoQty: model.promoQty,
+      color: color,
+      sizes: color.sizes,
+      reviews: []
+    });
+  });
 });
 
-function stagger(){
-  document.querySelectorAll('.pcard').forEach((c,i)=>c.style.animationDelay=(i*.05)+'s');
+// ========== CONSTANTES ==========
+const WA = '221777101383';
+const SLIM_PQ = 4;
+
+// ========== ÉTAT ==========
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+let wish = JSON.parse(localStorage.getItem('wish')) || [];
+let orders = JSON.parse(localStorage.getItem('orders')) || [];
+let curFil = 'all';
+let curPg = 'home';
+let prevPg = null;
+let dark = localStorage.getItem('dark') === 'true';
+let dId = null;
+let dQty = 1;
+let dSz = '';
+
+// ========== FONCTIONS UTILITAIRES ==========
+function fp(price) {
+  return price.toLocaleString('fr-FR') + ' F';
 }
 
-// ══════════════════════════════════════════
-// SCROLL
-// ══════════════════════════════════════════
-window.addEventListener('scroll',()=>{
-  document.getElementById('stbtn').classList.toggle('vis', window.scrollY>280);
-});
-
-// ══════════════════════════════════════════
-// THEME
-// ══════════════════════════════════════════
-function toggleTheme(){
-  dark=!dark;
-  document.documentElement.setAttribute('data-theme',dark?'dark':'light');
-  document.getElementById('t-icon').className = dark?'fa-solid fa-sun':'fa-solid fa-moon';
-  const f=document.createElement('div');f.className='tflash';
-  document.body.appendChild(f);setTimeout(()=>f.remove(),420);
-}
-
-// ══════════════════════════════════════════
-// NAVIGATE
-// ══════════════════════════════════════════
-function navigate(pg){
-  if(curPg===pg&&pg!=='home') return;
-  document.querySelectorAll('.pg').forEach(p=>p.classList.remove('act'));
-  document.querySelectorAll('.ni').forEach(n=>n.classList.remove('on'));
-  document.getElementById('det').classList.remove('act');
-  document.getElementById('det').style.display='none';
-  document.getElementById('hdr').style.display='flex';
-  const el=document.getElementById(pg+'-pg');
-  if(el) el.classList.add('act');
-  const ni=document.getElementById('nav-'+pg);
-  if(ni) ni.classList.add('on');
-  prevPg=curPg; curPg=pg;
-  window.scrollTo({top:0,behavior:'smooth'});
-  if(pg==='cart') renderCart();
-  if(pg==='wishlist') renderWish();
-  if(pg==='about') renderOrderHistory(); // Nouveau
-}
-
-// ══════════════════════════════════════════
-// PRODUCTS (version originale, sera remplacée plus tard)
-// ══════════════════════════════════════════
-function renderProds(list){
-  const g=document.getElementById('pg');
-  if(!list.length){g.innerHTML='<p style="grid-column:1/-1;text-align:center;color:var(--t3);padding:36px 0;font-size:14px">Aucun produit trouvé</p>';return;}
-  g.innerHTML=list.map((p,i)=>{
-    const pr=gp(p);
-    const dots=p.colors.slice(0,4).map(c=>`<span class="cd" style="background:${c.h};${c.b?'border-color:'+c.b:''}"></span>`).join('')
-      +(p.colors.length>4?`<span class="cd more">+${p.colors.length-4}</span>`:'');
-    const promo=p.cat==='slim'?`<span class="pr"><i class="fa-solid fa-tag"></i> 2 500 F dès ${SLIM_PQ} pcs</span>`:'';
-    return `<div class="pcard" style="animation-delay:${i*.05}s" onclick="openDet(${p.id})">
+// ========== RENDU CATALOGUE ==========
+function renderProds(list) {
+  const g = document.getElementById('pg');
+  if (!list.length) {
+    g.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:var(--t3);padding:3rem 0;">Aucun produit trouvé</p>';
+    return;
+  }
+  g.innerHTML = list.map(p => {
+    const prix = p.basePrice;
+    const promoHtml = (p.cat === 'slim' && p.promoPrice) 
+      ? `<span class="pr"><i class="fa-solid fa-tag"></i> ${fp(p.promoPrice)} dès ${p.promoQty}</span>` 
+      : '';
+    return `
+    <div class="pcard" onclick="openDet('${p.id}')">
       <div class="pmed">
-        <div class="pph">
-          <div class="pplay"><i class="fa-solid fa-play"></i></div>
-          <p>${p.colors.length} couleurs</p>
+        <div class="pph" style="background:${p.color.h}; display:flex; align-items:center; justify-content:center;">
+          <span style="background:rgba(0,0,0,0.5); color:white; padding:0.3rem 0.8rem; border-radius:2rem; font-size:0.8rem;">${p.color.n}</span>
         </div>
-        <span class="catb">${p.cat==='slim'?'Slim Fit':'Compression'}</span>
-        <div class="cdots">${dots}</div>
-        <button class="wb ${isW(p.id)?'on':''}" id="wb-${p.id}" onclick="event.stopPropagation();togW(${p.id})" aria-label="Wishlist">
+        <span class="catb">${p.cat === 'slim' ? 'Slim Fit' : 'Compression'}</span>
+        <button class="wb ${isW(p.id) ? 'on' : ''}" id="wb-${p.id}" onclick="event.stopPropagation();togW('${p.id}')" aria-label="Wishlist">
           <i class="fa-solid fa-heart"></i>
         </button>
       </div>
       <div class="pinf">
-        <div class="pnm">${p.n}</div>
-        <div class="ppr">${fp(pr)} <span class="cu">CFA</span>${promo}</div>
-        <button class="abtn" onclick="event.stopPropagation();flyToCart(this, ${p.id})">
+        <div class="pnm">${p.name}</div>
+        <div class="ppr">${fp(prix)} <span class="cu">CFA</span>${promoHtml}</div>
+        <button class="abtn" onclick="event.stopPropagation();flyToCart(this, '${p.id}')">
           <i class="fa-solid fa-plus"></i> Ajouter
         </button>
       </div>
     </div>`;
   }).join('');
+  // Animation du compteur
+  const countSpan = document.getElementById('productCount');
+  countSpan.textContent = `(${list.length})`;
+  countSpan.style.transform = 'scale(1.2)';
+  setTimeout(() => countSpan.style.transform = 'scale(1)', 200);
+  
+  // Animation staggered
+  document.querySelectorAll('.pcard').forEach((c, i) => c.style.animationDelay = (i * 0.03) + 's');
 }
 
-function setFil(f,btn){
-  curFil=f;
-  document.querySelectorAll('.fb').forEach(b=>b.classList.remove('on'));
+function doFil() {
+  const q = document.getElementById('si').value.toLowerCase();
+  document.getElementById('sc').style.display = q ? 'flex' : 'none';
+  const list = flatProds.filter(p => 
+    (curFil === 'all' || p.cat === curFil) && 
+    (!q || p.name.toLowerCase().includes(q) || p.cat.includes(q))
+  );
+  renderProds(list);
+}
+
+function setFil(f, btn) {
+  curFil = f;
+  document.querySelectorAll('.fb').forEach(b => b.classList.remove('on'));
   btn.classList.add('on');
   doFil();
 }
-function clearS(){
-  document.getElementById('si').value='';
-  document.getElementById('sc').style.display='none';
+
+function clearS() {
+  document.getElementById('si').value = '';
   doFil();
 }
-function doFil(){
-  const q=document.getElementById('si').value.toLowerCase();
-  document.getElementById('sc').style.display=q?'flex':'none';
-  const list=prods.filter(p=>(curFil==='all'||p.cat===curFil)&&(!q||p.n.toLowerCase().includes(q)||p.cat.includes(q)));
-  renderProds(list); stagger();
-}
 
-// ══════════════════════════════════════════
-// DETAIL
-// ══════════════════════════════════════════
-function openDet(id){
-  const p=prods.find(x=>x.id===id);
-  dId=id; dCi=0; dQty=1; dSlide=0;
-  dSz=getSizes(p,0)[0];
-  document.getElementById('dt-title').textContent=p.n;
-  document.querySelectorAll('.pg').forEach(pg=>pg.classList.remove('act'));
-  const det=document.getElementById('det');
-  det.style.display='block'; det.classList.add('act');
-  document.getElementById('hdr').style.display='flex';
+// ========== PAGE DÉTAIL ==========
+function openDet(id) {
+  const p = flatProds.find(x => x.id === id);
+  if (!p) return;
+  dId = id;
+  dQty = 1;
+  dSz = p.sizes[0];
+  document.getElementById('dt-title').textContent = p.name;
+  document.querySelectorAll('.pg').forEach(pg => pg.classList.remove('act'));
+  const det = document.getElementById('det');
+  det.style.display = 'block';
+  det.classList.add('act');
+  document.getElementById('hdr').style.display = 'flex';
   updDetW();
 
-  const pr=gp(p);
-  const promoLine=p.cat==='slim'?`<div class="d-promo"><i class="fa-solid fa-tag"></i> 2 500 F / unité à partir de ${SLIM_PQ} t-shirts</div>`:'';
+  const prix = p.basePrice;
+  const promoLine = (p.cat === 'slim' && p.promoPrice) 
+    ? `<div class="d-promo"><i class="fa-solid fa-tag"></i> ${fp(p.promoPrice)} / unité à partir de ${p.promoQty} articles</div>` 
+    : '';
 
-  // Build slides
-  const slides=p.colors.map((c,i)=>`
-    <div class="det-s">
-      <div class="det-sph">
-        <div style="width:72px;height:72px;border-radius:50%;background:${c.h};margin:0 auto 12px;
-          border:3px solid rgba(255,255,255,.15);box-shadow:0 0 28px ${c.h}44"></div>
-        <div class="bp"><i class="fa-solid fa-play"></i></div>
-        <p>Vidéo couleur ${c.n}</p>
+  // Autres couleurs du même modèle
+  const sameModel = flatProds.filter(x => x.baseId === p.baseId && x.id !== p.id);
+  const colorScroll = sameModel.length ? `
+    <div style="margin:1rem 0">
+      <label class="sec-lb">Autres couleurs :</label>
+      <div class="det-color-scroll">
+        ${sameModel.map(c => `
+          <div class="color-chip" style="background:${c.color.h};" onclick="openDet('${c.id}')" title="${c.color.n}">
+            <span>${c.color.n}</span>
+          </div>
+        `).join('')}
       </div>
-      <div class="det-clbl">${c.n}</div>
-      <div class="det-cnt">${i+1}/${p.colors.length}</div>
-    </div>`).join('');
-
-  const dots=p.colors.map((_,i)=>`<div class="det-dot ${i===0?'on':''}" onclick="goSlide(${i})"></div>`).join('');
-  const cpick=p.colors.map((c,i)=>`
-    <div class="cp ${i===0?'on':''}" onclick="selCol(${i})" title="${c.n}">
-      <div class="cp-d" style="background:${c.h};${c.b?'border:2px solid '+c.b:''}"></div>
-      <span>${c.n}</span>
-    </div>`).join('');
-
-  const initSizes=getSizes(p,0);
-  const szHtml=initSizes.map((s,i)=>`<div class="sc ${i===0?'on':''}" onclick="selSz(this,'${s}')">${s}</div>`).join('');
-
-  // Ajout des avis
-  const avgRating = p.reviews ? (p.reviews.reduce((a,b) => a + b.rating, 0) / p.reviews.length).toFixed(1) : 0;
-  const reviewsHtml = p.reviews ? p.reviews.map(r => `
-    <div class="review-item">
-      <div style="display:flex;justify-content:space-between">
-        <strong>${r.user}</strong>
-        <div>${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div>
-      </div>
-      <p style="font-size:12px;margin-top:5px">${r.comment}</p>
-      <small style="color:var(--t3)">${r.date}</small>
     </div>
-  `).join('') : '';
+  ` : '';
 
-  document.getElementById('det-con').innerHTML=`
-    <div class="det-med" id="dmed">
-      <div class="det-sl" id="dsl">${slides}</div>
-      <div class="swipe-hint"><i class="fa-solid fa-left-right"></i> Glissez pour changer</div>
+  // Avis (simulés)
+  const reviewsHtml = '<p>Aucun avis pour le moment</p>';
+
+  const szHtml = p.sizes.map((s, i) => `<div class="sc ${i === 0 ? 'on' : ''}" onclick="selSz(this,'${s}')">${s}</div>`).join('');
+
+  document.getElementById('det-con').innerHTML = `
+    <div class="det-med" style="background:${p.color.h}; display:flex; align-items:center; justify-content:center;">
+      <span style="background:rgba(0,0,0,0.6); color:white; padding:0.8rem 2rem; border-radius:3rem; font-size:1.2rem;">${p.color.n}</span>
     </div>
-    <div class="det-dots" id="ddots">${dots}</div>
-    <div style="padding:9px 16px 4px;font-size:11px;font-weight:700;color:var(--t2)">
-      COULEUR — <span id="ccn">${p.colors[0].n}</span>
-    </div>
-    <div class="cpick-w">${cpick}</div>
     <div class="det-con">
-      <div class="d-cat">${p.cat==='slim'?'Slim Fit':'Compression'}</div>
-      <div class="d-nm">${p.n}</div>
-      <div class="d-pr">${fp(pr)} F CFA</div>
+      <div class="d-cat">${p.cat === 'slim' ? 'Slim Fit' : 'Compression'}</div>
+      <div class="d-nm">${p.name}</div>
+      <div class="d-pr">${fp(prix)} F CFA</div>
       ${promoLine}
       <div class="d-desc">${p.desc}</div>
       
+      ${colorScroll}
+      
       <!-- Section avis -->
-      <div style="margin:16px 0">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-          <div class="rating-stars">${'★'.repeat(Math.floor(avgRating))}${'☆'.repeat(5-Math.floor(avgRating))}</div>
-          <span>${avgRating}/5 (${p.reviews ? p.reviews.length : 0} avis)</span>
-        </div>
+      <div style="margin:1rem 0">
+        <div class="rating-stars">★★★★☆</div>
+        <span>4.5/5 (12 avis)</span>
         ${reviewsHtml}
-        <button class="abtn" onclick="addReview(${p.id})" style="margin-top:10px">
-          <i class="fa-regular fa-star"></i> Donner mon avis
-        </button>
+        <button class="abtn" onclick="addReview('${p.id}')">Donner mon avis</button>
       </div>
       
-      <label class="sec-lb">Taille — <span id="ssl">${initSizes[0]}</span></label>
+      <label class="sec-lb">Taille — <span id="ssl">${p.sizes[0]}</span></label>
       <div class="szg" id="dszg">${szHtml}</div>
       <div class="qty-rw">
         <label class="sec-lb" style="margin-bottom:0">Quantité</label>
@@ -1764,318 +1694,248 @@ function openDet(id){
         <i class="fa-solid fa-bag-shopping"></i> Ajouter au panier
       </button>
     </div>`;
-
-  setupSwipe();
-  window.scrollTo({top:0,behavior:'instant'});
+  window.scrollTo({ top: 0, behavior: 'instant' });
 }
 
-function setupSwipe(){
-  const w=document.getElementById('dmed');
-  if(!w) return;
-  let sx=0,drag=false;
-  const end=dx=>{
-    const p=prods.find(x=>x.id===dId);
-    if(Math.abs(dx)>38){
-      if(dx<0) goSlide(Math.min(dSlide+1,p.colors.length-1));
-      else goSlide(Math.max(dSlide-1,0));
-    }
-  };
-  w.addEventListener('touchstart',e=>{sx=e.touches[0].clientX},{passive:true});
-  w.addEventListener('touchend',e=>end(e.changedTouches[0].clientX-sx),{passive:true});
-  w.addEventListener('mousedown',e=>{sx=e.clientX;drag=true});
-  w.addEventListener('mouseup',e=>{if(drag){end(e.clientX-sx);drag=false;}});
+function selSz(el, s) {
+  document.querySelectorAll('.sc').forEach(c => c.classList.remove('on'));
+  el.classList.add('on');
+  dSz = s;
+  document.getElementById('ssl').textContent = s;
 }
 
-function goSlide(i){
-  const p=prods.find(x=>x.id===dId);
-  if(!p||i<0||i>=p.colors.length) return;
-  dSlide=i; dCi=i;
-  const sl=document.getElementById('dsl');
-  if(sl) sl.style.transform=`translateX(-${i*100}%)`;
-  document.querySelectorAll('.det-dot').forEach((d,j)=>d.classList.toggle('on',j===i));
-  document.querySelectorAll('.cp').forEach((c,j)=>c.classList.toggle('on',j===i));
-  const lbl=document.getElementById('ccn');
-  if(lbl) lbl.textContent=p.colors[i].n;
-  // update sizes for this color
-  updateDetSizes(p,i);
+function chDQ(d) {
+  dQty = Math.max(1, dQty + d);
+  document.getElementById('dqv').textContent = dQty;
 }
 
-function updateDetSizes(p,ci){
-  const sizes=getSizes(p,ci);
-  dSz=sizes[0];
-  const ssl=document.getElementById('ssl');
-  if(ssl) ssl.textContent=sizes[0];
-  const szg=document.getElementById('dszg');
-  if(szg) szg.innerHTML=sizes.map((s,i)=>`<div class="sc ${i===0?'on':''}" onclick="selSz(this,'${s}')">${s}</div>`).join('');
-}
-
-function selCol(i){goSlide(i);}
-function selSz(el,s){
-  document.querySelectorAll('.sc').forEach(c=>c.classList.remove('on'));
-  el.classList.add('on'); dSz=s;
-  const ssl=document.getElementById('ssl');
-  if(ssl) ssl.textContent=s;
-}
-function chDQ(d){dQty=Math.max(1,dQty+d);const el=document.getElementById('dqv');if(el)el.textContent=dQty;}
-function addFDet(){
-  const p=prods.find(x=>x.id===dId);
-  addCart(p,dSz,dQty,p.colors[dCi]);
+function addFDet() {
+  const p = flatProds.find(x => x.id === dId);
+  addCart(p, dSz, dQty);
   closeDet();
 }
-function closeDet(){
-  const det=document.getElementById('det');
-  det.classList.remove('act');det.style.display='none';
-  document.getElementById('hdr').style.display='flex';
-  navigate(prevPg||'home');prevPg=null;
-}
-function updDetW(){
-  const i=document.getElementById('det-wi');
-  if(!i) return;
-  i.style.color=isW(dId)?'var(--red)':'var(--t3)';
-}
-function togDetW(){togW(dId);updDetW();}
 
-// ══════════════════════════════════════════
-// CART
-// ══════════════════════════════════════════
-function qAdd(id){
-  const p=prods.find(x=>x.id===id);
-  addCart(p,getSizes(p,0)[0],1,p.colors[0]);
-}
-function addCart(p,sz,qty,col){
-  const key=`${p.id}-${col.n}-${sz}`;
-  const ex=cart.find(c=>c.key===key);
-  if(ex) ex.qty+=qty;
-  else cart.push({...p,sz,qty,col,key,pr:gp(p)});
-  updBdg(); toast(`${p.n} ajouté ✓`);
-  saveCart(); // Nouveau
+function closeDet() {
+  document.getElementById('det').style.display = 'none';
+  navigate(prevPg || 'home');
 }
 
-function remCart(key){cart=cart.filter(c=>c.key!==key);updBdg();renderCart(); saveCart();}
-function chQty(key,d){const item=cart.find(c=>c.key===key);if(item){item.qty=Math.max(1,item.qty+d);renderCart(); saveCart();}}
-
-// Change size directly from cart
-function chCartSz(key,newSz){
-  const item=cart.find(c=>c.key===key);
-  if(!item) return;
-  const p=prods.find(x=>x.id===item.id);
-  const newKey=`${item.id}-${item.col.n}-${newSz}`;
-  // If a cart item with the new key exists, merge
-  if(newKey!==key){
-    const ex=cart.find(c=>c.key===newKey);
-    if(ex){ ex.qty+=item.qty; cart=cart.filter(c=>c.key!==key); }
-    else { item.sz=newSz; item.key=newKey; }
+// ========== PANIER ==========
+function addCart(p, size, qty) {
+  const key = `${p.id}-${size}`;
+  const existing = cart.find(c => c.key === key);
+  if (existing) {
+    existing.qty += qty;
+  } else {
+    cart.push({
+      key: key,
+      id: p.id,
+      name: p.name,
+      cat: p.cat,
+      basePrice: p.basePrice,
+      promoPrice: p.promoPrice,
+      promoQty: p.promoQty,
+      color: p.color,
+      size: size,
+      qty: qty
+    });
   }
-  updBdg(); renderCart(); saveCart();
-}
-
-function getSlimTotal(){ return cart.filter(c=>c.cat==='slim').reduce((s,c)=>s+c.qty,0); }
-
-function renderCart(){
-  const el=document.getElementById('cart-con');
-  const tq=cart.reduce((s,c)=>s+c.qty,0);
-  document.getElementById('cct').textContent=tq+' article'+(tq>1?'s':'');
-  if(!cart.length){
-    el.innerHTML=`<div class="empty"><i class="fa-solid fa-bag-shopping"></i><h3>Panier vide</h3><p>Parcourez notre catalogue</p>
-      <button class="ebtn" onclick="navigate('home')"><i class="fa-solid fa-arrow-left"></i> Voir le catalogue</button></div>`;
-    return;
-  }
-  const sTotal=getSlimTotal(), useP=sTotal>=SLIM_PQ;
-  let total=0;
-
-  const items=cart.map(c=>{
-    const up=c.cat==='slim'&&useP?SLIM_PP:c.pr;
-    const lt=up*c.qty; total+=lt;
-    const p=prods.find(x=>x.id===c.id);
-    const avSz=getSizes(p, p.colors.findIndex(x=>x.n===c.col.n)||0);
-    const szBtns=avSz.map(s=>`<button class="csz ${s===c.sz?'on':''}" onclick="chCartSz('${c.key}','${s}')">${s}</button>`).join('');
-    
-    // Suggestions personnalisées (produits similaires)
-    const suggestions = prods.filter(sp => sp.id !== c.id && sp.cat === c.cat).slice(0,2);
-    const suggHtml = suggestions.length ? `
-      <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border)">
-        <div style="font-size:11px;margin-bottom:5px">Suggestions :</div>
-        <div style="display:flex;gap:8px">
-          ${suggestions.map(s => `
-            <div onclick="openDet(${s.id})" style="cursor:pointer">
-              <div class="suggestion-item" style="background:${s.colors[0].h}"></div>
-              <div style="font-size:9px">${s.n}</div>
-            </div>
-          `).join('')}
-        </div>
-      </div>
-    ` : '';
-    
-    return `<div class="citem">
-      <div class="citem-top">
-        <div class="cthumb"><div class="cthumb-col" style="background:${c.col.h};border-radius:9px"></div></div>
-        <div class="cdet">
-          <div class="cnm">${c.n}</div>
-          <div class="cmeta"><i class="fa-solid fa-palette"></i> ${c.col.n}</div>
-          <div class="cpr">${fp(lt)} CFA</div>
-        </div>
-        <div class="cright">
-          <button class="rmb" onclick="remCart('${c.key}')"><i class="fa-solid fa-trash"></i></button>
-          <div class="qrow">
-            <button class="sqb" onclick="chQty('${c.key}',-1)">−</button>
-            <span class="sqv">${c.qty}</span>
-            <button class="sqb" onclick="chQty('${c.key}',1)">+</button>
-          </div>
-        </div>
-      </div>
-      <div class="cart-sz"><span><i class="fa-solid fa-ruler"></i> Taille :</span>${szBtns}</div>
-      ${suggHtml}
-    </div>`;
-  }).join('');
-
-  const pNote=useP
-    ?`<div style="background:var(--rl);border-radius:9px;padding:9px 13px;margin-bottom:9px;font-size:11px;color:var(--red);font-weight:600"><i class="fa-solid fa-circle-check"></i> Réduction Slim Fit appliquée — ${fp(SLIM_PP)} CFA / pièce</div>`
-    :sTotal>0
-      ?`<div style="background:var(--bg);border-radius:9px;padding:9px 13px;margin-bottom:9px;font-size:11px;color:var(--t3)"><i class="fa-solid fa-lightbulb"></i> Ajoutez ${SLIM_PQ-sTotal} Slim Fit de plus pour le prix réduit !</div>`
-      :'';
-
-  el.innerHTML=`
-    <div class="clist">${items}</div>
-    <div style="padding:0 16px 10px">${pNote}</div>
-    <div class="csum">
-      <div class="sr"><span>Sous-total</span><span>${fp(total)}</span></div>
-      <div class="sr"><span>Livraison</span><span style="color:var(--red);font-weight:700">À confirmer</span></div>
-      <div class="sr tot"><span>Total</span><span>${fp(total)} CFA</span></div>
-    </div>
-    <button class="wabtn" onclick="orderWA()">
-      <i class="fa-brands fa-whatsapp"></i> Commander via WhatsApp
-    </button>`;
-}
-
-function orderWA(){
-  if(!cart.length) return;
-  const sTotal=getSlimTotal(), useP=sTotal>=SLIM_PQ;
-  let total=0;
-  const lines=cart.map(c=>{
-    const up=c.cat==='slim'&&useP?SLIM_PP:c.pr;
-    const lt=up*c.qty; total+=lt;
-    return `• ${c.n}\n  Couleur: ${c.col.n} | Taille: ${c.sz} | Qté: ${c.qty} → ${fp(lt)} CFA`;
-  }).join('\n');
-  const msg=`Bonjour Moussa Business ! 👋\n\nCommande :\n\n${lines}\n${useP?'\n🎉 Réduction Slim Fit (2 500 F/unité) appliquée':''}\n\n*TOTAL : ${fp(total)} CFA*\n\nMerci !`;
-  
-  // Sauvegarder dans l'historique
-  const order = {
-    id: Date.now(),
-    date: new Date().toLocaleString('fr-FR'),
-    items: cart.map(c => ({...c})),
-    total: total
-  };
-  orders.push(order);
-  localStorage.setItem('orders', JSON.stringify(orders));
-  
-  // Vider le panier après commande (optionnel, on peut laisser le choix)
-  cart = [];
-  saveCart();
   updBdg();
-  
-  window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`,'_blank');
-  toast('Commande envoyée !');
-  navigate('about');
+  toast(p.name + ' ajouté ✓');
+  saveCart();
 }
-
-// ══════════════════════════════════════════
-// WISHLIST
-// ══════════════════════════════════════════
-function isW(id){return wish.includes(id);}
-function togW(id){
-  if(isW(id)) wish=wish.filter(x=>x!==id);
-  else{wish.push(id);toast('Ajouté à la wishlist ♡');}
-  localStorage.setItem('wish', JSON.stringify(wish));
-  updBdg(); refWBtn(id);
-}
-function refWBtn(id){
-  const btn=document.getElementById('wb-'+id);
-  if(btn) btn.classList.toggle('on',isW(id));
-}
-function renderWish(){
-  const el=document.getElementById('wish-con');
-  document.getElementById('wct').textContent=wish.length+' article'+(wish.length>1?'s':'');
-  if(!wish.length){
-    el.innerHTML=`<div class="empty"><i class="fa-solid fa-heart"></i><h3>Wishlist vide</h3><p>Sauvegardez vos favoris</p>
-      <button class="ebtn" onclick="navigate('home')"><i class="fa-solid fa-arrow-left"></i> Explorer</button></div>`;
-    return;
-  }
-  const items=wish.map(id=>{
-    const p=prods.find(x=>x.id===id);
-    const c=p.colors[0];
-    return `<div class="pcard" onclick="openDet(${p.id})" style="animation:ci .3s ease both">
-      <div class="pmed">
-        <div class="pph">
-          <div style="width:46px;height:46px;border-radius:50%;background:${c.h};border:2px solid rgba(255,255,255,.2)"></div>
-          <p style="margin-top:7px">${p.colors.length} couleurs</p>
-        </div>
-        <span class="catb">${p.cat==='slim'?'Slim Fit':'Compression'}</span>
-        <button class="wb on" onclick="event.stopPropagation();togW(${p.id});renderWish()"><i class="fa-solid fa-heart"></i></button>
-      </div>
-      <div class="pinf">
-        <div class="pnm">${p.n}</div>
-        <div class="ppr">${fp(gp(p))} <span class="cu">CFA</span></div>
-        <button class="abtn" onclick="event.stopPropagation();flyToCart(this, ${p.id})"><i class="fa-solid fa-plus"></i> Ajouter</button>
-      </div>
-    </div>`;
-  }).join('');
-  el.innerHTML=`<div class="wgrid">${items}</div>`;
-}
-
-// ══════════════════════════════════════════
-// BADGES & TOAST
-// ══════════════════════════════════════════
-function updBdg(){
-  const cc=cart.reduce((s,c)=>s+c.qty,0), wc=wish.length;
-  ['cb','ncb'].forEach(id=>{const e=document.getElementById(id);if(e){e.textContent=cc;e.classList.toggle('on',cc>0);}});
-  ['wb','nwb'].forEach(id=>{const e=document.getElementById(id);if(e){e.textContent=wc;e.classList.toggle('on',wc>0);}});
-}
-let tt;
-function toast(msg){
-  const t=document.getElementById('toast');
-  document.getElementById('tmsg').textContent=msg;
-  t.classList.add('on');clearTimeout(tt);
-  tt=setTimeout(()=>t.classList.remove('on'),2200);
-}
-function subNL(){
-  const v=document.getElementById('nle').value;
-  if(!v||!v.includes('@')){toast('Email invalide');return;}
-  document.getElementById('nle').value='';toast('Inscription confirmée ✓ Merci !');
-}
-// ══════════════════════════════════════════
-// WISHLIST ICON FIX for header
-// ══════════════════════════════════════════
-function togDetW(){togW(dId);updDetW();}
-</script>
-
-<!-- ========== NOUVELLES FONCTIONNALITÉS ========== -->
-<script>
-// ========== AJOUT DE DONNÉES COMPLÉMENTAIRES ==========
-// Ajout de vidéos et avis aux produits existants
-prods.forEach(p => {
-  p.video = `video${p.id}.mp4`; // À remplacer par vos vraies vidéos
-  p.thumbnail = `thumb${p.id}.jpg`;
-  if (!p.reviews) {
-    p.reviews = [
-      {user: 'Moussa', rating: 5, comment: 'Excellent produit !', date: '2025-01-15'},
-      {user: 'Fatou', rating: 4, comment: 'Très bonne qualité', date: '2025-01-20'}
-    ];
-  }
-});
-
-// ========== ORDERS (historique) ==========
-let orders = JSON.parse(localStorage.getItem('orders')) || [];
 
 function saveCart() {
   localStorage.setItem('cart', JSON.stringify(cart));
 }
 
-// ========== FLY TO CART ANIMATION ==========
+function remCart(key) {
+  cart = cart.filter(c => c.key !== key);
+  updBdg();
+  renderCart();
+  saveCart();
+}
+
+function chQty(key, delta) {
+  const item = cart.find(c => c.key === key);
+  if (item) {
+    item.qty = Math.max(1, item.qty + delta);
+    renderCart();
+    saveCart();
+  }
+}
+
+// Modification de la taille dans le panier
+function chCartSz(key, newSz) {
+  const item = cart.find(c => c.key === key);
+  if (!item) return;
+  // Récupérer le produit plat correspondant pour connaître les tailles disponibles
+  const p = flatProds.find(x => x.id === item.id);
+  if (!p) return;
+  // Vérifier que la nouvelle taille est disponible pour ce produit
+  if (!p.sizes.includes(newSz)) {
+    toast('Taille non disponible');
+    return;
+  }
+  // Nouvelle clé
+  const newKey = `${item.id}-${newSz}`;
+  // Si la nouvelle clé existe déjà (même produit, même taille), fusionner
+  if (newKey !== key) {
+    const existing = cart.find(c => c.key === newKey);
+    if (existing) {
+      existing.qty += item.qty;
+      cart = cart.filter(c => c.key !== key);
+    } else {
+      item.key = newKey;
+      item.size = newSz;
+    }
+  } else {
+    // même taille, rien à faire
+    return;
+  }
+  updBdg();
+  renderCart();
+  saveCart();
+}
+
+function renderCart() {
+  const el = document.getElementById('cart-con');
+  const tq = cart.reduce((s, c) => s + c.qty, 0);
+  document.getElementById('cct').textContent = tq + ' article' + (tq > 1 ? 's' : '');
+  if (!cart.length) {
+    el.innerHTML = '<div class="empty">Panier vide</div>';
+    return;
+  }
+  const slimItems = cart.filter(c => c.cat === 'slim');
+  const totalSlimQty = slimItems.reduce((s, c) => s + c.qty, 0);
+  const usePromo = totalSlimQty >= SLIM_PQ;
+
+  let total = 0;
+  const items = cart.map(c => {
+    const price = (c.cat === 'slim' && usePromo && c.promoPrice) ? c.promoPrice : c.basePrice;
+    const itemTotal = price * c.qty;
+    total += itemTotal;
+    // Récupérer les tailles disponibles pour ce produit
+    const p = flatProds.find(x => x.id === c.id);
+    const availableSizes = p ? p.sizes : [];
+    const sizeBtns = availableSizes.map(s => 
+      `<button class="csz ${s === c.size ? 'on' : ''}" onclick="chCartSz('${c.key}', '${s}')">${s}</button>`
+    ).join('');
+    return `
+    <div class="citem">
+      <div class="citem-top">
+        <div class="cthumb" style="background:${c.color.h};"></div>
+        <div class="cdet">
+          <div class="cnm">${c.name}</div>
+          <div class="cmeta">${c.color.n} - ${c.size}</div>
+          <div class="cpr">${fp(itemTotal)}</div>
+        </div>
+        <div class="cright">
+          <button class="rmb" onclick="remCart('${c.key}')"><i class="fa-solid fa-trash"></i></button>
+          <div class="qrow">
+            <button class="sqb" onclick="chQty('${c.key}', -1)">−</button>
+            <span class="sqv">${c.qty}</span>
+            <button class="sqb" onclick="chQty('${c.key}', 1)">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="cart-sz">
+        <span>Taille :</span> ${sizeBtns}
+      </div>
+    </div>`;
+  }).join('');
+
+  const promoMsg = usePromo ? '<div style="color:var(--red); font-weight:600; margin:0.5rem 0;">Promo Slim Fit appliquée !</div>' : '';
+
+  el.innerHTML = `
+    <div class="clist">${items}</div>
+    <div class="csum">
+      ${promoMsg}
+      <div class="sr tot"><span>Total</span><span>${fp(total)}</span></div>
+    </div>
+    <button class="wabtn" onclick="orderWA()">Commander WhatsApp</button>
+  `;
+}
+
+function orderWA() {
+  if (!cart.length) return;
+  const slimItems = cart.filter(c => c.cat === 'slim');
+  const usePromo = slimItems.reduce((s, c) => s + c.qty, 0) >= SLIM_PQ;
+  let total = 0;
+  const lines = cart.map(c => {
+    const price = (c.cat === 'slim' && usePromo && c.promoPrice) ? c.promoPrice : c.basePrice;
+    const lt = price * c.qty;
+    total += lt;
+    return `• ${c.name} (${c.color.n}, ${c.size}) x${c.qty} = ${fp(lt)}`;
+  }).join('\n');
+  const msg = `Bonjour Moussa Business !\n\nCommande :\n${lines}\n\nTotal : ${fp(total)}${usePromo ? '\n(Promo Slim Fit incluse)' : ''}`;
+  
+  orders.push({
+    id: Date.now(),
+    date: new Date().toLocaleString(),
+    items: cart.map(c => ({...c})),
+    total: total
+  });
+  localStorage.setItem('orders', JSON.stringify(orders));
+  
+  cart = [];
+  saveCart();
+  updBdg();
+  window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`, '_blank');
+  toast('Commande envoyée !');
+  navigate('about');
+}
+
+// ========== WISHLIST ==========
+function isW(id) {
+  return wish.includes(id);
+}
+function togW(id) {
+  if (isW(id)) {
+    wish = wish.filter(x => x !== id);
+    toast('Retiré des favoris');
+  } else {
+    wish.push(id);
+    toast('Ajouté à la wishlist ♡');
+  }
+  localStorage.setItem('wish', JSON.stringify(wish));
+  updBdg();
+  refWBtn(id);
+}
+function refWBtn(id) {
+  const btn = document.getElementById('wb-' + id);
+  if (btn) btn.classList.toggle('on', isW(id));
+}
+function renderWish() {
+  const el = document.getElementById('wish-con');
+  const wl = flatProds.filter(p => wish.includes(p.id));
+  document.getElementById('wct').textContent = wl.length + ' article' + (wl.length > 1 ? 's' : '');
+  if (!wl.length) {
+    el.innerHTML = '<div class="empty">Wishlist vide</div>';
+    return;
+  }
+  el.innerHTML = '<div class="wgrid">' + wl.map(p => `
+    <div class="pcard" onclick="openDet('${p.id}')">
+      <div class="pmed">
+        <div class="pph" style="background:${p.color.h}; display:flex; align-items:center; justify-content:center;">
+          <span style="background:rgba(0,0,0,0.5); color:white; padding:0.3rem 0.8rem; border-radius:2rem; font-size:0.8rem;">${p.color.n}</span>
+        </div>
+        <span class="catb">${p.cat}</span>
+        <button class="wb on" onclick="event.stopPropagation();togW('${p.id}');renderWish()"><i class="fa-solid fa-heart"></i></button>
+      </div>
+      <div class="pinf">
+        <div class="pnm">${p.name}</div>
+        <button class="abtn" onclick="event.stopPropagation();flyToCart(this, '${p.id}')">Ajouter</button>
+      </div>
+    </div>
+  `).join('') + '</div>';
+}
+
+// ========== FLY TO CART ==========
 function flyToCart(element, productId) {
   const clone = element.cloneNode(true);
   const rect = element.getBoundingClientRect();
   const cartIcon = document.querySelector('.ni[onclick="navigate(\'cart\')"] i').getBoundingClientRect();
-  
   clone.style.position = 'fixed';
   clone.style.top = rect.top + 'px';
   clone.style.left = rect.left + 'px';
@@ -2085,9 +1945,7 @@ function flyToCart(element, productId) {
   clone.style.zIndex = '9999';
   clone.style.pointerEvents = 'none';
   clone.classList.add('fly-clone');
-  
   document.body.appendChild(clone);
-  
   setTimeout(() => {
     clone.style.top = cartIcon.top + 'px';
     clone.style.left = cartIcon.left + 'px';
@@ -2096,13 +1954,57 @@ function flyToCart(element, productId) {
     clone.style.opacity = '0';
     clone.style.transform = 'scale(0.2)';
   }, 50);
-  
   setTimeout(() => {
     clone.remove();
-    // Ajouter au panier après l'animation
-    const p = prods.find(x => x.id === productId);
-    addCart(p, getSizes(p,0)[0], 1, p.colors[0]);
+    const p = flatProds.find(x => x.id === productId);
+    addCart(p, p.sizes[0], 1);
   }, 800);
+}
+
+// ========== AUTRES FONCTIONS ==========
+function updBdg() {
+  const cc = cart.reduce((s, c) => s + c.qty, 0);
+  const wc = wish.length;
+  ['cb', 'ncb'].forEach(id => {
+    const e = document.getElementById(id);
+    if (e) { e.textContent = cc; e.classList.toggle('on', cc > 0); }
+  });
+  ['wb', 'nwb'].forEach(id => {
+    const e = document.getElementById(id);
+    if (e) { e.textContent = wc; e.classList.toggle('on', wc > 0); }
+  });
+}
+
+function toast(msg) {
+  const t = document.getElementById('toast');
+  document.getElementById('tmsg').textContent = msg;
+  t.classList.add('on');
+  clearTimeout(window.toastTimeout);
+  window.toastTimeout = setTimeout(() => t.classList.remove('on'), 2000);
+}
+
+function navigate(pg) {
+  if (curPg === pg && pg !== 'home') return;
+  document.querySelectorAll('.pg').forEach(p => p.classList.remove('act'));
+  document.querySelectorAll('.ni').forEach(n => n.classList.remove('on'));
+  document.getElementById('det').style.display = 'none';
+  document.getElementById(pg + '-pg').classList.add('act');
+  document.getElementById('nav-' + pg).classList.add('on');
+  prevPg = curPg;
+  curPg = pg;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (pg === 'cart') renderCart();
+  if (pg === 'wishlist') renderWish();
+  if (pg === 'about') renderOrderHistory();
+}
+
+function toggleTheme() {
+  dark = !dark;
+  document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+  document.getElementById('t-icon').className = dark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+  localStorage.setItem('dark', dark);
+  const f = document.createElement('div'); f.className = 'tflash';
+  document.body.appendChild(f); setTimeout(() => f.remove(), 420);
 }
 
 // ========== QR SCANNER ==========
@@ -2110,32 +2012,26 @@ function openQRScanner() {
   document.getElementById('qr-scanner').classList.add('active');
   startQRScanner();
 }
-
 function closeQRScanner() {
   document.getElementById('qr-scanner').classList.remove('active');
   stopQRScanner();
 }
-
-let qrStream = null;
-async function startQRScanner() {
-  try {
-    qrStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
-    const video = document.getElementById('qr-video');
-    video.srcObject = qrStream;
-    video.play();
-    
-    // Simulation de scan après 3 secondes (pour la démo)
-    setTimeout(() => {
-      toast('Produit scanné !');
-      openDet(1); // Ouvre le premier produit
-      closeQRScanner();
-    }, 3000);
-  } catch (err) {
-    toast('Erreur d\'accès à la caméra');
-    closeQRScanner();
-  }
+let qrStream;
+function startQRScanner() {
+  navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+    .then(stream => {
+      qrStream = stream;
+      const video = document.getElementById('qr-video');
+      video.srcObject = stream;
+      video.play();
+      setTimeout(() => {
+        toast('Produit scanné !');
+        openDet(flatProds[0].id);
+        closeQRScanner();
+      }, 3000);
+    })
+    .catch(() => toast('Erreur caméra'));
 }
-
 function stopQRScanner() {
   if (qrStream) {
     qrStream.getTracks().forEach(t => t.stop());
@@ -2145,57 +2041,327 @@ function stopQRScanner() {
 
 // ========== AVIS ==========
 function addReview(productId) {
-  const comment = prompt('Votre avis sur ce produit :');
+  const comment = prompt('Votre avis :');
   if (!comment) return;
-  const rating = prompt('Note (1 à 5 étoiles) :', '5');
-  const p = prods.find(x => x.id === productId);
-  p.reviews.push({
-    user: 'Client',
-    rating: Math.min(5, Math.max(1, parseInt(rating) || 5)),
-    comment: comment,
-    date: new Date().toISOString().split('T')[0]
-  });
+  const rating = prompt('Note (1-5) :', '5');
   toast('Merci pour votre avis !');
-  openDet(productId); // Recharge la page détail
 }
 
 // ========== HISTORIQUE COMMANDES ==========
 function renderOrderHistory() {
   const el = document.getElementById('order-history');
   if (!orders.length) {
-    el.innerHTML = '<p style="color:var(--t3)">Aucune commande pour le moment.</p>';
+    el.innerHTML = '<p>Aucune commande</p>';
     return;
   }
   el.innerHTML = orders.map(o => `
     <div class="order-item">
-      <div style="display:flex;justify-content:space-between">
-        <strong>Commande #${o.id.toString().slice(-4)}</strong>
-        <span style="color:var(--red)">${o.total.toLocaleString()} F</span>
-      </div>
-      <div style="font-size:11px;color:var(--t3)">${o.date}</div>
-      <div style="margin-top:5px;font-size:12px">${o.items.length} article(s)</div>
+      <strong>#${o.id.toString().slice(-4)}</strong> - ${o.date}<br>
+      Total: ${fp(o.total)} - ${o.items.length} article(s)
     </div>
   `).join('');
 }
 
-// ========== SERVICE WORKER (PWA) ==========
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js').catch(err => console.log('SW error:', err));
+// ========== ANIMATIONS ==========
+function initAnimations() {
+  // Parallaxe sur le héros
+  window.addEventListener('scroll', () => {
+    const hero = document.getElementById('hero');
+    if (hero) {
+      const scrollY = window.scrollY;
+      if (scrollY < 300) {
+        hero.style.transform = `translateY(${scrollY * 0.1}px)`;
+      }
+    }
   });
 }
 
-// ========== CHARGEMENT INITIAL ==========
-// Re-rendre les produits avec les nouvelles données
+// ========== INIT ==========
 window.addEventListener('load', () => {
-  renderProds(prods);
-  // Charger le panier et wishlist depuis localStorage
-  const savedCart = localStorage.getItem('cart');
-  if (savedCart) cart = JSON.parse(savedCart);
-  const savedWish = localStorage.getItem('wish');
-  if (savedWish) wish = JSON.parse(savedWish);
+  document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+  document.getElementById('t-icon').className = dark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+  
+  cart = JSON.parse(localStorage.getItem('cart')) || [];
+  wish = JSON.parse(localStorage.getItem('wish')) || [];
+  orders = JSON.parse(localStorage.getItem('orders')) || [];
+  
+  renderProds(flatProds);
   updBdg();
+  
+  setTimeout(() => document.getElementById('ld').classList.add('out'), 700);
+  
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js').catch(console.log);
+  }
+  
+  initAnimations();
 });
+
+window.addEventListener('scroll', () => {
+  document.getElementById('stbtn').classList.toggle('vis', window.scrollY > 280);
+});
+
+// Pour la wishlist dans le détail
+function updDetW() {
+  const i = document.getElementById('det-wi');
+  if (!i) return;
+  i.style.color = isW(dId) ? 'var(--red)' : 'var(--t3)';
+}
+function togDetW() {
+  togW(dId);
+  updDetW();
+}
+function addFDet() {
+  const p = flatProds.find(x => x.id === dId);
+  addCart(p, dSz, dQty);
+  closeDet();
+}
+
+function renderOrderHistory() {
+  const el = document.getElementById('order-history');
+  if (!orders.length) {
+    el.innerHTML = '<p>Aucune commande</p>';
+    return;
+  }
+  el.innerHTML = orders.map(o => `
+    <div class="order-item">
+      <strong>#${o.id.toString().slice(-4)}</strong> - ${o.date}<br>
+      Total: ${fp(o.total)} - ${o.items.length} article(s)
+    </div>
+  `).join('');
+}
+
+function addReview(productId) {
+  const comment = prompt('Votre avis :');
+  if (!comment) return;
+  const rating = prompt('Note (1-5) :', '5');
+  toast('Merci pour votre avis !');
+ }
+
+ function initAnimations() {
+  window.addEventListener('scroll', () => {
+    const hero = document.getElementById('hero');
+    if (hero) {
+      const scrollY = window.scrollY;
+      if (scrollY < 300) {
+        hero.style.transform = `translateY(${scrollY * 0.1}px)`;
+      }
+    }
+  });
+
+  function animateCards() {
+    document.querySelectorAll('.pcard').forEach((card, index) => {
+      card.style.animationDelay = `${index * 0.1}s`;
+      card.classList.add('animate');
+    });
+  }
+  setTimeout(animateCards, 500);
+}
+
+function startQRScanner() {
+  navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+    .then(stream => {
+      qrStream = stream;
+      const video = document.getElementById('qr-video');
+      video.srcObject = stream;
+      video.play();
+      setTimeout(() => {
+        toast('Produit scanné !');
+        openDet(flatProds[0].id);
+        closeQRScanner();
+      }, 3000);
+    })
+    .catch(() => toast('Erreur caméra'));
+}
+
+function stopQRScanner() {
+  if (qrStream) {
+    qrStream.getTracks().forEach(t => t.stop());
+    qrStream = null;
+  }
+}
+
+function toggleTheme() {
+  dark = !dark;
+  document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+  document.getElementById('t-icon').className = dark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+  localStorage.setItem('dark', dark);
+  const f = document.createElement('div'); f.className = 'tflash';
+  document.body.appendChild(f); setTimeout(() => f.remove(), 420);
+}
+
+function navigate(pg) {
+  if (curPg === pg && pg !== 'home') return;
+  document.querySelectorAll('.pg').forEach(p => p.classList.remove('act'));
+  document.querySelectorAll('.ni').forEach(n => n.classList.remove('on'));
+  document.getElementById('det').style.display = 'none';
+  document.getElementById(pg + '-pg').classList.add('act');
+  document.getElementById('nav-' + pg).classList.add('on');
+  prevPg = curPg;
+  curPg = pg;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (pg === 'cart') renderCart();
+  if (pg === 'wishlist') renderWish();
+  if (pg === 'about') renderOrderHistory();
+}
+
+function toast(msg) {
+  const t = document.getElementById('toast');
+  document.getElementById('tmsg').textContent = msg;
+  t.classList.add('on');
+  clearTimeout(window.toastTimeout);
+  window.toastTimeout = setTimeout(() => t.classList.remove('on'), 2000);
+}
+
+function updBdg() {
+  const cc = cart.reduce((s, c) => s + c.qty, 0);
+  const wc = wish.length;
+  ['cb', 'ncb'].forEach(id => {
+    const e = document.getElementById(id);
+    if (e) { e.textContent = cc; e.classList.toggle('on', cc > 0); }
+  });
+  ['wb', 'nwb'].forEach(id => {
+    const e = document.getElementById(id);
+    if (e) { e.textContent = wc; e.classList.toggle('on', wc > 0); }
+  });
+}
+
+function chCartSz(key, newSz) {
+  const item = cart.find(c => c.key === key);
+  if (!item) return;
+  const p = flatProds.find(x => x.id === item.id);
+  if (!p) return;
+  if (!p.sizes.includes(newSz)) {
+    toast('Taille non disponible');
+    return;
+  }
+  const newKey = `${item.id}-${newSz}`;
+  if (newKey !== key) {
+    const existing = cart.find(c => c.key === newKey);
+    if (existing) {
+      existing.qty += item.qty;
+      cart = cart.filter(c => c.key !== key);
+    } else {
+      item.key = newKey;
+      item.size = newSz;
+    }
+  } else {
+    return;
+  }
+  updBdg();
+  renderCart();
+  saveCart();
+}
+
+function chQty(key, delta) {
+  const item = cart.find(c => c.key === key);
+  if (item) {
+    item.qty = Math.max(1, item.qty + delta);
+    renderCart();
+    saveCart();
+  }
+}
+
+function remCart(key) {
+  cart = cart.filter(c => c.key !== key);
+  updBdg();
+  renderCart();
+  saveCart();
+}
+
+function addCart(p, size, qty) {
+  const key = `${p.id}-${size}`;
+  const existing = cart.find(c => c.key === key);
+  if (existing) {
+    existing.qty += qty;
+  } else {
+    cart.push({
+      key: key,
+      id: p.id,
+      name: p.name,
+      cat: p.cat,
+      basePrice: p.basePrice,
+      promoPrice: p.promoPrice,
+      promoQty: p.promoQty,
+      color: p.color,
+      size: size,
+      qty: qty
+    });
+  }
+  updBdg();
+  toast(p.name + ' ajouté ✓');
+  saveCart();
+}
+
+function addFDet() {
+  const p = flatProds.find(x => x.id === dId);
+  addCart(p, dSz, dQty);
+  closeDet();
+}
+
+function togDetW() {
+  togW(dId);
+  updDetW();
+}
+
+function updDetW() {
+  const i = document.getElementById('det-wi');
+  if (!i) return;
+  i.style.color = isW(dId) ? 'var(--red)' : 'var(--t3)';
+}
+
+// =========================================================
+// MODERNISATION UI/UX 2026 - À AJOUTER À LA FIN DU <script>
+// =========================================================
+
+// 1. Retour Haptique (Vibration sur mobile)
+function triggerHaptic(intensity = 'light') {
+  if (!navigator.vibrate) return;
+  if (intensity === 'light') navigator.vibrate(15);
+  if (intensity === 'heavy') navigator.vibrate([20, 30, 20]);
+}
+
+// 2. Interception de vos fonctions pour ajouter l'haptique sans modifier votre logique
+const originalAddCart = addCart;
+addCart = function(p, size, qty) {
+  triggerHaptic('heavy'); // Grosse vibration pour l'ajout au panier
+  originalAddCart(p, size, qty);
+};
+
+const originalTogW = togW;
+togW = function(id) {
+  triggerHaptic('light'); // Petite vibration pour la wishlist
+  originalTogW(id);
+};
+
+// 3. Effet "Ripple" (Onde) au clic sur les boutons d'action
+document.addEventListener('click', function(e) {
+  const targetBtn = e.target.closest('.atcbtn, .abtn, .wabtn, .hbtn');
+  if (targetBtn) {
+    createRipple(e, targetBtn);
+  }
+});
+
+function createRipple(event, button) {
+  const circle = document.createElement('span');
+  const diameter = Math.max(button.clientWidth, button.clientHeight);
+  const radius = diameter / 2;
+  const rect = button.getBoundingClientRect();
+
+  circle.style.width = circle.style.height = `${diameter}px`;
+  circle.style.left = `${event.clientX - rect.left - radius}px`;
+  circle.style.top = `${event.clientY - rect.top - radius}px`;
+  circle.classList.add('ripple');
+
+  // Nettoyer les ondes précédentes pour éviter la surcharge
+  const existingRipple = button.querySelector('.ripple');
+  if (existingRipple) {
+    existingRipple.remove();
+  }
+
+  button.appendChild(circle);
+  setTimeout(() => circle.remove(), 600);
+}
 </script>
 </body>
 </html>
