@@ -24,6 +24,64 @@
 'use strict';
 
 // ================================================================
+//  IMAGES — Mapping couleur → fichier image (chemin relatif)
+//  Les images sont dans images/slim fits/ et images/compressions/
+//  Si aucune image n'est trouvée pour une couleur, on affiche
+//  le fond coloré (h) comme avant (comportement de fallback).
+// ================================================================
+
+/**
+ * getProductImage(cat, colorName)
+ * Retourne le chemin relatif de l'image pour un produit donné.
+ * @param  {string} cat       — 'slim' ou 'compression'
+ * @param  {string} colorName — nom de la couleur (ex: 'Noir', 'Bleu Ciel')
+ * @returns {string|null}     — chemin relatif ou null si aucune image
+ */
+function getProductImage(cat, colorName) {
+  // Mapping : clé = "cat:couleur normalisée", valeur = chemin relatif
+  const IMG_MAP = {
+    // ── Slim Fit ──
+    'slim:blanc':       'images/slim fits/slim blanc.webp',
+    'slim:noir':        'images/slim fits/slim noir.webp',
+    'slim:bleu ciel':   'images/slim fits/slim bleu ciel.webp',
+    'slim:bleu marine': 'images/slim fits/slim bleu nuit.webp',
+    'slim:bleu royal':  'images/slim fits/slim bleu.webp',
+    'slim:vert foncé':  'images/slim fits/slim vert mili.webp',
+    'slim:vert olive':  'images/slim fits/slim vert.webp',
+    'slim:vert fluo':   'images/slim fits/slim vert fluo.webp', // fallback approché
+    'slim:vert menthe': 'images/slim fits/slim vert menthe.webp',
+    'slim:jaune':       'images/slim fits/slim jaune.webp',
+    'slim:orange':      'images/slim fits/slim orange.webp',
+    'slim:rouge':       'images/slim fits/slim rouge.webp',
+    'slim:bordeaux':    'images/slim fits/slim bordeau.webp',
+    'slim:rose vif':    'images/slim fits/slim rose.webp',
+    'slim:rose clair':  'images/slim fits/slim rose clair.webp',
+    'slim:gris':        'images/slim fits/slim gris.webp',
+    'slim:marron':      'images/slim fits/slim maron.webp',
+    'slim:beige':       'images/slim fits/slim beige.webp',
+    'slim:pêche':       'images/slim fits/slim saumon.webp',
+    'slim:violet':      'images/slim fits/slim violet.webp',
+    'slim:turquoise':   'images/slim fits/slim turquoise.webp',
+
+    // ── Compression ──
+    'compression:noir':       'images/compressions/compression noir.webp',
+    'compression:bleu ciel':  'images/compressions/compression bleu claire.webp',
+    'compression:rose vif':   'images/compressions/compression rose.webp',
+    'compression:rouge':      'images/compressions/compression rouge.webp',
+    'compression:violet':     'images/compressions/compression violet.webp',
+    'compression:vert menthe':'images/compressions/compression vert menthe.webp',
+    'compression:blanche':    'images/compressions/compression blanc.webp',
+    'compression:anthracite': 'images/compressions/compression gris.webp',
+    'compression:grey':       'images/compressions/compression grey.webp',
+    'compression:vert mili':  'images/compressions/compression vert mili.webp'
+
+  };
+
+  const key = `${cat}:${colorName.toLowerCase()}`;
+  return IMG_MAP[key] || null;
+}
+
+// ================================================================
 //  1. COULEURS SLIM FIT
 //     20 couleurs disponibles, tailles variables selon la couleur
 // ================================================================
@@ -58,7 +116,7 @@ const SLIM_COLORS = [
 
 // ================================================================
 //  2. COULEURS COMPRESSION
-//     8 couleurs disponibles
+//     10 couleurs disponibles
 // ================================================================
 const COMP_COLORS = [
   { n: 'Noir',       h: '#111111', sizes: ['S','M','L'] },
@@ -68,7 +126,9 @@ const COMP_COLORS = [
   { n: 'Violet',     h: '#7B1FA2', sizes: ['S','M','L'] },
   { n: 'Vert Menthe',h: '#ADEBB3', sizes: ['S','M','L'] },
   { n: 'Blanche',    h: '#F5F5F5', sizes: ['S','M','L'] },
-  { n: 'Anthracite', h: '#37474F', sizes: ['S','M','L'] }
+  { n: 'Anthracite', h: '#37474F', sizes: ['S','M','L'] },
+  { n: 'Grey',       h: '#9E9E9E', sizes: ['S','M','L'] },
+  { n: 'Vert Mili',  h: '#1B5E20', sizes: ['S','M','L'] }
 ];
 
 // ================================================================
@@ -113,7 +173,7 @@ const STOCK_DEFAULTS = {
   // ── Slim Fit (idBase 1, couleurs 0→19) ──
   '1-0':  25,  // Blanc
   '1-1':  25,  // Noir
-  '1-2':  25,  // Bleu Ciel
+  '1-2':  0,  // Bleu Ciel
   '1-3':  25,  // Bleu Marine
   '1-4':  25,  // Bleu Royal
   '1-5':  25,  // Vert Foncé
@@ -140,7 +200,9 @@ const STOCK_DEFAULTS = {
   '2-4':  10,  // Bleu Roi
   '2-5':  10,  // Vert Nuit   ← stock faible
   '2-6':  10,  // Bordeaux    ← rupture
-  '2-7':  10   // Anthracite
+  '2-7':  10,  // Anthracite
+  '2-8':  10,  // Grey
+  '2-9':  10   // Vert Mili
 };
 
 // ================================================================
@@ -165,6 +227,8 @@ BASE_MODELS.forEach(model => {
       color,
       sizes:      color.sizes,
       reviews:    [],
+      // [IMAGES] Chemin relatif de l'image produit (null = fallback couleur)
+      image:      getProductImage(model.cat, color.n),
 
       /**
        * stock — propriété calculée dynamiquement.

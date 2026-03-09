@@ -312,6 +312,43 @@ body{
 .pcard:hover{transform:translateY(-5px);box-shadow:0 10px 20px var(--shd2)}
 .pcard:active{transform:scale(0.97)}
 @keyframes ci{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* ===== IMAGES PRODUIT ===== */
+/* Image dans la carte produit */
+.pph-img {
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+  border-radius:0; /* overflow géré par .pmed */
+}
+/* Image dans la page détail */
+.det-med-img {
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+  border-radius:1rem;
+  max-height:420px;
+}
+/* Miniature dans le panier */
+.cthumb-img {
+  width:clamp(56px,14vw,72px);
+  height:clamp(56px,14vw,72px);
+  object-fit:cover;
+  object-position:center;
+  border-radius:0.7rem;
+  flex-shrink:0;
+}
+/* Chip couleur avec image dans la page détail */
+.color-chip-img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:inherit;
+}
 .pmed{
   position:relative;
   padding-top:112%;
@@ -2147,9 +2184,13 @@ function renderProds(list) {
          onclick="${stockStatus === 'soldout' ? '' : `openDet('${p.id}')`}"
          style="${stockStatus === 'soldout' ? 'cursor:default;' : ''}">
       <div class="pmed">
-        <div class="pph" style="background:${p.color.h}; display:flex; align-items:center; justify-content:center;">
-          <span style="background:rgba(0,0,0,0.5); color:white; padding:0.3rem 0.8rem; border-radius:2rem; font-size:0.8rem;">${p.color.n}</span>
-        </div>
+        <!-- [IMAGES] Affichage image réelle si disponible, sinon fond coloré -->
+        ${p.image
+          ? `<img class="pph-img" src="${p.image}" alt="${p.name}" loading="lazy">`
+          : `<div class="pph" style="background:${p.color.h}; display:flex; align-items:center; justify-content:center;">
+               <span style="background:rgba(0,0,0,0.5); color:white; padding:0.3rem 0.8rem; border-radius:2rem; font-size:0.8rem;">${p.color.n}</span>
+             </div>`
+        }
         ${stockBadgeHtml}
         <span class="catb">${p.cat === 'slim' ? 'Slim Fit' : 'Compression'}</span>
         <button class="wb ${isW(p.id) ? 'on' : ''}" id="wb-${p.id}" onclick="event.stopPropagation();togW('${p.id}')" aria-label="Ajouter à la wishlist">
@@ -2244,8 +2285,10 @@ function openDet(id) {
       <label class="sec-lb">Autres couleurs :</label>
       <div class="det-color-scroll">
         ${sameModel.map(c => `
-          <div class="color-chip" style="background:${c.color.h};"
+          <!-- [IMAGES] Chip couleur avec image ou fond coloré en fallback -->
+          <div class="color-chip" style="${c.image ? '' : `background:${c.color.h};`}"
                onclick="openDet('${c.id}')" title="${c.color.n}">
+            ${c.image ? `<img class="color-chip-img" src="${c.image}" alt="${c.color.n}" loading="lazy">` : ''}
             <span>${c.color.n}</span>
           </div>
         `).join('')}
@@ -2259,9 +2302,13 @@ function openDet(id) {
   ).join('');
 
   document.getElementById('det-con').innerHTML = `
-    <div class="det-med" id="det-med-img" style="background:${p.color.h}; display:flex; align-items:center; justify-content:center;">
-      <span style="background:rgba(0,0,0,0.6); color:white; padding:0.8rem 2rem; border-radius:3rem; font-size:1.2rem;">${p.color.n}</span>
-    </div>
+    <!-- [IMAGES] Image principale du produit en page détail -->
+    ${p.image
+      ? `<img class="det-med-img" src="${p.image}" alt="${p.name}" loading="lazy">`
+      : `<div class="det-med" id="det-med-img" style="background:${p.color.h}; display:flex; align-items:center; justify-content:center;">
+           <span style="background:rgba(0,0,0,0.6); color:white; padding:0.8rem 2rem; border-radius:3rem; font-size:1.2rem;">${p.color.n}</span>
+         </div>`
+    }
     <div class="det-con">
       <div class="d-cat">${p.cat === 'slim' ? 'Slim Fit' : 'Compression'}</div>
       <div class="d-nm">${p.name}</div>
@@ -2596,7 +2643,11 @@ function renderCart() {
     return `
     <div class="citem">
       <div class="citem-top">
-        <div class="cthumb" style="background:${c.color.h};"></div>
+        <!-- [IMAGES] Miniature produit dans le panier -->
+        ${trueProd && trueProd.image
+          ? `<img class="cthumb-img" src="${trueProd.image}" alt="${sanitize(c.name)}" loading="lazy">`
+          : `<div class="cthumb" style="background:${c.color.h};"></div>`
+        }
         <div class="cdet">
           <div class="cnm">${sanitize(c.name)}</div>
           <div class="cmeta">${sanitize(c.color.n)} - ${sanitize(c.size)}</div>
@@ -2798,9 +2849,13 @@ function renderWish() {
       ${wl.map(p => `
         <div class="pcard" onclick="openDet('${p.id}')">
           <div class="pmed">
-            <div class="pph" style="background:${p.color.h}; display:flex; align-items:center; justify-content:center;">
-              <span style="background:rgba(0,0,0,0.5); color:white; padding:0.3rem 0.8rem; border-radius:2rem; font-size:0.8rem;">${p.color.n}</span>
-            </div>
+            <!-- [IMAGES] Image produit dans la wishlist -->
+            ${p.image
+              ? `<img class="pph-img" src="${p.image}" alt="${p.name}" loading="lazy">`
+              : `<div class="pph" style="background:${p.color.h}; display:flex; align-items:center; justify-content:center;">
+                   <span style="background:rgba(0,0,0,0.5); color:white; padding:0.3rem 0.8rem; border-radius:2rem; font-size:0.8rem;">${p.color.n}</span>
+                 </div>`
+            }
             <span class="catb">${p.cat === 'slim' ? 'Slim Fit' : 'Compression'}</span>
             <!-- [NOUVEAU] Bouton supprimer de la wishlist (croix rouge) -->
             <button class="wish-del-btn" onclick="event.stopPropagation();togW('${p.id}');renderWish();"
