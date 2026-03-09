@@ -172,7 +172,7 @@ const BASE_MODELS = [
 const STOCK_DEFAULTS = {
   // ── Slim Fit (idBase 1, couleurs 0→19) ──
   '1-0':  25,  // Blanc
-  '1-1':  20,  // Noir
+  '1-1':  12,  // Noir
   '1-2':  1,  // Bleu Ciel
   '1-3':  25,  // Bleu Marine
   '1-4':  25,  // Bleu Royal
@@ -186,8 +186,8 @@ const STOCK_DEFAULTS = {
   '1-12': 25,  // Bordeaux
   '1-13': 10,  // Rose Clair
   '1-14': 25,  // Rose Vif
-  '1-15': 25,  // Gris        ← rupture
-  '1-16': 25,  // Marron
+  '1-15': 12,  // Gris        ← rupture
+  '1-16': 7,  // Marron
   '1-17': 25,  // Beige
   '1-18': 5,  // Pêche       ← stock faible
   '1-19': 10,  // Violet
