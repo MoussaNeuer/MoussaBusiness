@@ -194,68 +194,125 @@ body{
   box-shadow:0 4px 12px var(--rg);
 }
 
-/* ===== HERO ===== */
+/* ===== HERO (professionnel v2) ===== */
 .hero{
   margin:0 1rem 1.5rem;
-  background:#111;
+  background:linear-gradient(145deg,#0a0a0a 0%,#1a0a06 50%,#0d0d0d 100%);
   border-radius:1.5rem;
-  padding:clamp(1.5rem,5vw,3rem) clamp(1.2rem,4vw,2.5rem);
+  padding:clamp(1.8rem,6vw,3.2rem) clamp(1.2rem,4vw,2.5rem) clamp(1.5rem,5vw,2.5rem);
   position:relative;
   overflow:hidden;
-  transition:transform 0.3s ease;
+  border:1px solid rgba(232,57,26,.18);
+  box-shadow:0 0 60px rgba(232,57,26,.08),0 20px 40px rgba(0,0,0,.4);
 }
-.hero::before{
+.hero-bg-pattern{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 100% 0%, rgba(232,57,26,.18) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 0% 100%, rgba(232,57,26,.08) 0%, transparent 60%);
+  pointer-events:none;
+}
+.hero::after{
   content:'';
   position:absolute;
-  right:-10%;top:-10%;
-  width:50%;height:50%;
+  right:-5%;top:-5%;
+  width:45%;
+  aspect-ratio:1;
   background:var(--red);
-  opacity:.12;
+  opacity:.06;
   border-radius:50%;
-  animation:hp 4s ease-in-out infinite alternate;
+  filter:blur(40px);
+  animation:hp 6s ease-in-out infinite alternate;
 }
-@keyframes hp{from{transform:scale(1)}to{transform:scale(1.2)}}
+@keyframes hp{from{transform:scale(1) translate(0,0)}to{transform:scale(1.3) translate(-5%,5%)}}
 .h-tag{
-  font-size:0.8rem;
+  display:inline-flex;align-items:center;gap:0.4rem;
+  font-size:0.72rem;
   font-weight:700;
   color:var(--red);
-  letter-spacing:2px;
+  letter-spacing:2.5px;
   text-transform:uppercase;
-  margin-bottom:0.5rem;
+  margin-bottom:0.8rem;
+  background:rgba(232,57,26,.1);
+  border:1px solid rgba(232,57,26,.25);
+  border-radius:2rem;
+  padding:0.3rem 0.9rem;
 }
 .h-title{
   font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(2rem,8vw,3.5rem);
+  font-size:clamp(2.4rem,9vw,4.2rem);
   color:#fff;
-  line-height:1.1;
+  line-height:1.0;
   margin-bottom:0.5rem;
+  letter-spacing:1px;
+}
+.h-title-accent{
+  color:var(--red);
+  -webkit-text-stroke:1px var(--red);
 }
 .h-sub{
-  font-size:clamp(0.8rem,3vw,1rem);
-  color:rgba(255,255,255,.5);
-  max-width:70%;
-  margin-bottom:1rem;
-  line-height:1.5;
+  font-size:clamp(0.78rem,2.8vw,0.95rem);
+  color:rgba(255,255,255,.48);
+  max-width:75%;
+  margin-bottom:1.2rem;
+  line-height:1.6;
+}
+/* Stats rapides dans le hero */
+.h-stats{
+  display:flex;align-items:center;gap:1.2rem;
+  margin-bottom:1.4rem;
+}
+.h-stat{
+  display:flex;flex-direction:column;gap:0.1rem;
+}
+.h-stat-num{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(1.1rem,4vw,1.5rem);
+  color:#fff;
+  letter-spacing:1px;
+  line-height:1;
+}
+.h-stat-lbl{
+  font-size:0.65rem;
+  color:rgba(255,255,255,.38);
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+.h-stat-sep{
+  width:1px;height:28px;
+  background:rgba(255,255,255,.12);
+  flex-shrink:0;
 }
 .h-acts{display:flex;gap:0.8rem;flex-wrap:wrap}
 .hbtn{
   display:inline-flex;align-items:center;gap:0.5rem;
   background:var(--red);color:#fff;
-  border:none;border-radius:2rem;
-  padding:0.7rem 1.5rem;
+  border:none;border-radius:0.9rem;
+  padding:0.8rem 1.6rem;
   font-family:'Outfit',sans-serif;
-  font-size:0.9rem;
+  font-size:0.88rem;
   font-weight:700;
   cursor:pointer;
   transition:var(--tr);
   position:relative;
   overflow:hidden;
+  letter-spacing:0.3px;
+}
+.hbtn::before{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.15),transparent);
+  pointer-events:none;
 }
 .hbtn:active{transform:scale(.94)}
+.hbtn:hover{box-shadow:0 8px 24px rgba(232,57,26,.45)}
 .hbtn.ghost{
-  background:rgba(255,255,255,.1);
+  background:rgba(255,255,255,.07);
   backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.15);
 }
+.hbtn.ghost:hover{background:rgba(255,255,255,.12);box-shadow:none}
 
 /* ===== PROMO STRIP ===== */
 .promo-strip{
@@ -1635,11 +1692,387 @@ body{
 }
 
 /* ===== FIX MOBILE — bouton ATC non masqué par bottom nav ===== */
-/* Le .det-con a maintenant un padding-bottom suffisant pour ne pas
-   être caché derrière la bottom navigation bar sur mobile. */
 #det .det-con{
   padding-bottom:calc(var(--bottom-nav-height) + 1.5rem);
 }
+
+/* ================================================================
+   NOUVELLES FONCTIONNALITÉS v4
+   - Internationalisation (langue + devise)
+   - Profil client
+   - Formulaire livraison
+   - Pop-up bienvenue promo
+   - Bannière promo personnalisable
+   - Newsletter améliorée
+   - Notification stock bas
+   - Wishlist partageable
+   ================================================================ */
+
+/* ===== SÉLECTEUR LANGUE / DEVISE dans le FOOTER ===== */
+.ft-lang-cur{
+  margin-top:1.5rem;
+  padding-top:1.5rem;
+  border-top:1px solid rgba(255,255,255,.07);
+}
+.ft-lc-title{
+  font-size:0.78rem;
+  font-weight:700;
+  color:rgba(255,255,255,.38);
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  margin-bottom:0.8rem;
+  display:flex;align-items:center;gap:0.4rem;
+}
+.ft-lc-row{
+  display:flex;gap:0.8rem;flex-wrap:wrap;
+}
+.ft-lc-group{
+  display:flex;flex-direction:column;gap:0.3rem;
+  flex:1;min-width:130px;
+}
+.ft-lc-label{
+  font-size:0.72rem;
+  font-weight:600;
+  color:rgba(255,255,255,.28);
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+.ft-lc-select{
+  background:rgba(255,255,255,.06);
+  color:rgba(255,255,255,.7);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:0.7rem;
+  padding:0.5rem 0.8rem;
+  font-family:'Outfit',sans-serif;
+  font-size:0.85rem;
+  font-weight:600;
+  cursor:pointer;
+  outline:none;
+  transition:border-color .2s,background .2s;
+  -webkit-appearance:none;
+  appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,0.4)' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 0.7rem center;
+  padding-right:2rem;
+}
+.ft-lc-select:focus{border-color:var(--red)}
+.ft-lc-select option{background:#1a1a1a;color:#fff}
+/* Masquer les anciens selects dans le header si jamais ils persistent */
+.lc-select{display:none!important}
+
+/* ===== BANNIÈRE MAILLOT ===== */
+.maillot-banner{
+  border-color:rgba(255,215,0,.25) !important;
+}
+.maillot-banner .cat-banner-icon{
+  background:linear-gradient(135deg,rgba(255,215,0,.15),rgba(255,165,0,.1)) !important;
+  border-color:rgba(255,215,0,.25) !important;
+}
+.maillot-banner .cat-banner-icon i{
+  color:#FFD700 !important;
+}
+.maillot-banner h3{color:var(--text)}
+.maillot-banner .cat-banner-tags span{
+  background:rgba(255,215,0,.08);
+  color:rgba(255,165,0,.9);
+  border-color:rgba(255,215,0,.2);
+}
+
+/* ===== BANNIÈRE PROMO PERSONNALISABLE ===== */
+#promo-banner{
+  background:linear-gradient(90deg,var(--red),#ff6b35);
+  color:#fff;
+  text-align:center;
+  padding:0.5rem 2.5rem;
+  font-size:0.82rem;
+  font-weight:700;
+  letter-spacing:0.3px;
+  position:relative;
+  display:none;
+}
+#promo-banner.on{display:block}
+#promo-banner .pb-close{
+  position:absolute;right:0.6rem;top:50%;transform:translateY(-50%);
+  background:none;border:none;color:#fff;cursor:pointer;
+  font-size:1rem;opacity:0.8;
+}
+#promo-banner .pb-close:hover{opacity:1}
+
+/* ===== POP-UP DE BIENVENUE ===== */
+#welcome-popup{
+  position:fixed;inset:0;z-index:8000;
+  display:flex;align-items:flex-end;justify-content:center;
+  background:rgba(0,0,0,.5);
+  backdrop-filter:blur(4px);
+  opacity:0;pointer-events:none;
+  transition:opacity .35s;
+}
+#welcome-popup.on{opacity:1;pointer-events:auto}
+.wp-box{
+  background:var(--card);
+  border-radius:1.6rem 1.6rem 0 0;
+  padding:2rem 1.5rem 2.5rem;
+  width:100%;max-width:520px;
+  text-align:center;
+  transform:translateY(100%);
+  transition:transform .4s cubic-bezier(.4,0,.2,1);
+}
+#welcome-popup.on .wp-box{transform:translateY(0)}
+.wp-emoji{font-size:2.5rem;margin-bottom:0.7rem}
+.wp-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.8rem;letter-spacing:2px;
+  color:var(--text);margin-bottom:0.4rem;
+}
+.wp-title b{color:var(--red)}
+.wp-sub{font-size:0.95rem;color:var(--t2);margin-bottom:1.2rem;line-height:1.5}
+.wp-code{
+  display:inline-block;
+  background:var(--rl);
+  color:var(--red);
+  border:2px dashed var(--red);
+  border-radius:0.8rem;
+  padding:0.5rem 1.2rem;
+  font-size:1.1rem;font-weight:800;
+  letter-spacing:3px;margin-bottom:1.2rem;
+  cursor:pointer;user-select:all;
+}
+.wp-btns{display:flex;gap:0.8rem;justify-content:center;flex-wrap:wrap}
+.wp-btn-main{
+  background:var(--red);color:#fff;
+  border:none;border-radius:2rem;
+  padding:0.75rem 1.8rem;
+  font-family:'Outfit',sans-serif;
+  font-size:0.9rem;font-weight:700;
+  cursor:pointer;transition:var(--tr);
+}
+.wp-btn-main:active{transform:scale(.96)}
+.wp-btn-skip{
+  background:none;color:var(--t3);
+  border:none;font-size:0.82rem;cursor:pointer;
+  padding:0.5rem 1rem;
+  text-decoration:underline;
+}
+
+/* ===== PAGE PROFIL CLIENT ===== */
+#profile-pg .pgh h1{font-family:'Bebas Neue',sans-serif;letter-spacing:1px}
+.prof-avatar{
+  width:80px;height:80px;
+  border-radius:50%;
+  background:var(--red);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:2rem;color:#fff;
+  margin:1rem auto;
+  letter-spacing:2px;
+}
+.prof-section{
+  background:var(--card);
+  border-radius:1.2rem;
+  padding:1.2rem;
+  margin:0 1rem 1rem;
+  box-shadow:0 2px 10px var(--shd);
+}
+.prof-section h3{
+  font-size:0.75rem;font-weight:700;
+  color:var(--t3);text-transform:uppercase;
+  letter-spacing:1px;margin-bottom:0.8rem;
+}
+.prof-field{
+  display:flex;flex-direction:column;gap:0.3rem;margin-bottom:0.9rem;
+}
+.prof-field:last-child{margin-bottom:0}
+.prof-field label{font-size:0.82rem;font-weight:600;color:var(--t2)}
+.prof-input{
+  background:var(--bg);
+  border:1.5px solid var(--border);
+  border-radius:0.7rem;
+  padding:0.6rem 0.8rem;
+  font-family:'Outfit',sans-serif;
+  font-size:0.9rem;color:var(--text);
+  outline:none;transition:border-color .2s;
+  width:100%;
+}
+.prof-input:focus{border-color:var(--red)}
+.prof-save-btn{
+  width:calc(100% - 2rem);
+  margin:0 1rem 1rem;
+  padding:0.8rem;
+  background:var(--red);color:#fff;
+  border:none;border-radius:2rem;
+  font-family:'Outfit',sans-serif;
+  font-size:0.9rem;font-weight:700;
+  cursor:pointer;transition:var(--tr);
+}
+.prof-save-btn:active{transform:scale(.97)}
+.order-hist-item{
+  background:var(--bg);
+  border-radius:0.8rem;
+  padding:0.8rem;
+  margin-bottom:0.6rem;
+  border-left:3px solid var(--red);
+}
+.order-hist-ref{font-size:0.75rem;font-weight:700;color:var(--red);margin-bottom:0.2rem}
+.order-hist-date{font-size:0.78rem;color:var(--t3);margin-bottom:0.3rem}
+.order-hist-total{font-size:0.9rem;font-weight:700;color:var(--text)}
+.order-hist-status{
+  display:inline-block;
+  font-size:0.7rem;font-weight:700;
+  padding:0.15rem 0.6rem;
+  border-radius:1rem;
+  background:rgba(34,197,94,.15);color:#16a34a;
+  margin-top:0.3rem;
+}
+.fav-size-row{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.4rem}
+.fav-sz-btn{
+  padding:0.3rem 0.8rem;
+  border-radius:0.6rem;
+  border:1.5px solid var(--border);
+  background:var(--bg);color:var(--text);
+  font-size:0.8rem;font-weight:600;cursor:pointer;
+  transition:all .2s;
+}
+.fav-sz-btn.on{background:var(--red);color:#fff;border-color:var(--red)}
+
+/* ===== FORMULAIRE DE LIVRAISON ===== */
+#delivery-modal{
+  position:fixed;inset:0;z-index:7000;
+  display:flex;align-items:flex-end;justify-content:center;
+  background:rgba(0,0,0,.5);
+  backdrop-filter:blur(4px);
+  opacity:0;pointer-events:none;
+  transition:opacity .3s;
+}
+#delivery-modal.on{opacity:1;pointer-events:auto}
+.dlv-box{
+  background:var(--card);
+  border-radius:1.6rem 1.6rem 0 0;
+  padding:1.5rem 1.2rem 2rem;
+  width:100%;max-width:540px;
+  max-height:90vh;overflow-y:auto;
+  transform:translateY(100%);
+  transition:transform .4s cubic-bezier(.4,0,.2,1);
+}
+#delivery-modal.on .dlv-box{transform:translateY(0)}
+.dlv-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.5rem;letter-spacing:1px;
+  color:var(--text);margin-bottom:1rem;
+  display:flex;align-items:center;gap:0.5rem;
+}
+.dlv-field{display:flex;flex-direction:column;gap:0.3rem;margin-bottom:0.9rem}
+.dlv-field label{font-size:0.82rem;font-weight:600;color:var(--t2)}
+.dlv-input,.dlv-select{
+  background:var(--bg);
+  border:1.5px solid var(--border);
+  border-radius:0.7rem;
+  padding:0.65rem 0.8rem;
+  font-family:'Outfit',sans-serif;
+  font-size:0.9rem;color:var(--text);
+  outline:none;transition:border-color .2s;
+  width:100%;
+}
+.dlv-input:focus,.dlv-select:focus{border-color:var(--red)}
+.dlv-shipping-card{
+  background:var(--bg);
+  border-radius:0.8rem;
+  padding:0.8rem 1rem;
+  margin-bottom:0.6rem;
+  border:2px solid var(--border);
+  cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;
+  transition:border-color .2s;
+}
+.dlv-shipping-card.on{border-color:var(--red);background:var(--rl)}
+.dlv-shipping-card .zone-name{font-weight:700;font-size:0.9rem;color:var(--text)}
+.dlv-shipping-card .zone-price{font-weight:800;color:var(--red);font-size:0.95rem}
+.dlv-shipping-card .zone-delay{font-size:0.75rem;color:var(--t3)}
+.dlv-summary{
+  background:var(--bg);border-radius:0.8rem;
+  padding:0.8rem 1rem;margin:0.8rem 0;
+  border-left:3px solid var(--red);
+}
+.dlv-summary-row{
+  display:flex;justify-content:space-between;
+  font-size:0.88rem;color:var(--t2);margin-bottom:0.25rem;
+}
+.dlv-summary-row.total{font-weight:800;font-size:1rem;color:var(--text);margin-top:0.4rem;padding-top:0.4rem;border-top:1px solid var(--border)}
+.dlv-wa-btn{
+  width:100%;padding:0.9rem;
+  background:#25D366;color:#fff;
+  border:none;border-radius:2rem;
+  font-family:'Outfit',sans-serif;
+  font-size:0.95rem;font-weight:700;
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:0.5rem;
+  transition:var(--tr);margin-top:0.8rem;
+}
+.dlv-wa-btn:active{transform:scale(.97)}
+.dlv-close{
+  position:absolute;right:1rem;top:1rem;
+  background:var(--bg);border:none;
+  border-radius:50%;width:2rem;height:2rem;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;color:var(--t2);font-size:0.9rem;
+}
+.dlv-box{position:relative}
+
+/* ===== BADGE STOCK BAS sur carte produit ===== */
+.stock-low-pulse{
+  position:absolute;bottom:0.5rem;left:0.5rem;
+  background:rgba(239,68,68,.95);
+  color:#fff;
+  font-size:0.65rem;font-weight:700;
+  padding:0.2rem 0.5rem;
+  border-radius:0.6rem;
+  display:flex;align-items:center;gap:0.25rem;
+  animation:pulse-badge 1.4s ease-in-out infinite;
+}
+@keyframes pulse-badge{0%,100%{opacity:1}50%{opacity:.6}}
+
+/* ===== NOTIFICATION DERNIÈRE DISPO ===== */
+#last-stock-notif{
+  position:fixed;bottom:calc(var(--bottom-nav-height) + 0.5rem);
+  left:50%;transform:translateX(-50%) translateY(80px);
+  background:#ef4444;color:#fff;
+  border-radius:2rem;
+  padding:0.6rem 1.2rem;
+  font-size:0.83rem;font-weight:700;
+  display:flex;align-items:center;gap:0.4rem;
+  z-index:5000;
+  box-shadow:0 4px 20px rgba(239,68,68,.4);
+  transition:transform .35s cubic-bezier(.4,0,.2,1);
+  pointer-events:none;
+}
+#last-stock-notif.on{transform:translateX(-50%) translateY(0)}
+
+/* ===== WISHLIST PARTAGEABLE ===== */
+.wish-share-btn{
+  display:flex;align-items:center;gap:0.5rem;
+  background:var(--card);
+  border:1.5px solid var(--border);
+  border-radius:2rem;
+  padding:0.5rem 1.2rem;
+  font-family:'Outfit',sans-serif;
+  font-size:0.82rem;font-weight:700;
+  color:var(--text);cursor:pointer;
+  margin:0 1rem 0.5rem;
+  transition:var(--tr);
+}
+.wish-share-btn:hover{border-color:var(--red);color:var(--red)}
+.wish-share-btn i{color:var(--red)}
+
+/* ===== NEWSLETTER améliorée ===== */
+.nl-incentive{
+  font-size:0.78rem;color:rgba(255,255,255,.7);
+  margin-top:0.4rem;
+  display:flex;align-items:center;gap:0.3rem;
+  justify-content:center;
+}
+
+/* ===== BOTTOM NAV — ajout onglet Profil ===== */
+/* Le nav compte maintenant un item de plus */
 
 </style>
 <!-- [NOUVEAU] Données produits & gestion de stock — chargé en premier -->
@@ -1662,6 +2095,74 @@ body{
 
 <!-- TOAST -->
 <div id="toast"><i class="fa-solid fa-circle-check"></i><span id="tmsg">Produit ajouté</span></div>
+
+<!-- ===== BANNIÈRE PROMO PERSONNALISABLE ===== -->
+<div id="promo-banner" class="on">
+  <span id="promo-banner-text">🎉 BIENVENUE ! -10% sur votre 1ère commande avec le code <strong>MB10</strong></span>
+  <button class="pb-close" onclick="document.getElementById('promo-banner').classList.remove('on')" aria-label="Fermer">✕</button>
+</div>
+
+<!-- ===== POP-UP DE BIENVENUE (1ère visite) ===== -->
+<div id="welcome-popup" role="dialog" aria-modal="true">
+  <div class="wp-box">
+    <div class="wp-emoji">🎁</div>
+    <div class="wp-title">BIENVENUE CHEZ <b>MOUSSA.BUSINESS</b></div>
+    <div class="wp-sub" id="wp-sub-text">Profitez de <strong>-10% sur votre première commande</strong>.<br>Mentionnez ce code lors de votre commande WhatsApp :</div>
+    <div class="wp-code" id="wp-promo-code" title="Cliquez pour copier" onclick="copyPromoCode()">MB10</div>
+    <div class="wp-btns">
+      <button class="wp-btn-main" onclick="closeWelcomePopup(true)">
+        <i class="fa-solid fa-shirt"></i> <span id="wp-btn-shop">Commencer mes achats</span>
+      </button>
+      <button class="wp-btn-skip" onclick="closeWelcomePopup(false)" id="wp-btn-skip">Plus tard</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MODAL FORMULAIRE DE LIVRAISON ===== -->
+<div id="delivery-modal" role="dialog" aria-modal="true">
+  <div class="dlv-box">
+    <button class="dlv-close" onclick="closeDelivery()" aria-label="Fermer"><i class="fa-solid fa-xmark"></i></button>
+    <div class="dlv-title"><i class="fa-solid fa-truck" style="color:var(--red)"></i> <span id="dlv-title-text">Livraison & Commande</span></div>
+
+    <!-- Infos client -->
+    <div class="dlv-field">
+      <label id="dlv-lbl-name">Votre nom complet</label>
+      <input class="dlv-input" id="dlv-name" type="text" placeholder="Ex: Moussa LO">
+    </div>
+    <div class="dlv-field">
+      <label id="dlv-lbl-phone">Téléphone / WhatsApp</label>
+      <input class="dlv-input" id="dlv-phone" type="tel" placeholder="+221 7X XXX XX XX">
+    </div>
+    <div class="dlv-field">
+      <label id="dlv-lbl-address">Adresse de livraison</label>
+      <input class="dlv-input" id="dlv-address" type="text" placeholder="Rue, quartier, ville">
+    </div>
+
+    <!-- Zone / frais de port -->
+    <div class="dlv-field">
+      <label id="dlv-lbl-zone">Zone de livraison</label>
+      <div id="dlv-zones">
+        <!-- généré par JS -->
+      </div>
+    </div>
+
+    <!-- Résumé commande -->
+    <div class="dlv-summary" id="dlv-summary">
+      <!-- généré par JS -->
+    </div>
+
+    <!-- Bouton envoyer WhatsApp -->
+    <button class="dlv-wa-btn" onclick="sendDeliveryWA()">
+      <i class="fa-brands fa-whatsapp"></i> <span id="dlv-wa-btn-text">Confirmer sur WhatsApp</span>
+    </button>
+  </div>
+</div>
+
+<!-- ===== NOTIFICATION DERNIER STOCK ===== -->
+<div id="last-stock-notif">
+  <i class="fa-solid fa-fire"></i>
+  <span id="last-stock-msg">Derniers articles disponibles !</span>
+</div>
 
 <!-- [NOUVEAU] Modal confirmation commande -->
 <div id="order-modal" class="order-modal-overlay" role="dialog" aria-modal="true" aria-label="Confirmation de commande">
@@ -1716,23 +2217,47 @@ body{
     <button class="fb on" onclick="setFil('all',this)"><i class="fa-solid fa-border-all"></i> Tous</button>
     <button class="fb" onclick="setFil('slim',this)"><i class="fa-solid fa-shirt"></i> Slim Fit</button>
     <button class="fb" onclick="setFil('compression',this)"><i class="fa-solid fa-dumbbell"></i> Compression</button>
+    <button class="fb" onclick="setFil('maillot',this)"><i class="fa-solid fa-futbol"></i> Maillots</button>
   </div>
   <div class="hero" id="hero">
-    <div class="h-tag"><i class="fa-solid fa-star"></i> Nouvelle Collection 2025</div>
-    <div class="h-title">PERFORMANCE<br>& STYLE</div>
-    <div class="h-sub">T-shirts Slim Fit & vêtements de compression premium</div>
+    <!-- Fond gradient animé -->
+    <div class="hero-bg-pattern"></div>
+    <!-- Badge -->
+    <div class="h-tag"><i class="fa-solid fa-fire"></i> Nouvelle Collection 2025</div>
+    <!-- Titre principal -->
+    <div class="h-title">PERFORMANCE<br><span class="h-title-accent">&amp; STYLE</span></div>
+    <!-- Sous-titre -->
+    <div class="h-sub">T-shirts Slim Fit, Compression &amp; Maillots de foot premium</div>
+    <!-- Stats rapides -->
+    <div class="h-stats">
+      <div class="h-stat">
+        <span class="h-stat-num">30+</span>
+        <span class="h-stat-lbl">Couleurs</span>
+      </div>
+      <div class="h-stat-sep"></div>
+      <div class="h-stat">
+        <span class="h-stat-num">3</span>
+        <span class="h-stat-lbl">Collections</span>
+      </div>
+      <div class="h-stat-sep"></div>
+      <div class="h-stat">
+        <span class="h-stat-num">★ 4.9</span>
+        <span class="h-stat-lbl">Satisfaction</span>
+      </div>
+    </div>
+    <!-- Boutons action -->
     <div class="h-acts">
       <button class="hbtn" onclick="document.getElementById('ca').scrollIntoView({behavior:'smooth'})">
-        <i class="fa-solid fa-arrow-down"></i> Voir catalogue
+        <i class="fa-solid fa-bag-shopping"></i> Acheter maintenant
       </button>
-      <button class="hbtn ghost" onclick="openQRScanner()">
-        <i class="fa-solid fa-qrcode"></i> Scan QR
+      <button class="hbtn ghost" onclick="navigate('contact')">
+        <i class="fa-brands fa-whatsapp"></i> Nous contacter
       </button>
     </div>
   </div>
   <div class="promo-strip">
     <i class="fa-solid fa-tags"></i>
-    <p><span>Offre Slim Fit :</span> À partir de 4 t-shirts → 2 500 F CFA / unité !</p>
+    <p><span>Offre Slim Fit :</span> À partir de 4 t-shirts → 2 500 F CFA / unité ! · <span>Maillots de foot</span> disponibles</p>
   </div>
   <div class="stl" id="ca">
     <h2>Catalogue <span id="productCount" class="product-count"></span></h2>
@@ -1761,6 +2286,19 @@ body{
       <div class="cat-banner-tags">
         <span><i class="fa-solid fa-tag"></i> 4 000 F CFA / unité</span>
         <span><i class="fa-solid fa-bolt"></i> Performance optimale</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- [NOUVEAU] Présentation catégorie Maillots -->
+  <div class="cat-banner maillot-banner" id="banner-maillot">
+    <div class="cat-banner-icon"><i class="fa-solid fa-futbol"></i></div>
+    <div class="cat-banner-body">
+      <h3>Maillots de Football</h3>
+      <p>Clubs européens · PSG, Barça, Real, Liverpool, Bayern &amp; plus · Réplicas premium</p>
+      <div class="cat-banner-tags">
+        <span><i class="fa-solid fa-tag"></i> Prix sur demande</span>
+        <span><i class="fa-solid fa-trophy"></i> Top clubs disponibles</span>
       </div>
     </div>
   </div>
@@ -1799,6 +2337,28 @@ body{
         <input class="nl-in" type="email" id="nle" placeholder="votre@gmail.com">
         <button class="nl-btn" onclick="subNL()">OK</button>
       </div>
+      <div class="nl-incentive"><i class="fa-solid fa-gift"></i> Recevez un code promo à l'inscription</div>
+    </div>
+    <!-- [NOUVEAU] Sélecteur langue & devise dans le footer -->
+    <div class="ft-lang-cur">
+      <div class="ft-lc-title"><i class="fa-solid fa-globe"></i> Langue &amp; Devise</div>
+      <div class="ft-lc-row">
+        <div class="ft-lc-group">
+          <label class="ft-lc-label">Langue</label>
+          <select class="ft-lc-select" id="lang-select" onchange="setLang(this.value)" aria-label="Langue">
+            <option value="fr">🇫🇷 Français</option>
+            <option value="en">🇬🇧 English</option>
+          </select>
+        </div>
+        <div class="ft-lc-group">
+          <label class="ft-lc-label">Devise</label>
+          <select class="ft-lc-select" id="cur-select" onchange="setCurrency(this.value)" aria-label="Devise">
+            <option value="CFA">🇸🇳 F CFA</option>
+            <option value="EUR">🇪🇺 Euro (€)</option>
+            <option value="USD">🇺🇸 Dollar ($)</option>
+          </select>
+        </div>
+      </div>
     </div>
     <div class="ft-copy">© 2026 Moussa Business · Développé par Moussa LO</div>
   </footer>
@@ -1812,8 +2372,56 @@ body{
 
 <!-- WISHLIST -->
 <div id="wishlist-pg" class="pg">
-  <div class="pgh"><h1><i class="fa-solid fa-heart"></i> Ma Wishlist</h1><p id="wct">0 article</p></div>
+  <div class="pgh"><h1><i class="fa-solid fa-heart"></i> <span data-i18n="wish_title">Ma Wishlist</span></h1><p id="wct">0 article</p></div>
   <div id="wish-con"></div>
+</div>
+
+<!-- PROFIL CLIENT -->
+<div id="profile-pg" class="pg">
+  <div class="pgh"><h1><i class="fa-solid fa-user-circle"></i> <span data-i18n="prof_title">Mon Profil</span></h1></div>
+  <div class="prof-avatar" id="prof-avatar">?</div>
+
+  <!-- Infos personnelles -->
+  <div class="prof-section">
+    <h3 data-i18n="prof_info">Informations personnelles</h3>
+    <div class="prof-field">
+      <label data-i18n="prof_name">Nom complet</label>
+      <input class="prof-input" id="prof-name" type="text" placeholder="Moussa LO" oninput="updateAvatar()">
+    </div>
+    <div class="prof-field">
+      <label data-i18n="prof_phone">Téléphone / WhatsApp</label>
+      <input class="prof-input" id="prof-phone" type="tel" placeholder="+221 7X XXX XX XX">
+    </div>
+    <div class="prof-field">
+      <label data-i18n="prof_address">Adresse habituelle</label>
+      <input class="prof-input" id="prof-address" type="text" placeholder="Dakar, Plateau">
+    </div>
+    <div class="prof-field">
+      <label data-i18n="prof_email">Email (newsletter)</label>
+      <input class="prof-input" id="prof-email" type="email" placeholder="vous@gmail.com">
+    </div>
+  </div>
+
+  <!-- Taille favorite -->
+  <div class="prof-section">
+    <h3 data-i18n="prof_favsize">Taille favorite</h3>
+    <div class="fav-size-row" id="fav-size-row">
+      <!-- généré par JS -->
+    </div>
+  </div>
+
+  <!-- Bouton sauvegarder -->
+  <button class="prof-save-btn" onclick="saveProfile()">
+    <i class="fa-solid fa-floppy-disk"></i> <span data-i18n="prof_save">Sauvegarder le profil</span>
+  </button>
+
+  <!-- Historique commandes -->
+  <div class="prof-section">
+    <h3 data-i18n="prof_orders">Historique des commandes</h3>
+    <div id="prof-orders-list">
+      <p style="color:var(--t3);font-size:0.85rem" data-i18n="prof_no_orders">Aucune commande pour le moment.</p>
+    </div>
+  </div>
 </div>
 
 <!-- ABOUT -->
@@ -1982,21 +2590,21 @@ body{
 <!-- BOTTOM NAV -->
 <nav id="bnav">
   <div class="ni on" onclick="navigate('home')" id="nav-home">
-    <i class="fa-solid fa-house"></i><span>Accueil</span>
+    <i class="fa-solid fa-house"></i><span data-i18n="nav_home">Accueil</span>
   </div>
   <div class="ni" onclick="navigate('wishlist')" id="nav-wishlist">
-    <i class="fa-solid fa-heart"></i><span>Wishlist</span>
+    <i class="fa-solid fa-heart"></i><span data-i18n="nav_wish">Wishlist</span>
     <span class="nbdg" id="nwb">0</span>
   </div>
   <div class="ni" onclick="navigate('cart')" id="nav-cart">
-    <i class="fa-solid fa-bag-shopping"></i><span>Panier</span>
+    <i class="fa-solid fa-bag-shopping"></i><span data-i18n="nav_cart">Panier</span>
     <span class="nbdg" id="ncb">0</span>
   </div>
-  <div class="ni" onclick="navigate('about')" id="nav-about">
-    <i class="fa-solid fa-user"></i><span>À propos</span>
+  <div class="ni" onclick="navigate('profile')" id="nav-profile">
+    <i class="fa-solid fa-user"></i><span data-i18n="nav_profile">Profil</span>
   </div>
   <div class="ni" onclick="navigate('contact')" id="nav-contact">
-    <i class="fa-solid fa-comment-dots"></i><span>Contact</span>
+    <i class="fa-solid fa-comment-dots"></i><span data-i18n="nav_contact">Contact</span>
   </div>
 </nav>
 
@@ -2021,7 +2629,7 @@ const VALID_IDS   = new Set(flatProds.map(p => p.id));
 // [SÉCURITÉ] Tailles autorisées
 const VALID_SIZES = new Set(['XS','S','M','L','XL','XXL','XXXL']);
 // [SÉCURITÉ] Catégories autorisées
-const VALID_CATS  = new Set(['slim','compression']);
+const VALID_CATS  = new Set(['slim','compression','maillot']);
 
 
 // ========== ÉTAT ==========
@@ -2138,9 +2746,10 @@ function prefersReducedMotion() {
 function updateCatBanners(fil) {
   const bs = document.getElementById('banner-slim');
   const bc = document.getElementById('banner-compression');
-  if (!bs || !bc) return;
-  bs.style.display = (fil === 'all' || fil === 'slim')        ? 'flex' : 'none';
-  bc.style.display = (fil === 'all' || fil === 'compression') ? 'flex' : 'none';
+  const bm = document.getElementById('banner-maillot');
+  if (bs) bs.style.display = (fil === 'all' || fil === 'slim')        ? 'flex' : 'none';
+  if (bc) bc.style.display = (fil === 'all' || fil === 'compression') ? 'flex' : 'none';
+  if (bm) bm.style.display = (fil === 'all' || fil === 'maillot')     ? 'flex' : 'none';
 }
 
 // ========== RENDU CATALOGUE ==========
@@ -2217,6 +2826,11 @@ function renderProds(list) {
   document.querySelectorAll('.pcard').forEach((c, i) => {
     c.style.animationDelay = (i * 0.03) + 's';
   });
+
+  // Attacher les listeners de notification stock bas
+  if (typeof attachLowStockListeners === 'function') {
+    setTimeout(attachLowStockListeners, 200);
+  }
 }
 
 function doFil() {
@@ -2304,7 +2918,7 @@ function openDet(id) {
   document.getElementById('det-con').innerHTML = `
     <!-- [IMAGES] Image principale du produit en page détail -->
     ${p.image
-      ? `<img class="det-med-img" src="${p.image}" alt="${p.name}" loading="lazy">`
+      ? `<img class="det-med-img" src="${p.image}" alt="${p.name}" loading="eager">`
       : `<div class="det-med" id="det-med-img" style="background:${p.color.h}; display:flex; align-items:center; justify-content:center;">
            <span style="background:rgba(0,0,0,0.6); color:white; padding:0.8rem 2rem; border-radius:3rem; font-size:1.2rem;">${p.color.n}</span>
          </div>`
@@ -2686,12 +3300,12 @@ function renderCart() {
     </div>
     <!-- [NOUVEAU] Deux options de commande -->
     <div class="checkout-options">
-      <p class="checkout-label"><i class="fa-solid fa-circle-check"></i> Choisissez votre mode de paiement</p>
+      <p class="checkout-label"><i class="fa-solid fa-circle-check"></i> <span data-i18n="checkout_choose">Choisissez votre mode de paiement</span></p>
       <button class="wave-btn" onclick="orderWave(${total})">
         <span class="wave-logo">W</span> Payer avec Wave
       </button>
-      <button class="wabtn" onclick="orderWA()">
-        <i class="fa-brands fa-whatsapp"></i> Commander via WhatsApp
+      <button class="wabtn" onclick="openDelivery()">
+        <i class="fa-brands fa-whatsapp"></i> <span data-i18n="btn_order_wa">Commander via WhatsApp</span>
       </button>
     </div>`;
 }
@@ -2841,11 +3455,16 @@ function renderWish() {
   }
 
   el.innerHTML = `
-    <!-- [NOUVEAU] Bouton parcourir -->
-    <button class="wish-browse-btn" onclick="navigate('home')">
-      <i class="fa-solid fa-magnifying-glass"></i> Parcourir les autres produits
-    </button>
-    <div class="wgrid" style="margin-top:1rem;">
+    <!-- Boutons d'action wishlist -->
+    <div style="display:flex;gap:0.6rem;flex-wrap:wrap;padding:0 1rem;margin-bottom:0.5rem">
+      <button class="wish-browse-btn" onclick="navigate('home')">
+        <i class="fa-solid fa-magnifying-glass"></i> <span data-i18n="wish_browse">Parcourir les autres produits</span>
+      </button>
+      <button class="wish-share-btn" onclick="shareWishlist()">
+        <i class="fa-solid fa-share-nodes"></i> <span data-i18n="wish_share">Partager ma wishlist</span>
+      </button>
+    </div>
+    <div class="wgrid" style="margin-top:0.5rem;padding:0 1rem">
       ${wl.map(p => `
         <div class="pcard" onclick="openDet('${p.id}')">
           <div class="pmed">
@@ -2873,7 +3492,7 @@ function renderWish() {
           </div>
         </div>
       `).join('')}
-    </div>`;
+    </div></div>`;
 }
 
 // ========== FLY TO CART ==========
@@ -3046,10 +3665,18 @@ function subNL() {
   // [SÉCURITÉ] Validation basique email côté client
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
   if (!emailRegex.test(val)) {
-    toast('Veuillez entrer un email valide');
+    toast(currentLang === 'en' ? 'Please enter a valid email' : 'Veuillez entrer un email valide');
     return;
   }
-  toast('Inscription confirmée ! ✓');
+  // Sauvegarder l'email dans le profil
+  clientProfile.email = val;
+  try { localStorage.setItem('mb_profile', JSON.stringify(clientProfile)); } catch(e) {}
+  // Sauvegarder dans la liste newsletter
+  try {
+    const nls = JSON.parse(localStorage.getItem('mb_newsletter') || '[]');
+    if (!nls.includes(val)) { nls.push(val); localStorage.setItem('mb_newsletter', JSON.stringify(nls)); }
+  } catch(e) {}
+  toast(currentLang === 'en' ? 'Subscribed! Check your code: MB10 ✓' : 'Inscription confirmée ! Votre code : MB10 ✓');
   if (el) el.value = '';
 }
 
@@ -3165,6 +3792,470 @@ function createRipple(event, button) {
   button.appendChild(circle);
   setTimeout(() => circle.remove(), 600);
 }
+
+// ================================================================
+// ===== NOUVELLES FONCTIONNALITÉS v4 =====
+// ================================================================
+
+// ================================================================
+//  INTERNATIONALISATION (i18n)
+//  Langues supportées : FR (défaut) et EN
+// ================================================================
+const TRANSLATIONS = {
+  fr: {
+    nav_home:'Accueil', nav_wish:'Wishlist', nav_cart:'Panier',
+    nav_profile:'Profil', nav_contact:'Contact',
+    wish_title:'Ma Wishlist', wish_browse:'Parcourir les produits',
+    wish_share:'Partager ma wishlist',
+    prof_title:'Mon Profil', prof_info:'Informations personnelles',
+    prof_name:'Nom complet', prof_phone:'Téléphone / WhatsApp',
+    prof_address:'Adresse habituelle', prof_email:'Email (newsletter)',
+    prof_favsize:'Taille favorite', prof_save:'Sauvegarder le profil',
+    prof_orders:'Historique des commandes',
+    prof_no_orders:'Aucune commande pour le moment.',
+    checkout_choose:'Choisissez votre mode de paiement',
+    btn_order_wa:'Commander via WhatsApp',
+    dlv_title:'Livraison & Commande',
+    dlv_name:'Votre nom complet', dlv_phone:'Téléphone / WhatsApp',
+    dlv_address:'Adresse de livraison', dlv_zone:'Zone de livraison',
+    dlv_wa_btn:'Confirmer sur WhatsApp',
+    dlv_subtotal:'Sous-total', dlv_shipping:'Livraison', dlv_total:'Total',
+    wp_sub:'Profitez de <strong>-10% sur votre première commande</strong>.<br>Mentionnez ce code lors de votre commande WhatsApp :',
+    wp_btn_shop:'Commencer mes achats', wp_btn_skip:'Plus tard',
+    last_stock:'Derniers articles disponibles !',
+    toast_copy:'Code copié !', toast_prof:'Profil sauvegardé ✓',
+    toast_wish_share:'Lien wishlist copié !',
+    toast_wish_empty:'Votre wishlist est vide',
+  },
+  en: {
+    nav_home:'Home', nav_wish:'Wishlist', nav_cart:'Cart',
+    nav_profile:'Profile', nav_contact:'Contact',
+    wish_title:'My Wishlist', wish_browse:'Browse products',
+    wish_share:'Share my wishlist',
+    prof_title:'My Profile', prof_info:'Personal information',
+    prof_name:'Full name', prof_phone:'Phone / WhatsApp',
+    prof_address:'Default address', prof_email:'Email (newsletter)',
+    prof_favsize:'Favourite size', prof_save:'Save profile',
+    prof_orders:'Order history',
+    prof_no_orders:'No orders yet.',
+    checkout_choose:'Choose your payment method',
+    btn_order_wa:'Order via WhatsApp',
+    dlv_title:'Delivery & Order',
+    dlv_name:'Your full name', dlv_phone:'Phone / WhatsApp',
+    dlv_address:'Delivery address', dlv_zone:'Delivery zone',
+    dlv_wa_btn:'Confirm on WhatsApp',
+    dlv_subtotal:'Subtotal', dlv_shipping:'Shipping', dlv_total:'Total',
+    wp_sub:'Enjoy <strong>-10% off your first order</strong>.<br>Mention this code when ordering on WhatsApp:',
+    wp_btn_shop:'Start shopping', wp_btn_skip:'Maybe later',
+    last_stock:'Last items available!',
+    toast_copy:'Code copied!', toast_prof:'Profile saved ✓',
+    toast_wish_share:'Wishlist link copied!',
+    toast_wish_empty:'Your wishlist is empty',
+  }
+};
+
+let currentLang = localStorage.getItem('mb_lang') || 'fr';
+let currentCurrency = localStorage.getItem('mb_currency') || 'CFA';
+
+// Taux de conversion (base CFA)
+const CURRENCY_RATES = { CFA: 1, EUR: 0.00152, USD: 0.00166 };
+const CURRENCY_SYMBOLS = { CFA: 'F CFA', EUR: '€', USD: '$' };
+
+function t(key) {
+  return (TRANSLATIONS[currentLang] && TRANSLATIONS[currentLang][key]) || TRANSLATIONS.fr[key] || key;
+}
+
+function setLang(lang) {
+  currentLang = lang;
+  try { localStorage.setItem('mb_lang', lang); } catch(e) {}
+  applyTranslations();
+  // Mettre à jour les textes dynamiques
+  renderProds(flatProds.filter(p => curFil === 'all' || p.cat === curFil));
+  if (curPg === 'cart') renderCart();
+  if (curPg === 'wishlist') renderWish();
+  if (curPg === 'profile') renderProfile();
+}
+
+function setCurrency(cur) {
+  currentCurrency = cur;
+  try { localStorage.setItem('mb_currency', cur); } catch(e) {}
+  if (curPg === 'cart') renderCart();
+  renderProds(flatProds.filter(p => curFil === 'all' || p.cat === curFil));
+}
+
+/** Formate un prix en CFA vers la devise courante */
+function fpCur(priceCFA) {
+  const rate = CURRENCY_RATES[currentCurrency] || 1;
+  const sym  = CURRENCY_SYMBOLS[currentCurrency] || 'F CFA';
+  const converted = priceCFA * rate;
+  if (currentCurrency === 'CFA') {
+    return Number(priceCFA).toLocaleString('fr-FR') + ' ' + sym;
+  }
+  return converted.toFixed(2) + ' ' + sym;
+}
+
+function applyTranslations() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const val = t(key);
+    if (val) el.innerHTML = val;
+  });
+  // Mettre à jour les selects
+  const ls = document.getElementById('lang-select');
+  if (ls) ls.value = currentLang;
+  const cs = document.getElementById('cur-select');
+  if (cs) cs.value = currentCurrency;
+}
+
+// ================================================================
+//  PROFIL CLIENT
+// ================================================================
+let clientProfile = { name:'', phone:'', address:'', email:'', favSize:'' };
+
+function loadProfile() {
+  try {
+    const raw = JSON.parse(localStorage.getItem('mb_profile') || '{}');
+    clientProfile = { name:'', phone:'', address:'', email:'', favSize:'', ...raw };
+  } catch(e) {}
+}
+
+function saveProfile() {
+  clientProfile.name    = document.getElementById('prof-name').value.trim();
+  clientProfile.phone   = document.getElementById('prof-phone').value.trim();
+  clientProfile.address = document.getElementById('prof-address').value.trim();
+  clientProfile.email   = document.getElementById('prof-email').value.trim();
+  try { localStorage.setItem('mb_profile', JSON.stringify(clientProfile)); } catch(e) {}
+  toast(t('toast_prof'));
+  updateAvatar();
+}
+
+function updateAvatar() {
+  const nameEl = document.getElementById('prof-name');
+  const av = document.getElementById('prof-avatar');
+  if (!av) return;
+  const name = nameEl ? nameEl.value.trim() : clientProfile.name;
+  av.textContent = name ? name.slice(0,2).toUpperCase() : '?';
+}
+
+function setFavSize(size) {
+  clientProfile.favSize = size;
+  try { localStorage.setItem('mb_profile', JSON.stringify(clientProfile)); } catch(e) {}
+  document.querySelectorAll('.fav-sz-btn').forEach(b => {
+    b.classList.toggle('on', b.dataset.size === size);
+  });
+}
+
+function renderProfile() {
+  // Remplir les champs
+  const fields = { 'prof-name': clientProfile.name, 'prof-phone': clientProfile.phone,
+                   'prof-address': clientProfile.address, 'prof-email': clientProfile.email };
+  Object.entries(fields).forEach(([id, val]) => {
+    const el = document.getElementById(id);
+    if (el) el.value = val || '';
+  });
+  updateAvatar();
+
+  // Tailles favorites
+  const szRow = document.getElementById('fav-size-row');
+  if (szRow) {
+    const sizes = ['XS','S','M','L','XL','XXL','XXXL'];
+    szRow.innerHTML = sizes.map(s =>
+      `<button class="fav-sz-btn ${clientProfile.favSize === s ? 'on' : ''}" data-size="${s}" onclick="setFavSize('${s}')">${s}</button>`
+    ).join('');
+  }
+
+  // Historique commandes
+  const histEl = document.getElementById('prof-orders-list');
+  if (histEl) {
+    if (!orders.length) {
+      histEl.innerHTML = `<p style="color:var(--t3);font-size:.85rem">${t('prof_no_orders')}</p>`;
+    } else {
+      histEl.innerHTML = [...orders].reverse().slice(0,10).map(o => {
+        const ref = 'MB-' + String(o.id).slice(-6).toUpperCase();
+        return `<div class="order-hist-item">
+          <div class="order-hist-ref">#${ref}</div>
+          <div class="order-hist-date">${o.date}</div>
+          <div class="order-hist-total">${fpCur(o.total)}</div>
+          <span class="order-hist-status"><i class="fa-solid fa-circle-check"></i> Envoyée</span>
+        </div>`;
+      }).join('');
+    }
+  }
+
+  // Appliquer traductions
+  applyTranslations();
+}
+
+// ================================================================
+//  FORMULAIRE DE LIVRAISON avec frais de port calculés
+// ================================================================
+const DELIVERY_ZONES = [
+  { id:'dakar-centre',  name:'Dakar Centre',     price:3500, delay:'1–2h',  nameEn:'Dakar Centre'    },
+  { id:'dakar-banlieue',name:'Dakar Banlieue',   price:2500, delay:'2–4h',  nameEn:'Dakar Banlieue'   },
+  { id:'keur-massar',   name:'Keur Massar',      price:1500, delay:'1h',nameEn:'Keur Massar'     },
+  { id:'saint-louis',   name:'Saint-Louis',      price:2000, delay:'1j',  nameEn:'Saint-Louis'     },
+  { id:'autres',        name:'Autres régions',   price:5000, delay:'1–2j',  nameEn:'Other regions'   },
+  { id:'pickup',        name:'Retrait en boutique', price:0, delay:'Disponible', nameEn:'In-store pickup' },
+];
+
+let selectedZone = DELIVERY_ZONES[0];
+
+function openDelivery() {
+  if (!cart.length) return;
+  // Pré-remplir avec le profil si disponible
+  const nameEl = document.getElementById('dlv-name');
+  const phoneEl = document.getElementById('dlv-phone');
+  const addrEl  = document.getElementById('dlv-address');
+  if (nameEl && clientProfile.name)    nameEl.value = clientProfile.name;
+  if (phoneEl && clientProfile.phone)  phoneEl.value = clientProfile.phone;
+  if (addrEl && clientProfile.address) addrEl.value = clientProfile.address;
+
+  renderDeliveryZones();
+  updateDeliverySummary();
+  document.getElementById('delivery-modal').classList.add('on');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDelivery() {
+  document.getElementById('delivery-modal').classList.remove('on');
+  document.body.style.overflow = '';
+}
+
+function renderDeliveryZones() {
+  const container = document.getElementById('dlv-zones');
+  if (!container) return;
+  container.innerHTML = DELIVERY_ZONES.map(z => `
+    <div class="dlv-shipping-card ${z.id === selectedZone.id ? 'on' : ''}"
+         onclick="selectZone('${z.id}')">
+      <div>
+        <div class="zone-name">${currentLang === 'en' ? z.nameEn : z.name}</div>
+        <div class="zone-delay"><i class="fa-solid fa-clock"></i> ${z.delay}</div>
+      </div>
+      <div class="zone-price">${z.price === 0 ? (currentLang === 'en' ? 'Free' : 'Gratuit') : fpCur(z.price)}</div>
+    </div>
+  `).join('');
+}
+
+function selectZone(zoneId) {
+  selectedZone = DELIVERY_ZONES.find(z => z.id === zoneId) || DELIVERY_ZONES[0];
+  renderDeliveryZones();
+  updateDeliverySummary();
+}
+
+function updateDeliverySummary() {
+  const el = document.getElementById('dlv-summary');
+  if (!el) return;
+  const slimItems = cart.filter(c => c.cat === 'slim');
+  const usePromo = slimItems.reduce((s, c) => s + c.qty, 0) >= SLIM_PQ;
+  let subtotal = 0;
+  cart.forEach(c => {
+    const p = flatProds.find(x => x.id === c.id);
+    const price = (c.cat === 'slim' && usePromo && p && p.promoPrice) ? p.promoPrice : (p ? p.basePrice : c.basePrice);
+    subtotal += price * c.qty;
+  });
+  const shipping = selectedZone.price;
+  const total = subtotal + shipping;
+  el.innerHTML = `
+    <div class="dlv-summary-row"><span>${t('dlv_subtotal')}</span><span>${fpCur(subtotal)}</span></div>
+    <div class="dlv-summary-row"><span>${t('dlv_shipping')} (${currentLang === 'en' ? selectedZone.nameEn : selectedZone.name})</span><span>${shipping === 0 ? (currentLang === 'en' ? 'Free' : 'Gratuit') : fpCur(shipping)}</span></div>
+    <div class="dlv-summary-row total"><span>${t('dlv_total')}</span><span>${fpCur(total)}</span></div>
+  `;
+}
+
+function sendDeliveryWA() {
+  const name    = document.getElementById('dlv-name').value.trim();
+  const phone   = document.getElementById('dlv-phone').value.trim();
+  const address = document.getElementById('dlv-address').value.trim();
+  if (!name || !address) {
+    toast(currentLang === 'en' ? 'Please fill name & address' : 'Veuillez remplir nom et adresse');
+    return;
+  }
+
+  const slimItems = cart.filter(c => c.cat === 'slim');
+  const usePromo = slimItems.reduce((s, c) => s + c.qty, 0) >= SLIM_PQ;
+  let subtotal = 0;
+  const lines = cart.map(c => {
+    const p = flatProds.find(x => x.id === c.id);
+    const price = (c.cat === 'slim' && usePromo && p && p.promoPrice) ? p.promoPrice : (p ? p.basePrice : c.basePrice);
+    const lt = price * c.qty;
+    subtotal += lt;
+    return `• ${c.name} (${c.color.n}, ${c.size}) ×${c.qty} = ${fpCur(lt)}`;
+  }).join('\n');
+
+  const shipping = selectedZone.price;
+  const total = subtotal + shipping;
+  const zoneName = currentLang === 'en' ? selectedZone.nameEn : selectedZone.name;
+  const ref = 'MB-' + Date.now().toString().slice(-6).toUpperCase();
+
+  const msg = `🛍️ *NOUVELLE COMMANDE — Moussa Business*\n📌 Réf : *${ref}*\n\n👤 *Client :* ${name}${phone ? '\n📞 ' + phone : ''}\n📍 *Adresse :* ${address}\n🚚 *Zone :* ${zoneName} (${shipping === 0 ? 'Livraison gratuite' : fpCur(shipping)})\n\n📦 *Articles :*\n${lines}${usePromo ? '\n🏷️ Promo Slim Fit (dès 4 pcs) appliquée' : ''}\n\n━━━━━━━━━━━━━━━\n💰 *Sous-total :* ${fpCur(subtotal)}\n🚚 *Livraison :* ${shipping === 0 ? 'Gratuite' : fpCur(shipping)}\n💵 *TOTAL : ${fpCur(total)}*\n━━━━━━━━━━━━━━━\n\nBonjour Moussa ! Je souhaite confirmer cette commande. Merci 🙏`;
+
+  // Sauvegarder commande avec référence
+  const order = {
+    id: Date.now(), ref,
+    date: new Date().toLocaleString('fr-FR'),
+    items: cart.map(c => ({ ...c })),
+    subtotal, shipping, total,
+    client: { name, phone, address },
+    zone: selectedZone.id
+  };
+  orders.push(order);
+  try { localStorage.setItem('orders', JSON.stringify(orders)); } catch(e) {}
+
+  // Vider panier et fermer
+  cart = [];
+  saveCart();
+  updBdg();
+  closeDelivery();
+
+  // Ouvrir WhatsApp
+  window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`, '_blank');
+  showOrderModal();
+}
+
+// ================================================================
+//  POP-UP DE BIENVENUE
+// ================================================================
+function showWelcomePopup() {
+  const seen = localStorage.getItem('mb_welcome_seen');
+  if (seen) return; // Ne montrer qu'une seule fois
+  setTimeout(() => {
+    document.getElementById('welcome-popup').classList.add('on');
+  }, 1800);
+}
+
+function closeWelcomePopup(startShopping) {
+  document.getElementById('welcome-popup').classList.remove('on');
+  try { localStorage.setItem('mb_welcome_seen', '1'); } catch(e) {}
+  if (startShopping) navigate('home');
+}
+
+function copyPromoCode() {
+  const code = document.getElementById('wp-promo-code').textContent.trim();
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(code).then(() => toast(t('toast_copy')));
+  } else {
+    toast(t('toast_copy'));
+  }
+}
+
+// ================================================================
+//  NOTIFICATION STOCK BAS (≤ 3 articles)
+// ================================================================
+let lastStockTimeout = null;
+
+function showLowStockNotif(productName) {
+  const notif = document.getElementById('last-stock-notif');
+  const msg   = document.getElementById('last-stock-msg');
+  if (!notif) return;
+  if (msg) msg.textContent = `⚠️ ${currentLang === 'en' ? 'Only a few left' : 'Derniers'} — ${productName}`;
+  notif.classList.add('on');
+  if (lastStockTimeout) clearTimeout(lastStockTimeout);
+  lastStockTimeout = setTimeout(() => notif.classList.remove('on'), 3500);
+}
+
+// Surveiller les produits avec stock ≤ 3 et afficher la notification lors du survol
+function attachLowStockListeners() {
+  document.querySelectorAll('.pcard').forEach(card => {
+    const pid = card.dataset.pid;
+    if (!pid) return;
+    const { qty, status } = StockManager.getStatus(pid);
+    if (status === 'low' && qty > 0) {
+      card.addEventListener('mouseenter', () => {
+        const p = flatProds.find(x => x.id === pid);
+        if (p) showLowStockNotif(p.name);
+      }, { once: false });
+    }
+  });
+}
+
+// ================================================================
+//  WISHLIST PARTAGEABLE PAR LIEN
+// ================================================================
+function shareWishlist() {
+  if (!wish.length) { toast(t('toast_wish_empty')); return; }
+  // Encode les IDs de la wishlist dans l'URL (fragment hash)
+  const encoded = btoa(JSON.stringify(wish));
+  const url = window.location.href.split('#')[0] + '#wl=' + encoded;
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(url).then(() => toast(t('toast_wish_share')));
+  } else {
+    toast(t('toast_wish_share'));
+  }
+}
+
+function loadWishlistFromURL() {
+  const hash = window.location.hash;
+  if (!hash.startsWith('#wl=')) return;
+  try {
+    const decoded = JSON.parse(atob(hash.slice(4)));
+    if (!Array.isArray(decoded)) return;
+    // Fusionner avec la wishlist existante
+    const valid = decoded.filter(id => isValidId(id));
+    valid.forEach(id => { if (!wish.includes(id)) wish.push(id); });
+    if (valid.length) {
+      try { localStorage.setItem('wish', JSON.stringify(wish)); } catch(e) {}
+      updBdg();
+      toast(currentLang === 'en' ? `Wishlist loaded (${valid.length} items)` : `Wishlist chargée (${valid.length} article${valid.length > 1 ? 's' : ''})`);
+      window.history.replaceState(null, '', window.location.pathname);
+    }
+  } catch(e) {}
+}
+
+// ================================================================
+//  OVERRIDE fp() pour utiliser la devise courante
+// ================================================================
+// On redéfinit fp pour qu'elle utilise fpCur partout
+// (fp est utilisée dans le code existant)
+const _origFp = fp;
+// eslint-disable-next-line no-global-assign
+fp = function(price) { return fpCur(price); };
+
+// ================================================================
+//  OVERRIDE navigate() pour ajouter la page 'profile'
+// ================================================================
+const _origNavigate = navigate;
+navigate = function(pg) {
+  const EXTRA_PAGES = ['profile'];
+  if (EXTRA_PAGES.includes(pg)) {
+    document.querySelectorAll('.pg').forEach(p => p.classList.remove('act'));
+    document.querySelectorAll('.ni').forEach(n => n.classList.remove('on'));
+    document.getElementById('det').style.display = 'none';
+    const pageEl = document.getElementById(pg + '-pg');
+    if (pageEl) pageEl.classList.add('act');
+    const navEl = document.getElementById('nav-' + pg);
+    if (navEl) navEl.classList.add('on');
+    prevPg = curPg;
+    curPg = pg;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (pg === 'profile') renderProfile();
+    return;
+  }
+  _origNavigate(pg);
+};
+
+// ================================================================
+//  INIT DES NOUVELLES FONCTIONNALITÉS
+// ================================================================
+window.addEventListener('load', () => {
+  // (Le load principal est déjà défini plus haut — on ajoute ici
+  //  les inits des nouvelles fonctionnalités)
+  loadProfile();
+  loadWishlistFromURL();
+  applyTranslations();
+  showWelcomePopup();
+
+  // Attacher listeners stock bas après rendu initial
+  setTimeout(attachLowStockListeners, 900);
+});
+
+// Fermer le modal livraison en cliquant sur l'overlay
+document.addEventListener('DOMContentLoaded', () => {
+  const dlv = document.getElementById('delivery-modal');
+  if (dlv) dlv.addEventListener('click', e => { if (e.target === dlv) closeDelivery(); });
+  // Fermer popup bienvenue en cliquant en dehors
+  const wp = document.getElementById('welcome-popup');
+  if (wp) wp.addEventListener('click', e => { if (e.target === wp) closeWelcomePopup(false); });
+});
 </script>
 </body>
 </html>

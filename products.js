@@ -75,6 +75,28 @@ function getProductImage(cat, colorName) {
     'compression:grey':       'images/compressions/compression grey.webp',
     'compression:vert mili':  'images/compressions/compression vert mili.webp'
 
+    ,
+    // ── Maillots ──
+    'maillot:psg domicile':       'images/maillots/maillot paris.webp',
+    'maillot:psg extérieur':      'images/maillots/maillot paris ext.webp',
+    'maillot:barça domicile':     'images/maillots/maillot barca.webp',
+    'maillot:barça extérieur':    'images/maillots/maillot barca ext.webp',
+    'maillot:real madrid dom.':   'images/maillots/maillot real.webp',
+    'maillot:real madrid ext.':   'images/maillots/maillot real ext.webp',
+    'maillot:liverpool dom.':     'images/maillots/maillot liv.webp',
+    'maillot:liverpool ext.':     'images/maillots/maillot liv ext.webp',
+    'maillot:manchester utd':     'images/maillots/maillot united.webp',
+    'maillot:man utd third':      'images/maillots/maillot united third.webp',
+    'maillot:man city':           'images/maillots/maillot city.webp',
+    'maillot:chelsea dom.':       'images/maillots/maillot chelsea .webp',
+    'maillot:chelsea ext.':       'images/maillots/maillot chelsea ext.webp',
+    'maillot:bayern dom.':        'images/maillots/maillot bayer.webp',
+    'maillot:bayern ext.':        'images/maillots/maillot bayern ext.webp',
+    'maillot:marseille dom.':     'images/maillots/maillot marseille.webp',
+    'maillot:marseille ext.':     'images/maillots/maillot marseille ext.webp',
+    'maillot:aston villa':        'images/maillots/maillot aston.webp',
+    'maillot:astou villa sp.':    'images/maillots/maillot astou villa.webp',
+    'maillot:stoke city':         'images/maillots/maillot stok city.webp',
   };
 
   const key = `${cat}:${colorName.toLowerCase()}`;
@@ -132,7 +154,34 @@ const COMP_COLORS = [
 ];
 
 // ================================================================
-//  3. MODÈLES DE BASE
+//  3. COULEURS MAILLOTS DE FOOTBALL
+//     21 maillots disponibles — chaque "couleur" = un club/version
+// ================================================================
+const MAILLOT_COLORS = [
+  { n: 'PSG Domicile',      h: '#1a1a5e' },
+  { n: 'PSG Extérieur',     h: '#d4af37' },
+  { n: 'Barça Domicile',    h: '#a50044' },
+  { n: 'Barça Extérieur',   h: '#edbb00' },
+  { n: 'Real Madrid Dom.',  h: '#f5f5f5' },
+  { n: 'Real Madrid Ext.',  h: '#2e4057' },
+  { n: 'Liverpool Dom.',    h: '#c8102e' },
+  { n: 'Liverpool Ext.',    h: '#006040' },
+  { n: 'Manchester Utd',    h: '#da291c' },
+  { n: 'Man Utd Third',     h: '#1c2b4a' },
+  { n: 'Man City',          h: '#6cabdd' },
+  { n: 'Chelsea Dom.',      h: '#034694' },
+  { n: 'Chelsea Ext.',      h: '#fff200' },
+  { n: 'Bayern Dom.',       h: '#dc052d' },
+  { n: 'Bayern Ext.',       h: '#0066b2' },
+  { n: 'Marseille Dom.',    h: '#009ac7' },
+  { n: 'Marseille Ext.',    h: '#1a1a1a' },
+  { n: 'Aston Villa',       h: '#670e36' },
+  { n: 'Astou Villa Sp.',   h: '#95bfe5' },
+  { n: 'Stoke City',        h: '#e03a3e' },
+].map(c => ({ ...c, sizes: ['M', 'L', 'XL', 'XXL'] }));
+
+// ================================================================
+//  4. MODÈLES DE BASE
 //     Chaque modèle sera décliné en autant de produits que de couleurs
 // ================================================================
 const BASE_MODELS = [
@@ -155,6 +204,16 @@ const BASE_MODELS = [
     promoPrice: null,
     promoQty:   null,
     colors:     COMP_COLORS
+  },
+  {
+    idBase:     3,
+    name:       'Maillot Football',
+    cat:        'maillot',
+    desc:       'Réplica premium des plus grands clubs européens. Tissu polyester respirant, broderies officielles, coupe authentique.',
+    basePrice:  8000,
+    promoPrice: null,
+    promoQty:   null,
+    colors:     MAILLOT_COLORS
   }
 ];
 
@@ -202,7 +261,30 @@ const STOCK_DEFAULTS = {
   '2-6':  10,  // Bordeaux    ← rupture
   '2-7':  10,  // Anthracite
   '2-8':  10,  // Grey
-  '2-9':  10   // Vert Mili
+  '2-9':  10,  // Vert Mili
+
+  // ── Maillots (idBase 3, couleurs 0→20) ──
+  '3-0':  5,   // PSG Domicile
+  '3-1':  5,   // PSG Extérieur
+  '3-2':  5,   // Barça Domicile
+  '3-3':  5,   // Barça Extérieur
+  '3-4':  5,   // Real Madrid Dom.
+  '3-5':  5,   // Real Madrid Ext.
+  '3-6':  5,   // Liverpool Dom.
+  '3-7':  5,   // Liverpool Ext.
+  '3-8':  5,   // Manchester Utd
+  '3-9':  5,   // Man Utd Third
+  '3-10': 5,   // Man City
+  '3-11': 5,   // Chelsea Dom.
+  '3-12': 5,   // Chelsea Ext.
+  '3-13': 5,   // Bayern Dom.
+  '3-14': 5,   // Bayern Ext.
+  '3-15': 5,   // Marseille Dom.
+  '3-16': 5,   // Marseille Ext.
+  '3-17': 5,   // Aston Villa
+  '3-18': 5,   // Astou Villa Sp.
+  '3-19': 5,   // Stoke City
+  '3-20': 3    // Blouson SN
 };
 
 // ================================================================
@@ -251,8 +333,8 @@ BASE_MODELS.forEach(model => {
  * Clé localStorage utilisée pour stocker les stocks.
  * Incrémenter MB_STOCK_VERSION force une réinitialisation complète.
  */
-const MB_STOCK_KEY     = 'mb_stock_v1';
-const MB_STOCK_VERSION = 1; // ← incrémenter ici pour réinitialiser le stock
+const MB_STOCK_KEY     = 'mb_stock_v2';
+const MB_STOCK_VERSION = 2; // ← incrémenté pour forcer la réinitialisation avec les maillots
 
 const StockManager = {
 
