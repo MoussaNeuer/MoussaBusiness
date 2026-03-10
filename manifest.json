@@ -1,9 +1,89 @@
 {
   "name": "Moussa Business",
-  "short_name": "Moussa",
-  "start_url": "/",
+  "short_name": "Moussa·",
+  "description": "Boutique de t-shirts Slim Fit, Compression & Maillots de foot premium au Sénégal",
+  "start_url": "/index.html?source=pwa",
+  "scope": "/",
   "display": "standalone",
-  "background_color": "#E8391A",
+  "orientation": "portrait-primary",
+  "background_color": "#0D0D0D",
   "theme_color": "#E8391A",
-  "icons": [{"src":"icon.png","sizes":"192x192","type":"image/png"}]
+  "lang": "fr",
+  "categories": ["shopping", "lifestyle"],
+  "icons": [
+    {
+      "src": "icons/icon-72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "images/slim fits/slim blanc.webp",
+      "sizes": "768x768",
+      "type": "image/webp",
+      "form_factor": "narrow",
+      "label": "Catalogue Moussa Business"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Catalogue",
+      "short_name": "Catalogue",
+      "description": "Voir tous les produits",
+      "url": "/index.html?page=home",
+      "icons": [{ "src": "icons/icon-96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Panier",
+      "short_name": "Panier",
+      "description": "Voir mon panier",
+      "url": "/index.html?page=cart",
+      "icons": [{ "src": "icons/icon-96.png", "sizes": "96x96" }]
+    }
+  ],
+  "prefer_related_applications": false
 }
