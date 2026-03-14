@@ -4142,61 +4142,57 @@
         <!-- Fond gradient animé -->
         <div class="hero-bg-pattern"></div>
         <!-- Badge -->
-        <div class="h-tag">
+        <div class="h-tag" id="h-tag">
           <i class="fa-solid fa-fire"></i> Nouvelle Collection 2025
         </div>
         <!-- Titre principal -->
-        <div class="h-title">
+        <div class="h-title" id="hero-title-wrap">
           PERFORMANCE<br /><span class="h-title-accent">&amp; STYLE</span>
         </div>
         <!-- Sous-titre -->
-        <div class="h-sub">
+        <div class="h-sub" id="hero-sub">
           T-shirts Slim Fit, Compression &amp; Maillots de foot premium
         </div>
         <!-- Stats rapides -->
         <div class="h-stats">
           <div class="h-stat">
             <span class="h-stat-num">30+</span>
-            <span class="h-stat-lbl">Couleurs</span>
+            <span class="h-stat-lbl" id="hero-stat-colors">Couleurs</span>
           </div>
           <div class="h-stat-sep"></div>
           <div class="h-stat">
             <span class="h-stat-num">3</span>
-            <span class="h-stat-lbl">Collections</span>
+            <span class="h-stat-lbl" id="hero-stat-collections">Collections</span>
           </div>
           <div class="h-stat-sep"></div>
           <div class="h-stat">
             <span class="h-stat-num">★ 4.9</span>
-            <span class="h-stat-lbl">Satisfaction</span>
+            <span class="h-stat-lbl" id="hero-stat-rating">Satisfaction</span>
           </div>
         </div>
         <!-- Boutons action -->
         <div class="h-acts">
           <button
-            class="hbtn"
-            onclick="
-              document
-                .getElementById('ca')
-                .scrollIntoView({ behavior: 'smooth' })
-            "
+            class="hbtn" id="hero-btn-buy"
+            onclick="document.getElementById('ca').scrollIntoView({ behavior: 'smooth' })"
           >
             <i class="fa-solid fa-bag-shopping"></i> Acheter maintenant
           </button>
-          <button class="hbtn ghost" onclick="navigate('contact')">
+          <button class="hbtn ghost" id="hero-btn-contact" onclick="navigate('contact')">
             <i class="fa-brands fa-whatsapp"></i> Nous contacter
           </button>
         </div>
       </div>
       <div class="promo-strip">
         <i class="fa-solid fa-tags"></i>
-        <p>
+        <p id="promo-strip-text">
           <span>Offre Slim Fit :</span> À partir de 4 t-shirts → 2 500 F CFA /
           unité ! · <span>Maillots de foot</span> disponibles
         </p>
       </div>
       <div class="stl" id="ca">
-        <h2>Catalogue <span id="productCount" class="product-count"></span></h2>
-        <a>Voir tout</a>
+        <h2 id="cat-section-title">Catalogue <span id="productCount" class="product-count"></span></h2>
+        <a id="cat-see-all">Voir tout</a>
       </div>
 
       <!-- [NOUVEAU] Présentation catégorie Slim Fit -->
@@ -4304,11 +4300,12 @@
               letter-spacing: 1.5px;
             "
           >
-            Sélection <span style="color: var(--red)">du moment</span>
+            <span id="snk-selection">Sélection</span> <span style="color: var(--red)" id="snk-du-moment">du moment</span>
           </h2>
           <a
             onclick="navigate('shop')"
             href="#"
+            id="snk-see-all"
             style="
               font-size: 13px;
               font-weight: 600;
@@ -4327,54 +4324,16 @@
         <div id="sneakersNewGrid" style="display: none"></div>
 
         <!-- CTA -->
-        <div
-          style="
-            background: linear-gradient(135deg, #e8391a, #b02a12);
-            border-radius: 20px;
-            padding: 32px 24px;
-            text-align: center;
-            margin-bottom: 32px;
-          "
-        >
-          <h3
-            style="
-              font-family: &quot;Bebas Neue&quot;, sans-serif;
-              font-size: 28px;
-              letter-spacing: 2px;
-              color: #fff;
-              margin-bottom: 8px;
-            "
-          >
+        <div style="background:linear-gradient(135deg,#e8391a,#b02a12);border-radius:20px;padding:32px 24px;text-align:center;margin-bottom:32px;">
+          <h3 id="snk-cta-title" style="font-family:&quot;Bebas Neue&quot;,sans-serif;font-size:28px;letter-spacing:2px;color:#fff;margin-bottom:8px;">
             TOUTE LA COLLECTION
           </h3>
-          <p
-            style="
-              color: rgba(255, 255, 255, 0.8);
-              font-size: 14px;
-              margin-bottom: 20px;
-            "
-          >
-            Nike, Adidas, Asics, New Balance, Crocs & plus — livraison sur Dakar
+          <p id="snk-cta-sub" style="color:rgba(255,255,255,.8);font-size:14px;margin-bottom:20px;">
+            Nike, Adidas, Asics, New Balance, Crocs &amp; plus — livraison sur Dakar
           </p>
-          <a
-            onclick="navigate('shop')"
-            href="#"
-            style="
-              display: inline-flex;
-              align-items: center;
-              gap: 10px;
-              padding: 14px 28px;
-              background: #fff;
-              color: #e8391a;
-              border-radius: 12px;
-              font-weight: 700;
-              font-size: 15px;
-              text-decoration: none;
-              transition: opacity 0.2s;
-            "
-            onmouseover="this.style.opacity = '.9'"
-            onmouseout="this.style.opacity = '1'"
-          >
+          <a onclick="navigate('shop')" href="#" id="snk-cta-btn"
+            style="display:inline-flex;align-items:center;gap:10px;padding:14px 28px;background:#fff;color:#e8391a;border-radius:12px;font-weight:700;font-size:15px;text-decoration:none;transition:opacity .2s"
+            onmouseover="this.style.opacity='.9'" onmouseout="this.style.opacity='1'">
             <i class="fa-solid fa-store"></i> Voir toute la boutique
           </a>
         </div>
@@ -4384,112 +4343,56 @@
       <!-- FOOTER -->
       <footer class="ft">
         <div class="ft-logo">MOUSSA<b>.</b>BUSINESS</div>
-        <div class="ft-sub">
+        <div class="ft-sub" id="ft-sub">
           T-shirts Slim Fit &amp; Compression premium · Dakar
         </div>
         <div class="ft-soc">
-          <a
-            class="fsi"
-            href="https://wa.me/221777101383"
-            target="_blank"
-            aria-label="WhatsApp"
-          >
+          <a class="fsi" href="https://wa.me/221777101383" target="_blank" aria-label="WhatsApp">
             <i class="fa-brands fa-whatsapp" style="color: #25d366"></i>
           </a>
-          <a
-            class="fsi"
-            href="https://instagram.com/ws_moussa"
-            target="_blank"
-            aria-label="Instagram"
-          >
+          <a class="fsi" href="https://instagram.com/ws_moussa" target="_blank" aria-label="Instagram">
             <i class="fa-brands fa-instagram" style="color: #e8391a"></i>
           </a>
-          <a
-            class="fsi"
-            href="https://snapchat.com/add/moussaneuer01"
-            target="_blank"
-            aria-label="Snapchat"
-          >
+          <a class="fsi" href="https://snapchat.com/add/moussaneuer01" target="_blank" aria-label="Snapchat">
             <i class="fa-brands fa-snapchat" style="color: #e0d800"></i>
           </a>
         </div>
         <div class="ft-lks">
-          <a class="flk" onclick="navigate('home')"
-            ><i class="fa-solid fa-house"></i> Accueil</a
-          >
-          <a class="flk" onclick="navigate('about')"
-            ><i class="fa-solid fa-user"></i> À propos</a
-          >
-          <a class="flk" onclick="navigate('cart')"
-            ><i class="fa-solid fa-bag-shopping"></i> Panier</a
-          >
-          <a class="flk" onclick="navigate('contact')"
-            ><i class="fa-solid fa-envelope"></i> Contact</a
-          >
-          <a
-            class="flk"
-            onclick="
-              setFil('slim', document.querySelectorAll('.fb')[1]);
-              navigate('home');
-            "
-            ><i class="fa-solid fa-shirt"></i> Slim Fit</a
-          >
-          <a
-            class="flk"
-            onclick="
-              setFil('compression', document.querySelectorAll('.fb')[2]);
-              navigate('home');
-            "
-            ><i class="fa-solid fa-dumbbell"></i> Compression</a
-          >
-          <!-- [NOUVEAU] Lien vers la page CVG -->
-          <a class="flk" onclick="navigate('cvg')" style="color: var(--red)"
-            ><i class="fa-solid fa-scale-balanced"></i> CVG</a
-          >
+          <a class="flk" onclick="navigate('home')"><i class="fa-solid fa-house"></i> <span id="ft-link-home">Accueil</span></a>
+          <a class="flk" onclick="navigate('about')"><i class="fa-solid fa-user"></i> <span id="ft-link-about">À propos</span></a>
+          <a class="flk" onclick="navigate('cart')"><i class="fa-solid fa-bag-shopping"></i> <span id="ft-link-cart">Panier</span></a>
+          <a class="flk" onclick="navigate('contact')"><i class="fa-solid fa-envelope"></i> <span id="ft-link-contact">Contact</span></a>
+          <a class="flk" onclick="setFil('slim',document.querySelectorAll('.fb')[1]);navigate('home')"><i class="fa-solid fa-shirt"></i> <span id="ft-link-slim">Slim Fit</span></a>
+          <a class="flk" onclick="setFil('compression',document.querySelectorAll('.fb')[2]);navigate('home')"><i class="fa-solid fa-dumbbell"></i> <span id="ft-link-compression">Compression</span></a>
+          <a class="flk" onclick="navigate('cvg')" style="color:var(--red)"><i class="fa-solid fa-scale-balanced"></i> <span id="ft-link-cvg">CVG</span></a>
         </div>
-        <div class="ft-nl">
-          <h3><i class="fa-solid fa-paper-plane"></i> Newsletter</h3>
-          <p>Offres exclusives en avant-première</p>
+        <div class="ft-nl" id="ft-nl-section">
+          <h3 id="ft-newsletter-title"><i class="fa-solid fa-paper-plane"></i> Newsletter</h3>
+          <p id="ft-newsletter-sub">Offres exclusives en avant-première</p>
           <div class="nl-f">
-            <input
-              class="nl-in"
-              type="email"
-              id="nle"
-              placeholder="votre@gmail.com"
-            />
-            <button class="nl-btn" onclick="subNL()">OK</button>
+            <input class="nl-in" type="email" id="nle" placeholder="votre@gmail.com" />
+            <button class="nl-btn" id="ft-newsletter-btn" onclick="subNL()">OK</button>
           </div>
-          <div class="nl-incentive">
-            <i class="fa-solid fa-gift"></i> Recevez un code promo à
-            l'inscription
+          <div class="nl-incentive" id="ft-newsletter-incentive">
+            <i class="fa-solid fa-gift"></i> Recevez un code promo à l'inscription
           </div>
         </div>
-        <!-- [NOUVEAU] Sélecteur langue & devise dans le footer -->
+        <!-- Sélecteur langue & devise -->
         <div class="ft-lang-cur">
-          <div class="ft-lc-title">
+          <div class="ft-lc-title" id="ft-lang-title">
             <i class="fa-solid fa-globe"></i> Langue &amp; Devise
           </div>
           <div class="ft-lc-row">
             <div class="ft-lc-group">
-              <label class="ft-lc-label">Langue</label>
-              <select
-                class="ft-lc-select"
-                id="lang-select"
-                onchange="setLang(this.value)"
-                aria-label="Langue"
-              >
+              <label class="ft-lc-label" id="ft-lang-lbl">Langue</label>
+              <select class="ft-lc-select" id="lang-select" onchange="setLang(this.value)" aria-label="Langue">
                 <option value="fr">🇫🇷 Français</option>
                 <option value="en">🇬🇧 English</option>
               </select>
             </div>
             <div class="ft-lc-group">
-              <label class="ft-lc-label">Devise</label>
-              <select
-                class="ft-lc-select"
-                id="cur-select"
-                onchange="setCurrency(this.value)"
-                aria-label="Devise"
-              >
+              <label class="ft-lc-label" id="ft-cur-lbl">Devise</label>
+              <select class="ft-lc-select" id="cur-select" onchange="setCurrency(this.value)" aria-label="Devise">
                 <option value="CFA">🇸🇳 F CFA</option>
                 <option value="EUR">🇪🇺 Euro (€)</option>
                 <option value="USD">🇺🇸 Dollar ($)</option>
@@ -4497,7 +4400,7 @@
             </div>
           </div>
         </div>
-        <div class="ft-copy">
+        <div class="ft-copy" id="ft-copy">
           © 2026 Moussa Business · Développé par Moussa LO
         </div>
       </footer>
@@ -4610,7 +4513,7 @@
 
     <div id="cart-pg" class="pg">
       <div class="pgh">
-        <h1><i class="fa-solid fa-bag-shopping"></i> Mon Panier</h1>
+        <h1><i class="fa-solid fa-bag-shopping"></i> <span id="cart-title">Mon Panier</span></h1>
         <p id="cct">0 article</p>
       </div>
       <div id="cart-con"></div>
@@ -4829,8 +4732,8 @@
     <div id="contact-pg" class="pg">
       <div class="ct-inner">
         <div class="ct-hero">
-          <h2>NOUS CONTACTER</h2>
-          <p>Disponible 7j/7 pour vos commandes &amp; questions</p>
+          <h2 id="contact-title">NOUS CONTACTER</h2>
+          <p id="contact-sub">Disponible 7j/7 pour vos commandes &amp; questions</p>
         </div>
         <div class="cl">
           <a class="cla" href="https://wa.me/221777101383" target="_blank">
@@ -5028,20 +4931,14 @@
         <i class="fa-solid fa-bag-shopping"></i>
       </div>
       <div class="pwa-banner-body">
-        <div class="pwa-banner-title">Moussa Business</div>
-        <div class="pwa-banner-sub">Installer l'app · Accès instantané</div>
+        <div class="pwa-banner-title" id="pwa-banner-title">Moussa Business</div>
+        <div class="pwa-banner-sub" id="pwa-banner-sub">Installer l'app · Accès instantané</div>
       </div>
       <div class="pwa-banner-actions">
-        <button
-          class="pwa-install-btn"
-          id="pwa-install-btn"
-          onclick="triggerPWAInstall()"
-        >
-          <i class="fa-solid fa-download"></i> Installer
+        <button class="pwa-install-btn" id="pwa-install-btn" onclick="triggerPWAInstall()">
+          <i class="fa-solid fa-download"></i> <span id="pwa-install-btn-text">Installer</span>
         </button>
-        <button class="pwa-dismiss-btn" onclick="dismissPWABanner()">
-          Plus tard
-        </button>
+        <button class="pwa-dismiss-btn" id="pwa-dismiss-btn" onclick="dismissPWABanner()">Plus tard</button>
       </div>
     </div>
 
@@ -5222,21 +5119,24 @@
           return raw.filter((item) => {
             if (!item || typeof item !== "object") return false;
             if (!isValidId(item.id)) return false;
-            if (!isValidSize(item.size)) return false;
-            // Récupérer le vrai produit du catalogue
-            const prod = flatProds.find((p) => p.id === item.id);
+            // [FIX] Chercher dans allProds (inclut sneakers)
+            const prod = allProds.find((p) => p.id === item.id);
             if (!prod) return false;
-            // Vérifier la taille contre le produit réel
-            if (!prod.sizes.includes(item.size)) return false;
-            // Vérifier que les prix n'ont pas été manipulés
-            item.basePrice = prod.basePrice;
+            // Accepter tailles texte ET numériques
+            const prodSizes = (prod.sizes || []).map((s) => String(s));
+            const sizeStr = String(item.size || "");
+            if (prodSizes.length && !prodSizes.includes(sizeStr)) return false;
+            // Réhydrater depuis le catalogue
+            item.basePrice = prod.basePrice || prod.price || 0;
             item.promoPrice = prod.promoPrice;
             item.promoQty = prod.promoQty;
             item.cat = prod.cat;
-            item.color = prod.color;
+            item.color = prod.color || { h: "#2a2a2a", n: "-" };
             item.name = prod.name;
+            item.image = prod.image || prod.thumb || (prod.images && prod.images[0]) || null;
             item.qty = clampQty(item.qty);
-            item.key = `${item.id}-${item.size}`;
+            item.key = `${item.id}-${sizeStr}`;
+            item.size = sizeStr;
             return true;
           });
         } catch (e) {
@@ -5673,14 +5573,19 @@
       }
 
       function selSz(el, s) {
-        // Taille valide si dans VALID_SIZES ou numérique (pointures sneakers)
-        if (!VALID_SIZES.has(s) && !VALID_SIZES.has(Number(s))) return;
-        document
-          .querySelectorAll(".sc")
-          .forEach((c) => c.classList.remove("on"));
+        // Accepter les tailles texte (S,M,L...) ET les pointures numériques (39-44)
+        // On tolère toute valeur non vide — la validation stricte est déjà faite en amont
+        if (!s && s !== 0) return;
+        var sStr = String(s);
+        // Retirer la sélection de tous les boutons de taille dans la fiche détail uniquement
+        var szg = document.getElementById("dszg");
+        if (szg) {
+          szg.querySelectorAll(".sc").forEach(function(c) { c.classList.remove("on"); });
+        }
         el.classList.add("on");
-        dSz = s;
-        document.getElementById("ssl").textContent = s;
+        dSz = sStr;
+        var ssl = document.getElementById("ssl");
+        if (ssl) ssl.textContent = sStr;
       }
 
       /**
@@ -5901,17 +5806,19 @@
 
       // Modification de la taille dans le panier
       function chCartSz(key, newSz) {
-        // [SÉCURITÉ] Valider la nouvelle taille
-        if (!isValidSize(newSz)) return;
+        // [FIX] Accepter tailles texte ET numériques (pointures sneakers)
+        var newSzStr = String(newSz);
         const item = cart.find((c) => c.key === key);
         if (!item) return;
-        const p = flatProds.find((x) => x.id === item.id);
+        // [FIX] Chercher dans allProds pour inclure les sneakers
+        const p = allProds.find((x) => x.id === item.id);
         if (!p) return;
-        if (!p.sizes.includes(newSz)) {
-          toast("Taille non disponible");
+        const prodSizes = (p.sizes || []).map((s) => String(s));
+        if (!prodSizes.includes(newSzStr)) {
+          toast(currentLang === "en" ? "Size not available" : "Taille non disponible");
           return;
         }
-        const newKey = `${item.id}-${newSz}`;
+        const newKey = `${item.id}-${newSzStr}`;
         if (newKey !== key) {
           const existing = cart.find((c) => c.key === newKey);
           if (existing) {
@@ -5919,7 +5826,7 @@
             cart = cart.filter((c) => c.key !== key);
           } else {
             item.key = newKey;
-            item.size = newSz;
+            item.size = newSzStr;
           }
         } else {
           return;
@@ -5939,10 +5846,10 @@
           el.innerHTML = `
       <div class="empty">
         <i class="fa-solid fa-bag-shopping"></i>
-        <h3>Panier vide</h3>
-        <p>Parcourez notre catalogue pour trouver votre article</p>
+        <h3>${t("cart_empty_title")}</h3>
+        <p>${t("cart_empty_sub")}</p>
         <button class="ebtn" onclick="navigate('home')">
-          <i class="fa-solid fa-arrow-left"></i> Voir le catalogue
+          <i class="fa-solid fa-arrow-left"></i> ${t("cart_empty_btn")}
         </button>
       </div>`;
           return;
@@ -5955,8 +5862,8 @@
         let total = 0;
         const items = cart
           .map((c) => {
-            // [SÉCURITÉ] Prix toujours vérifiés via le catalogue
-            const trueProd = flatProds.find((x) => x.id === c.id);
+            // [FIX] Chercher dans allProds (inclut sneakers) et non flatProds seul
+            const trueProd = allProds.find((x) => x.id === c.id);
             const price =
               c.cat === "slim" && usePromo && trueProd && trueProd.promoPrice
                 ? trueProd.promoPrice
@@ -5967,26 +5874,32 @@
             total += itemTotal;
 
             const p = trueProd;
-            const availableSizes = p ? p.sizes : [];
+            const availableSizes = p ? p.sizes : (c.sizes || []);
+            const isShoeItem = c.cat === "sneakers" || c.cat === "crampons" || c.cat === "sandales";
+            const sizeLabel = isShoeItem
+              ? (currentLang === "en" ? "Size (shoe):" : "Pointure :")
+              : (currentLang === "en" ? "Size:" : "Taille :");
+            // Comparer en string pour gérer les pointures numériques
             const sizeBtns = availableSizes
-              .map(
-                (s) =>
-                  `<button class="csz ${s === c.size ? "on" : ""}" onclick="chCartSz('${c.key}','${s}')">${s}</button>`,
-              )
+              .map((s) => {
+                const sStr = String(s);
+                const isSelected = sStr === String(c.size);
+                return `<button class="csz ${isSelected ? "on" : ""}" onclick="chCartSz('${c.key}','${sStr}')">${sStr}</button>`;
+              })
               .join("");
+            // [FIX 2] Image : priorité trueProd.image, sinon c.image (stocké dans le panier)
+            const imgSrc = (trueProd && (trueProd.image || trueProd.thumb || (trueProd.images && trueProd.images[0]))) || c.image || null;
+            const thumbHtml = imgSrc
+              ? `<img class="cthumb-img" src="${imgSrc}" alt="${sanitize(c.name)}" loading="lazy">`
+              : `<div class="cthumb" style="background:${(c.color && c.color.h) || "#2a2a2a"};border-radius:0.7rem;flex-shrink:0;width:clamp(56px,14vw,72px);height:clamp(56px,14vw,72px);"></div>`;
 
             return `
     <div class="citem">
       <div class="citem-top">
-        <!-- [IMAGES] Miniature produit dans le panier -->
-        ${
-          trueProd && trueProd.image
-            ? `<img class="cthumb-img" src="${trueProd.image}" alt="${sanitize(c.name)}" loading="lazy">`
-            : `<div class="cthumb" style="background:${c.color.h};"></div>`
-        }
+        ${thumbHtml}
         <div class="cdet">
           <div class="cnm">${sanitize(c.name)}</div>
-          <div class="cmeta">${sanitize(c.color.n)} - ${sanitize(c.size)}</div>
+          <div class="cmeta">${sanitize((c.color && c.color.n) || "")}${c.color && c.color.n ? " — " : ""}${sanitize(c.size)}</div>
           <div class="cpr">${fp(itemTotal)}</div>
         </div>
         <div class="cright">
@@ -6001,7 +5914,7 @@
         </div>
       </div>
       <div class="cart-sz">
-        <span>Taille :</span> ${sizeBtns}
+        <span>${sizeLabel}</span> ${sizeBtns}
       </div>
     </div>`;
           })
@@ -6631,6 +6544,7 @@
           nav_home: "Accueil",
           nav_wish: "Wishlist",
           nav_cart: "Panier",
+          nav_shop: "Boutique",
           nav_profile: "Profil",
           nav_contact: "Contact",
           wish_title: "Ma Wishlist",
@@ -6657,8 +6571,7 @@
           dlv_subtotal: "Sous-total",
           dlv_shipping: "Livraison",
           dlv_total: "Total",
-          wp_sub:
-            "Profitez de <strong>-10% sur votre première commande</strong>.<br>Mentionnez ce code lors de votre commande WhatsApp :",
+          wp_sub: "Profitez de <strong>-10% sur votre première commande</strong>.<br>Mentionnez ce code lors de votre commande WhatsApp :",
           wp_btn_shop: "Commencer mes achats",
           wp_btn_skip: "Plus tard",
           last_stock: "Derniers articles disponibles !",
@@ -6666,11 +6579,84 @@
           toast_prof: "Profil sauvegardé ✓",
           toast_wish_share: "Lien wishlist copié !",
           toast_wish_empty: "Votre wishlist est vide",
+          // Hero
+          hero_tag: "Nouvelle Collection 2025",
+          hero_title: "PERFORMANCE<br><span class=\"h-title-accent\">&amp; STYLE</span>",
+          hero_sub: "T-shirts Slim Fit, Compression &amp; Maillots de foot premium",
+          hero_stat_colors: "Couleurs",
+          hero_stat_collections: "Collections",
+          hero_stat_rating: "Satisfaction",
+          hero_btn_buy: "Acheter maintenant",
+          hero_btn_contact: "Nous contacter",
+          // Promo strip
+          promo_strip: "<span>Offre Slim Fit :</span> À partir de 4 t-shirts → 2 500 F CFA / unité ! · <span>Maillots de foot</span> disponibles",
+          // Section catalogue
+          cat_title: "Catalogue",
+          cat_see_all: "Voir tout",
+          // Footer
+          ft_sub: "T-shirts Slim Fit &amp; Compression premium · Dakar",
+          ft_newsletter_title: "Newsletter",
+          ft_newsletter_sub: "Offres exclusives en avant-première",
+          ft_newsletter_btn: "OK",
+          ft_newsletter_incentive: "Recevez un code promo à l'inscription",
+          ft_lang_title: "Langue &amp; Devise",
+          ft_lang_lbl: "Langue",
+          ft_cur_lbl: "Devise",
+          ft_copy: "© 2026 Moussa Business · Développé par Moussa LO",
+          ft_link_home: "Accueil",
+          ft_link_about: "À propos",
+          ft_link_cart: "Panier",
+          ft_link_contact: "Contact",
+          ft_link_slim: "Slim Fit",
+          ft_link_compression: "Compression",
+          ft_link_cvg: "CVG",
+          // Panier vide
+          cart_empty_title: "Panier vide",
+          cart_empty_sub: "Parcourez notre catalogue pour trouver votre article",
+          cart_empty_btn: "Voir le catalogue",
+          // Boutique vide
+          shop_empty: "Aucun produit trouvé.",
+          // Contact
+          contact_title: "NOUS CONTACTER",
+          contact_sub: "Disponible 7j/7 pour vos commandes &amp; questions",
+          // About
+          about_dev: "Développeur Web &amp; Musculation",
+          about_who: "QUI SUIS-JE ?",
+          about_services: "MES SERVICES",
+          about_contact_me: "ME CONTACTER",
+          about_cta: "Discutons de votre projet",
+          // CVG
+          cvg_title: "CVG",
+          cvg_sub: "Conditions de Vente Générales — Moussa Business",
+          // Recherche boutique
+          shop_search_placeholder: "Rechercher sneakers, maillots…",
+          shop_sort_pop: "Popularité",
+          shop_sort_asc: "Prix ↑",
+          shop_sort_desc: "Prix ↓",
+          shop_sort_name: "A → Z",
+          // Sneakers section
+          snk_selection: "Sélection",
+          snk_du_moment: "du moment",
+          snk_see_all: "Tout voir",
+          snk_cta_title: "TOUTE LA COLLECTION",
+          snk_cta_sub: "Nike, Adidas, Asics, New Balance, Crocs & plus — livraison sur Dakar",
+          snk_cta_btn: "Voir toute la boutique",
+          // Panier
+          cart_title: "Mon Panier",
+          cart_secure: "Paiement 100% sécurisé",
+          // Wishlist
+          wish_count_empty: "0 article",
+          // PWA
+          pwa_title: "Moussa Business",
+          pwa_sub: "Installer l'app · Accès instantané",
+          pwa_install_btn: "Installer",
+          pwa_dismiss: "Plus tard",
         },
         en: {
           nav_home: "Home",
           nav_wish: "Wishlist",
           nav_cart: "Cart",
+          nav_shop: "Shop",
           nav_profile: "Profile",
           nav_contact: "Contact",
           wish_title: "My Wishlist",
@@ -6697,8 +6683,7 @@
           dlv_subtotal: "Subtotal",
           dlv_shipping: "Shipping",
           dlv_total: "Total",
-          wp_sub:
-            "Enjoy <strong>-10% off your first order</strong>.<br>Mention this code when ordering on WhatsApp:",
+          wp_sub: "Enjoy <strong>-10% off your first order</strong>.<br>Mention this code when ordering on WhatsApp:",
           wp_btn_shop: "Start shopping",
           wp_btn_skip: "Maybe later",
           last_stock: "Last items available!",
@@ -6706,6 +6691,78 @@
           toast_prof: "Profile saved ✓",
           toast_wish_share: "Wishlist link copied!",
           toast_wish_empty: "Your wishlist is empty",
+          // Hero
+          hero_tag: "New 2025 Collection",
+          hero_title: "PERFORMANCE<br><span class=\"h-title-accent\">&amp; STYLE</span>",
+          hero_sub: "Premium Slim Fit, Compression &amp; Football Jerseys",
+          hero_stat_colors: "Colors",
+          hero_stat_collections: "Collections",
+          hero_stat_rating: "Satisfaction",
+          hero_btn_buy: "Shop Now",
+          hero_btn_contact: "Contact Us",
+          // Promo strip
+          promo_strip: "<span>Slim Fit Deal:</span> From 4 t-shirts → 2,500 F CFA each! · <span>Football Jerseys</span> available",
+          // Section catalogue
+          cat_title: "Catalogue",
+          cat_see_all: "See all",
+          // Footer
+          ft_sub: "Premium Slim Fit &amp; Compression · Dakar",
+          ft_newsletter_title: "Newsletter",
+          ft_newsletter_sub: "Exclusive deals — first to know",
+          ft_newsletter_btn: "OK",
+          ft_newsletter_incentive: "Get a promo code on sign-up",
+          ft_lang_title: "Language &amp; Currency",
+          ft_lang_lbl: "Language",
+          ft_cur_lbl: "Currency",
+          ft_copy: "© 2026 Moussa Business · Built by Moussa LO",
+          ft_link_home: "Home",
+          ft_link_about: "About",
+          ft_link_cart: "Cart",
+          ft_link_contact: "Contact",
+          ft_link_slim: "Slim Fit",
+          ft_link_compression: "Compression",
+          ft_link_cvg: "Terms",
+          // Panier vide
+          cart_empty_title: "Empty Cart",
+          cart_empty_sub: "Browse our catalogue to find your item",
+          cart_empty_btn: "View catalogue",
+          // Boutique vide
+          shop_empty: "No products found.",
+          // Contact
+          contact_title: "CONTACT US",
+          contact_sub: "Available 7/7 for orders &amp; questions",
+          // About
+          about_dev: "Web Developer &amp; Fitness",
+          about_who: "WHO AM I?",
+          about_services: "MY SERVICES",
+          about_contact_me: "CONTACT ME",
+          about_cta: "Let's talk about your project",
+          // CVG
+          cvg_title: "T&C",
+          cvg_sub: "General Terms & Conditions — Moussa Business",
+          // Recherche boutique
+          shop_search_placeholder: "Search sneakers, jerseys…",
+          shop_sort_pop: "Popularity",
+          shop_sort_asc: "Price ↑",
+          shop_sort_desc: "Price ↓",
+          shop_sort_name: "A → Z",
+          // Sneakers section
+          snk_selection: "Selection",
+          snk_du_moment: "of the moment",
+          snk_see_all: "See all",
+          snk_cta_title: "FULL COLLECTION",
+          snk_cta_sub: "Nike, Adidas, Asics, New Balance, Crocs & more — Dakar delivery",
+          snk_cta_btn: "View full shop",
+          // Panier
+          cart_title: "My Cart",
+          cart_secure: "100% Secure Payment",
+          // Wishlist
+          wish_count_empty: "0 item",
+          // PWA
+          pwa_title: "Moussa Business",
+          pwa_sub: "Install app · Instant access",
+          pwa_install_btn: "Install",
+          pwa_dismiss: "Later",
         },
       };
 
@@ -6726,28 +6783,29 @@
 
       function setLang(lang) {
         currentLang = lang;
-        try {
-          localStorage.setItem("mb_lang", lang);
-        } catch (e) {}
-        applyTranslations();
-        // Mettre à jour les textes dynamiques
-        renderProds(
-          flatProds.filter((p) => curFil === "all" || p.cat === curFil),
-        );
-        if (curPg === "cart") renderCart();
-        if (curPg === "wishlist") renderWish();
+        try { localStorage.setItem("mb_lang", lang); } catch (e) {}
+        applyTranslations(); // inclut désormais le re-render cart/shop/wish
+        renderProds(flatProds.filter((p) => curFil === "all" || p.cat === curFil));
         if (curPg === "profile") renderProfile();
+        // Mettre à jour la section sneakers si visible
+        if (typeof populate === "function") populate();
       }
 
       function setCurrency(cur) {
         currentCurrency = cur;
-        try {
-          localStorage.setItem("mb_currency", cur);
-        } catch (e) {}
+        try { localStorage.setItem("mb_currency", cur); } catch (e) {}
+        // Re-render toutes les zones avec des prix
+        renderProds(flatProds.filter((p) => curFil === "all" || p.cat === curFil));
         if (curPg === "cart") renderCart();
-        renderProds(
-          flatProds.filter((p) => curFil === "all" || p.cat === curFil),
-        );
+        if (curPg === "wishlist") renderWish();
+        // Mettre à jour les .ppr dans les cartes sneakers de la home
+        document.querySelectorAll("#sneakersPopularGrid .ppr").forEach((el) => {
+          const card = el.closest("[data-pid]");
+          if (!card) return;
+          const pid = card.getAttribute("data-pid");
+          const prod = allProds.find((p) => p.id === pid);
+          if (prod) el.innerHTML = fp(prod.basePrice || prod.price || 0) + ' <span class="cu">' + (currentCurrency !== "CFA" ? currentCurrency : "CFA") + '</span>';
+        });
       }
 
       /** Formate un prix en CFA vers la devise courante */
@@ -6762,16 +6820,112 @@
       }
 
       function applyTranslations() {
+        // 1) Éléments avec data-i18n (HTML statique)
         document.querySelectorAll("[data-i18n]").forEach((el) => {
           const key = el.getAttribute("data-i18n");
           const val = t(key);
           if (val) el.innerHTML = val;
         });
-        // Mettre à jour les selects
+
+        // 2) Synchro selects langue/devise
         const ls = document.getElementById("lang-select");
         if (ls) ls.value = currentLang;
         const cs = document.getElementById("cur-select");
         if (cs) cs.value = currentCurrency;
+
+        // 3) <html lang="...">
+        document.documentElement.lang = currentLang;
+
+        // 4) Bottom nav
+        const navMap = {
+          "nav-home": "nav_home", "nav-shop": "nav_shop",
+          "nav-wishlist": "nav_wish", "nav-cart": "nav_cart",
+          "nav-contact": "nav_contact"
+        };
+        Object.entries(navMap).forEach(([id, key]) => {
+          const el = document.getElementById(id);
+          if (el) { const sp = el.querySelector("span"); if (sp) sp.textContent = t(key); }
+        });
+
+        // 5) Header badges aria / title
+        const titleEl = document.querySelector("title");
+        if (titleEl) titleEl.textContent = "Moussa Business - " + (currentLang === "en" ? "Online Store" : "Boutique en ligne");
+
+        // 6) Hero
+        _setTxt("h-tag", t("hero_tag"), true);
+        _setTxt("hero-title-wrap", t("hero_title"), true);
+        _setTxt("hero-sub", t("hero_sub"), true);
+        _setTxt("hero-stat-colors", t("hero_stat_colors"));
+        _setTxt("hero-stat-collections", t("hero_stat_collections"));
+        _setTxt("hero-stat-rating", t("hero_stat_rating"));
+        _setTxt("hero-btn-buy", t("hero_btn_buy"), true);
+        _setTxt("hero-btn-contact", t("hero_btn_contact"), true);
+
+        // 7) Promo strip
+        _setTxt("promo-strip-text", t("promo_strip"), true);
+
+        // 8) Catalogue section title
+        _setTxt("cat-section-title", t("cat_title"));
+        _setTxt("cat-see-all", t("cat_see_all"));
+
+        // 9) Footer
+        _setTxt("ft-sub", t("ft_sub"), true);
+        _setTxt("ft-newsletter-title", t("ft_newsletter_title"), true);
+        _setTxt("ft-newsletter-sub", t("ft_newsletter_sub"));
+        _setTxt("ft-newsletter-btn", t("ft_newsletter_btn"));
+        _setTxt("ft-newsletter-incentive", t("ft_newsletter_incentive"), true);
+        _setTxt("ft-lang-title", t("ft_lang_title"), true);
+        _setTxt("ft-lang-lbl", t("ft_lang_lbl"));
+        _setTxt("ft-cur-lbl", t("ft_cur_lbl"));
+        _setTxt("ft-copy", t("ft_copy"));
+
+        // 10) Sneakers section
+        _setTxt("snk-selection", t("snk_selection"));
+        _setTxt("snk-du-moment", t("snk_du_moment"));
+        _setTxt("snk-see-all", t("snk_see_all"), true);
+        _setTxt("snk-cta-title", t("snk_cta_title"));
+        _setTxt("snk-cta-sub", t("snk_cta_sub"));
+        _setTxt("snk-cta-btn", t("snk_cta_btn"), true);
+
+        // 11) Contact page
+        _setTxt("contact-title", t("contact_title"));
+        _setTxt("contact-sub", t("contact_sub"), true);
+
+        // 12) Cart title
+        _setTxt("cart-title", t("cart_title"), true);
+
+        // 13) PWA banner
+        _setTxt("pwa-banner-title", t("pwa_title"));
+        _setTxt("pwa-banner-sub", t("pwa_sub"));
+        _setTxt("pwa-install-btn-text", t("pwa_install_btn"));
+
+        // 14) Panier vide — re-render si on est sur la page panier
+        if (curPg === "cart") renderCart();
+        if (curPg === "shop") { _setAttr("shop-search", "placeholder", t("shop_search_placeholder")); shopFilter(); }
+        if (curPg === "wishlist") renderWish();
+
+        // 15) Boutique search placeholder (même si pas sur la page)
+        _setAttr("shop-search", "placeholder", t("shop_search_placeholder"));
+
+        // 16) Sort options boutique
+        _updateSortOptions();
+      }
+
+      function _setTxt(id, val, isHtml) {
+        const el = document.getElementById(id);
+        if (!el || !val) return;
+        if (isHtml) el.innerHTML = val; else el.textContent = val;
+      }
+      function _setAttr(id, attr, val) {
+        const el = document.getElementById(id);
+        if (el && val) el.setAttribute(attr, val);
+      }
+      function _updateSortOptions() {
+        const sel = document.getElementById("shop-sort");
+        if (!sel) return;
+        const opts = sel.querySelectorAll("option");
+        const keys = ["shop_sort_pop", "shop_sort_asc", "shop_sort_desc", "shop_sort_name"];
+        opts.forEach((o, i) => { if (keys[i]) o.textContent = t(keys[i]); });
       }
 
       // ================================================================
@@ -7527,17 +7681,12 @@
             "</span></div>";
 
         var pid = p.id;
-        // Pour les chaussures → bouton "Choisir pointure" qui ouvre openDet
-        // Pour les vêtements → bouton panier direct (la taille par défaut est déjà la 1ère)
+        // [FIX 4] Tous les produits ont un bouton panier direct.
+        // La sélection taille/pointure se fait dans le panier (cart-sz).
         var cartBtn;
         if (!stockOk) {
           cartBtn =
             '<button class="abtn cart-icon-btn soldout-btn" disabled aria-label="Rupture"><i class="fa-solid fa-ban"></i></button>';
-        } else if (isShoe) {
-          cartBtn =
-            '<button class="abtn cart-icon-btn" onclick="event.stopPropagation();openDet(\'' +
-            pid +
-            '\')" aria-label="Choisir la pointure" style="gap:.4rem"><i class="fa-solid fa-shoe-prints"></i> Pointure</button>';
         } else {
           cartBtn =
             '<button class="abtn cart-icon-btn" onclick="event.stopPropagation();shopAddCart(this,\'' +
@@ -7662,73 +7811,30 @@
 
         function renderCard(p) {
           var prix = p.basePrice || p.price || 0;
-          var priceStr = window.formatPrice ? window.formatPrice(prix) : prix;
+          var priceStr = typeof fp === "function" ? fp(prix) : (typeof window.formatPrice === "function" ? window.formatPrice(prix) : prix);
           var imgSrc = p.image || p.thumb || (p.images && p.images[0]) || null;
           var bg = p.color && p.color.h ? p.color.h : "#111";
           var catLbl = CAT_LABELS[p.cat] || p.cat || "Chaussures";
           var pid = esc(p.id);
           var pname = esc(p.name);
-          // isW et togW sont des fonctions globales de index.html
-          var imgHtml = imgSrc
-            ? '<img class="pph-img" src="' +
-              esc(imgSrc) +
-              '" alt="' +
-              pname +
-              '" loading="lazy" width="300" height="300">'
-            : '<div class="pph" style="background:' +
-              esc(bg) +
-              ';display:flex;align-items:center;justify-content:center"><span style="font-size:.75rem;color:#fff;background:rgba(0,0,0,.5);padding:.2rem .6rem;border-radius:1rem">' +
-              pname +
-              "</span></div>";
           var isFav = typeof isW === "function" ? isW(p.id) : false;
-          var q = '"';
-          return (
-            '<div class="pcard" data-pid="' +
-            pid +
-            '" onclick=' +
-            q +
-            "openDet(" +
-            q +
-            pid +
-            q +
-            ")" +
-            q +
-            ">" +
-            '<div class="pmed">' +
-            imgHtml +
-            '<span class="catb">' +
-            catLbl +
-            "</span>" +
-            '<button class="wb ' +
-            (isFav ? "on" : "") +
-            '" id="wb-' +
-            pid +
-            '" onclick=' +
-            q +
-            "event.stopPropagation();togW(" +
-            q +
-            pid +
-            q +
-            ")" +
-            q +
-            ' aria-label="Wishlist"><i class="fa-solid fa-heart"></i></button>' +
-            "</div>" +
-            '<div class="pinf">' +
-            '<div class="pnm">' +
-            pname +
-            "</div>" +
-            '<div class="ppr">' +
-            priceStr +
-            ' <span class="cu">CFA</span></div>' +
-            '<button class="abtn cart-icon-btn"' +
-            " onclick=\"event.stopPropagation();openDet('" +
-            pid +
-            "')\"" +
-            ' aria-label="Choisir pointure">' +
-            '<i class="fa-solid fa-shoe-prints"></i> Choisir' +
-            "</button>" +
-            "</div></div>"
-          );
+          // [FIX 3] Utiliser des apostrophes dans onclick pour éviter le conflit de guillemets
+          var imgHtml = imgSrc
+            ? '<img class="pph-img" src="' + esc(imgSrc) + '" alt="' + pname + '" loading="lazy" width="300" height="300">'
+            : '<div class="pph" style="background:' + esc(bg) + ';display:flex;align-items:center;justify-content:center"><span style="font-size:.75rem;color:#fff;background:rgba(0,0,0,.5);padding:.2rem .6rem;border-radius:1rem">' + pname + "</span></div>";
+          // [FIX 4] Bouton panier direct (icône cart) → ajoute au panier avec pointure par défaut
+          // Le client choisit sa pointure directement dans le panier (cart-sz)
+          return '<div class="pcard" data-pid="' + pid + '" onclick="openDet(\'' + pid + '\')">'
+            + '<div class="pmed">'
+            + imgHtml
+            + '<span class="catb">' + catLbl + '</span>'
+            + '<button class="wb ' + (isFav ? "on" : "") + '" id="wb-' + pid + '" onclick="event.stopPropagation();togW(\'' + pid + '\')" aria-label="Wishlist"><i class="fa-solid fa-heart"></i></button>'
+            + '</div>'
+            + '<div class="pinf">'
+            + '<div class="pnm">' + pname + '</div>'
+            + '<div class="ppr">' + priceStr + ' <span class="cu">CFA</span></div>'
+            + '<button class="abtn cart-icon-btn" onclick="event.stopPropagation();flyToCart(this,\'' + pid + '\')" aria-label="Ajouter au panier"><i class="fa-solid fa-cart-plus"></i></button>'
+            + '</div></div>';
         }
 
         function populate() {
