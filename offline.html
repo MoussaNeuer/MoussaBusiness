@@ -1,46 +1,29 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="dark">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Hors ligne — Moussa Business</title>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;600&display=swap" rel="stylesheet"/>
-  <style>
-    :root { --accent: #FF5A36; --bg: #0B0B0F; --text: #fff; --text2: #B3B3B3; }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background: var(--bg); color: var(--text);
-      font-family: "DM Sans", sans-serif;
-      min-height: 100vh;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      padding: 32px 20px; text-align: center;
-    }
-    .icon { font-size: 80px; margin-bottom: 24px; animation: float 3s ease-in-out infinite; }
-    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
-    h1 { font-family: "Syne", sans-serif; font-size: 32px; font-weight: 800; margin-bottom: 12px; }
-    h1 span { color: var(--accent); }
-    p { color: var(--text2); font-size: 15px; line-height: 1.6; max-width: 300px; margin-bottom: 32px; }
-    .btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--accent); color: white;
-      padding: 14px 28px; border-radius: 16px;
-      font-size: 15px; font-weight: 700; border: none; cursor: pointer;
-      font-family: "DM Sans", sans-serif;
-      box-shadow: 0 4px 20px rgba(255,90,54,0.4);
-      transition: all 0.2s;
-    }
-    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255,90,54,0.5); }
-    .brand { font-family: "Syne", sans-serif; font-size: 20px; font-weight: 800; margin-top: 48px; color: var(--text2); }
-    .brand span { color: var(--accent); }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Moussa Business — Hors ligne</title>
+<link rel="icon" href="images/logo/logo-mb.png"/>
+<style>
+:root{--bg:#0A0A0E;--surf:#16161E;--acc:#FF5A36;--text:#F0F0F5;--t2:#A0A0B8;--t3:#5A5A78;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:"Barlow",system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;}
+.wrap{text-align:center;max-width:340px;}
+.logo{width:72px;height:72px;border-radius:18px;background:var(--surf);border:2px solid rgba(255,90,54,.2);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;overflow:hidden;padding:6px;}
+.logo img{width:100%;height:100%;object-fit:contain;}
+h1{font-size:26px;font-weight:900;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;}
+h1 span{color:var(--acc);}
+p{font-size:14px;color:var(--t2);line-height:1.6;margin-bottom:28px;}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--acc);color:#fff;padding:14px 24px;border-radius:12px;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;border:none;cursor:pointer;text-decoration:none;}
+</style>
 </head>
 <body>
-  <div class="icon">📶</div>
-  <h1>Hors-<span>ligne</span></h1>
-  <p>Vérifiez votre connexion internet et réessayez. Vos données sont sauvegardées localement.</p>
-  <button class="btn" onclick="window.location.reload()">
-    🔄 Réessayer
-  </button>
-  <div class="brand">Moussa <span>Business</span></div>
+<div class="wrap">
+  <div class="logo"><img src="images/logo/logo-mb.png" alt="Moussa Business"/></div>
+  <h1>Moussa <span>Business</span></h1>
+  <p>Vous êtes hors ligne. Vérifiez votre connexion internet et réessayez.</p>
+  <a class="btn" href="/">↺ Réessayer</a>
+</div>
 </body>
 </html>

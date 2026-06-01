@@ -1,11 +1,10 @@
 // ================================================================
-//  MOUSSA BUSINESS — Service Worker Premium 2026
-//  Cache strategies: Network-First nav | Cache-First images | SWR JS/CSS
+//  MOUSSA BUSINESS — Service Worker Premium 2026 v3
 // ================================================================
-const VER = "mb-2026-2";
-const FONT_C = "mb-fonts-1";
-const IMG_C = "mb-img-1";
-const MAX_IMG = 200;
+const VER = "mb-2026-v3";
+const FONT_C = "mb-fonts-2";
+const IMG_C = "mb-img-2";
+const MAX_IMG = 220;
 
 const SHELL = [
   "./","./index.html","./offline.html",
@@ -29,7 +28,6 @@ self.addEventListener("fetch",e=>{
   const {request:req}=e;
   const url=new URL(req.url);
   if(req.method!=="GET"||url.protocol==="chrome-extension:")return;
-
   if(url.hostname.includes("fonts.googleapis.com")||url.hostname.includes("fonts.gstatic.com")||
     (url.hostname.includes("cdnjs.cloudflare.com")&&/\.(woff2?|ttf|css)$/i.test(url.pathname))){
     e.respondWith(cacheFirst(req,FONT_C));return;
@@ -53,7 +51,8 @@ self.addEventListener("push",e=>{
   const d=e.data?.json()||{};
   e.waitUntil(self.registration.showNotification(d.title||"Moussa Business",{
     body:d.body||"Nouvelle offre disponible !",
-    icon:"./icons/icon-192.png",badge:"./icons/icon-64.png",
+    icon:"./images/logo/logo-mb.png",
+    badge:"./images/logo/logo-mb.png",
     vibrate:[100,50,100],data:{url:d.url||"/"}
   }));
 });
@@ -88,7 +87,7 @@ async function cacheFirstLimited(req,cn,max){
     const r=await fetch(req);
     if(r?.status===200){c.put(req,r.clone());const ks=await c.keys();if(ks.length>max)c.delete(ks[0]);}
     return r;
-  }catch{return new Response('<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><rect fill="#15161A" width="200" height="200"/></svg>',{headers:{"Content-Type":"image/svg+xml"}});}
+  }catch{return new Response('<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><rect fill="#16161E" width="200" height="200"/></svg>',{headers:{"Content-Type":"image/svg+xml"}});}
 }
 async function netFirst(req,cn){
   const c=await caches.open(cn);
