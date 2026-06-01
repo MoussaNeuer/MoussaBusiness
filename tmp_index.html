@@ -3727,7 +3727,7 @@
       const sel = checkoutState.payment?.id;
       const cardsHtml = PAYMENT_OPTS.map(o => `
     <div class="pay-card${sel === o.id ? " on" : ""}" onclick="selectPayment('${o.id}')">
-      <img class="pay-card-logo" src="./images/paiements/${o.icon}.webp" alt="${o.name}" loading="eager" decoding="async" onerror="this.style.display='none';this.nextSibling.style.display='flex'"/>
+      <img class="pay-card-logo" src="images/paiements/${o.icon}.webp" alt="${o.name}" onerror="this.style.display='none';this.nextSibling.style.display='flex'"/>
       <div class="pay-card-logo-fallback" style="display:none">${o.emoji}</div>
       <div class="pay-card-name">${o.name}</div>
       <div class="pay-card-radio"></div>
