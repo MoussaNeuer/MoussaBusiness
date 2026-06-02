@@ -1455,6 +1455,163 @@
       transform: translateY(0);
     }
 
+    .recap-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1200;
+      background: rgba(0, 0, 0, .72);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--tr);
+      padding: 18px;
+    }
+
+    .recap-modal.on {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .recap-dialog {
+      width: min(100%, 760px);
+      max-height: calc(100vh - 48px);
+      overflow-y: auto;
+      background: var(--surf);
+      color: var(--text);
+      border-radius: 28px;
+      box-shadow: var(--shd-lg);
+      border: 1px solid rgba(255, 255, 255, .08);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: relative;
+    }
+
+    .recap-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .recap-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: .02em;
+    }
+
+    .recap-subtitle {
+      font-size: 0.95rem;
+      color: var(--t2);
+      margin-top: 4px;
+    }
+
+    .recap-close {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.08);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+      border: none;
+    }
+
+    .recap-modal-content {
+      display: grid;
+      gap: 16px;
+    }
+
+    .recap-card {
+      background: var(--bg);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 20px;
+      padding: 18px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .recap-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .recap-card-header img {
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
+      object-fit: cover;
+      background: #fff;
+      padding: 8px;
+    }
+
+    .recap-card-body {
+      display: grid;
+      gap: 12px;
+    }
+
+    .recap-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .recap-row:last-child {
+      border-bottom: none;
+    }
+
+    .recap-label {
+      font-size: 0.95rem;
+      color: var(--t2);
+    }
+
+    .recap-amount {
+      font-weight: 700;
+    }
+
+    .recap-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .recap-summary {
+      display: grid;
+      gap: 10px;
+      padding: 14px 0 0;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+    .recap-cta-group {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .recap-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .recap-highlight {
+      color: var(--acc3);
+      font-weight: 800;
+    }
+    }
+
     .bs-handle {
       width: 36px;
       height: 3px;
@@ -3070,6 +3227,25 @@
     <div class="bs-handle"></div>
     <button class="bs-close" onclick="closeBS()"><i class="fa-solid fa-xmark"></i></button>
     <div id="bs-content"></div>
+  </div>
+
+  <!-- RECAP PREVIEW MODAL -->
+  <div class="recap-modal" id="recap-modal" role="dialog" aria-modal="true" aria-labelledby="recap-modal-title">
+    <div class="recap-dialog">
+      <div class="recap-header">
+        <div>
+          <div id="recap-modal-title" class="recap-title">Récapitulatif professionnel</div>
+          <div class="recap-subtitle">Enregistrez, capturez ou confirmez votre commande.</div>
+        </div>
+        <button class="recap-close" onclick="closeRecapPreview()" aria-label="Fermer"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div id="recap-modal-content" class="recap-modal-content"></div>
+      <div class="recap-actions">
+        <button class="checkout-btn" onclick="downloadRecapPreview()">Télécharger</button>
+        <button class="btn-ghost" onclick="captureAndCloseRecapPreview()">Capture et fermer</button>
+        <button class="btn-pri" onclick="confirmOrder()">Confirmer la commande</button>
+      </div>
+    </div>
   </div>
 
   <!-- FLOATING -->
